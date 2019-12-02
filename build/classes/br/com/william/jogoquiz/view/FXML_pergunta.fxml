@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="768.0" prefWidth="1320.0" style="-fx-background-color: #363636;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.william.jogoquiz.controller.FXML_perguntaController">
+   <children>
+      <Pane layoutX="78.0" layoutY="125.0" prefHeight="519.0" prefWidth="1165.0" style="-fx-background-color: #E8E8E8; -fx-background-radius: 40;">
+         <children>
+            <JFXButton buttonType="RAISED" focusTraversable="false" layoutX="153.0" layoutY="285.0" prefHeight="107.0" prefWidth="420.0" style="-fx-background-color: white; -fx-background-radius: 22;" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Ubuntu Medium" size="15.0" />
+               </font>
+            </JFXButton>
+            <JFXButton buttonType="RAISED" focusTraversable="false" layoutX="153.0" layoutY="164.0" prefHeight="107.0" prefWidth="420.0" style="-fx-background-color: white; -fx-background-radius: 22;" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Ubuntu Medium" size="15.0" />
+               </font>
+            </JFXButton>
+            <JFXButton buttonType="RAISED" focusTraversable="false" layoutX="588.0" layoutY="164.0" prefHeight="107.0" prefWidth="420.0" style="-fx-background-color: white; -fx-background-radius: 22;" text="Button" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Ubuntu Medium" size="15.0" />
+               </font>
+            </JFXButton>
+            <JFXButton buttonType="RAISED" focusTraversable="false" layoutX="588.0" layoutY="285.0" prefHeight="107.0" prefWidth="420.0" style="-fx-background-color: white; -fx-background-radius: 22;" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Ubuntu Medium" size="15.0" />
+               </font>
+            </JFXButton>
+            <JFXTextArea editable="false" focusColor="#ffffff00" layoutX="105.0" layoutY="-54.0" prefHeight="200.0" prefWidth="956.0" style="-fx-background-color: white; -fx-background-radius: 22;" text="Quem nasceu primeiro o ovo ou a galinha?" unFocusColor="#4d4d4d00" visible="false">
+               <font>
+                  <Font name="Ubuntu Medium" size="15.0" />
+               </font>
+            </JFXTextArea>
+            <ProgressBar disable="true" layoutY="427.0" prefHeight="18.0" prefWidth="1165.0" progress="0.0" />
+            <StackPane layoutX="105.0" layoutY="-54.0" prefHeight="200.0" prefWidth="956.0" style="-fx-background-color: white; -fx-background-radius: 22;">
+               <children>
+                  <Label text="A pergunta vai aqui" textAlignment="CENTER" textFill="#363636" wrapText="true">
+                     <font>
+                        <Font name="Ubuntu Medium" size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+               <effect>
+                  <DropShadow height="10.0" radius="4.5" width="10.0" />
+               </effect>
+            </StackPane>
+            <HBox alignment="CENTER" layoutX="14.0" layoutY="445.0" prefHeight="68.0" prefWidth="156.0">
+               <children>
+                  <ImageView fitHeight="32.0" fitWidth="31.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@../imagens/star.png" />
+                     </image>
+                  </ImageView>
+                  <Label prefHeight="41.0" prefWidth="109.0" text=" 10000" textFill="#ed8a19">
+                     <font>
+                        <Font name="Ubuntu Medium" size="35.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <Label layoutX="17.0" layoutY="26.0" text="1/10" textFill="#a6a6a8">
+               <font>
+                  <Font name="Ubuntu Medium" size="35.0" />
+               </font>
+            </Label>
+            <Label ellipsisString="White" layoutX="883.0" layoutY="464.0" text="Matematica Portuges" textFill="#a6a6a8">
+               <font>
+                  <Font name="Ubuntu Medium" size="25.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Label layoutX="14.0" layoutY="14.0" text="William Amorim" textFill="#f2f2f2">
+         <font>
+            <Font name="Ubuntu Medium" size="35.0" />
+         </font>
+      </Label>
+      <Pane layoutX="78.0" layoutY="125.0" prefHeight="519.0" prefWidth="1165.0" style="-fx-background-color: #E8E8E8; -fx-background-radius: 40;" visible="false">
+         <children>
+            <JFXTextArea editable="false" focusColor="#ffffff00" layoutX="105.0" layoutY="-54.0" prefHeight="200.0" prefWidth="956.0" style="-fx-background-color: white; -fx-background-radius: 22;" text="Quem nasceu primeiro o ovo ou a galinha?" unFocusColor="#4d4d4d00" visible="false">
+               <font>
+                  <Font name="Ubuntu Medium" size="15.0" />
+               </font>
+            </JFXTextArea>
+            <ProgressBar disable="true" layoutY="427.0" prefHeight="18.0" prefWidth="1165.0" progress="0.0" />
+            <HBox alignment="CENTER" layoutX="14.0" layoutY="445.0" prefHeight="68.0" prefWidth="156.0">
+               <children>
+                  <ImageView fitHeight="32.0" fitWidth="31.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@../imagens/star.png" />
+                     </image>
+                  </ImageView>
+                  <Label prefHeight="41.0" prefWidth="109.0" text=" 10000" textFill="#ed8a19">
+                     <font>
+                        <Font name="Ubuntu Medium" size="35.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <Label ellipsisString="White" layoutX="883.0" layoutY="464.0" text="Matematica Portuges" textFill="#a6a6a8">
+               <font>
+                  <Font name="Ubuntu Medium" size="25.0" />
+               </font>
+            </Label>
+            <Pane layoutX="235.0" layoutY="20.0" prefHeight="122.0" prefWidth="696.0" style="-fx-background-color: white; -fx-background-radius: 80;">
+               <effect>
+                  <DropShadow height="10.0" radius="4.5" width="10.0" />
+               </effect>
+               <children>
+                  <ImageView fitHeight="107.0" fitWidth="124.0" layoutX="20.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imagens/first.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="142.0" layoutY="26.0" text="William">
+                     <font>
+                        <Font name="Ubuntu Medium" size="60.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane layoutX="235.0" layoutY="152.0" prefHeight="122.0" prefWidth="696.0" style="-fx-background-color: white; -fx-background-radius: 80;">
+               <effect>
+                  <DropShadow height="10.0" radius="4.5" width="10.0" />
+               </effect>
+               <children>
+                  <ImageView fitHeight="107.0" fitWidth="124.0" layoutX="22.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imagens/second.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="142.0" layoutY="26.0" text="William">
+                     <font>
+                        <Font name="Ubuntu Medium" size="60.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane layoutX="235.0" layoutY="285.0" prefHeight="122.0" prefWidth="696.0" style="-fx-background-color: white; -fx-background-radius: 80;">
+               <effect>
+                  <DropShadow height="10.0" radius="4.5" width="10.0" />
+               </effect>
+               <children>
+                  <ImageView fitHeight="107.0" fitWidth="124.0" layoutX="22.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imagens/third.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="142.0" layoutY="26.0" text="William">
+                     <font>
+                        <Font name="Ubuntu Medium" size="60.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+         </children>
+      </Pane>
+      <JFXButton buttonType="RAISED" layoutX="615.0" layoutY="78.0" prefHeight="25.0" prefWidth="110.0" style="-fx-background-color: #4D8FFF;" text="Voltar" textFill="WHITE" visible="false">
+         <font>
+            <Font name="Ubuntu Medium" size="20.0" />
+         </font>
+      </JFXButton>
+   </children>
+</AnchorPane>
