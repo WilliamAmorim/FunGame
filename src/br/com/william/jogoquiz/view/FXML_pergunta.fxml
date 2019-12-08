@@ -171,5 +171,10 @@
             <Font name="Ubuntu Medium" size="20.0" />
          </font>
       </JFXButton>
+      <JFXButton buttonType="RAISED" layoutX="1211.0" layoutY="14.0" prefHeight="48.0" prefWidth="95.0" style="-fx-background-color: #FF4040; -fx-background-radius: 22;" text="Sair" textFill="WHITE">
+         <font>
+            <Font name="Ubuntu Medium" size="20.0" />
+         </font>
+      </JFXButton>
    </children>
 </AnchorPane>

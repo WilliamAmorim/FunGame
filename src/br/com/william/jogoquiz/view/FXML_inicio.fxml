@@ -14,7 +14,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="768.0" prefWidth="1320.0" style="-fx-background-color: #363636;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.william.jogoquiz.controller.FXML_inicioController">
    <children>
-      <Label layoutX="466.0" layoutY="68.0" text="Projeto X" textFill="WHITE">
+      <Label layoutX="450.0" layoutY="14.0" text="Projeto X" textFill="WHITE">
          <font>
             <Font name="Ubuntu Medium" size="96.0" />
          </font>
@@ -33,7 +33,7 @@
             </JFXButton>
          </children>
       </Pane>
-      <Pane fx:id="panel_loginProfessor" layoutX="303.0" layoutY="191.0" prefHeight="553.0" prefWidth="797.0" visible="false">
+      <Pane fx:id="panel_loginProfessor" layoutX="262.0" layoutY="108.0" prefHeight="553.0" prefWidth="797.0" visible="false">
          <children>
             <Pane layoutX="231.0" layoutY="72.0" prefHeight="442.0" prefWidth="335.0" style="-fx-background-color: #F9F9F9; -fx-background-radius: 22;">
                <effect>
@@ -45,12 +45,12 @@
                         <Font name="Ubuntu Medium" size="55.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="txt_usuarioProfessor" layoutX="40.0" layoutY="222.0" prefHeight="25.0" prefWidth="255.0" promptText="Usuario">
+                  <TextField fx:id="txt_usuarioProfessor" focusTraversable="false" layoutX="40.0" layoutY="222.0" prefHeight="25.0" prefWidth="255.0" promptText="Usuario">
                      <font>
                         <Font name="Ubuntu Medium" size="15.0" />
                      </font>
                   </TextField>
-                  <JFXButton fx:id="BT_entrarProfessor" buttonType="RAISED" layoutX="40.0" layoutY="346.0" prefHeight="25.0" prefWidth="255.0" style="-fx-background-color: #4D8FFF; -fx-background-radius: 8;" text="Entrar" textFill="WHITE">
+                  <JFXButton fx:id="BT_entrarProfessor" buttonType="RAISED" focusTraversable="false" layoutX="40.0" layoutY="346.0" onAction="#BT_entrarProfessor" prefHeight="25.0" prefWidth="255.0" style="-fx-background-color: #4D8FFF; -fx-background-radius: 8;" text="Entrar" textFill="WHITE">
                      <font>
                         <Font name="Ubuntu Medium" size="20.0" />
                      </font>
@@ -60,17 +60,17 @@
                         <Image url="@../imagens/professor.png" />
                      </image>
                   </ImageView>
-                  <JFXButton fx:id="BT_voltarProfessor" layoutX="8.0" layoutY="14.0" text="Voltar" textFill="#a6a6a8">
+                  <JFXButton fx:id="BT_voltarProfessor" focusTraversable="false" layoutX="14.0" layoutY="16.0" onAction="#BT_voltarLoginProfessor" text="Voltar" textFill="#a6a6a8">
                      <font>
                         <Font name="Ubuntu Medium" size="15.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton fx:id="BT_cadastreProfessor" layoutX="99.0" layoutY="398.0" text="Cadastre-se" textFill="#a6a6a8">
+                  <JFXButton fx:id="BT_cadastreProfessor" focusTraversable="false" layoutX="99.0" layoutY="398.0" onAction="#BT_entrarCadastrarProfessor" text="Cadastre-se" textFill="#a6a6a8">
                      <font>
                         <Font name="Ubuntu Medium" size="20.0" />
                      </font>
                   </JFXButton>
-                  <PasswordField fx:id="txt_senhaProfessor" layoutX="40.0" layoutY="271.0" prefHeight="25.0" prefWidth="255.0" promptText="Senha">
+                  <PasswordField fx:id="txt_senhaProfessor" focusTraversable="false" layoutX="40.0" layoutY="271.0" prefHeight="25.0" prefWidth="255.0" promptText="Senha">
                      <font>
                         <Font name="Ubuntu Medium" size="15.0" />
                      </font>
@@ -78,7 +78,7 @@
                </children></Pane>
          </children>
       </Pane>
-      <Pane fx:id="panel_loginAluno" layoutX="303.0" layoutY="191.0" prefHeight="553.0" prefWidth="797.0" visible="false">
+      <Pane fx:id="panel_loginAluno" layoutX="262.0" layoutY="108.0" prefHeight="553.0" prefWidth="797.0" visible="false">
          <children>
             <Pane layoutX="231.0" layoutY="72.0" prefHeight="442.0" prefWidth="335.0" style="-fx-background-color: #F9F9F9; -fx-background-radius: 22;">
                <effect>
@@ -90,12 +90,12 @@
                         <Font name="Ubuntu Medium" size="55.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="txt_usuarioAluno" layoutX="40.0" layoutY="222.0" prefHeight="25.0" prefWidth="255.0" promptText="Usuario">
+                  <TextField fx:id="txt_usuarioAluno" focusTraversable="false" layoutX="40.0" layoutY="222.0" prefHeight="25.0" prefWidth="255.0" promptText="Usuario">
                      <font>
                         <Font name="Ubuntu Medium" size="15.0" />
                      </font>
                   </TextField>
-                  <JFXButton fx:id="BT_loginAluno" buttonType="RAISED" layoutX="40.0" layoutY="346.0" prefHeight="25.0" prefWidth="255.0" style="-fx-background-color: #4D8FFF; -fx-background-radius: 8;" text="Entrar" textFill="WHITE">
+                  <JFXButton fx:id="BT_loginAluno" buttonType="RAISED" focusTraversable="false" layoutX="40.0" layoutY="346.0" onAction="#BT_entrarAluno" prefHeight="25.0" prefWidth="255.0" style="-fx-background-color: #4D8FFF; -fx-background-radius: 8;" text="Entrar" textFill="WHITE">
                      <font>
                         <Font name="Ubuntu Medium" size="20.0" />
                      </font>
@@ -105,17 +105,17 @@
                         <Image url="@../imagens/student.png" />
                      </image>
                   </ImageView>
-                  <JFXButton fx:id="BT_cadastreAluno" layoutX="99.0" layoutY="397.0" text="Cadastre-se" textFill="#a6a6a8">
+                  <JFXButton fx:id="BT_cadastreAluno" focusTraversable="false" layoutX="99.0" layoutY="397.0" onAction="#BT_entrarCadastrarAluno" text="Cadastre-se" textFill="#a6a6a8">
                      <font>
                         <Font name="Ubuntu Medium" size="20.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton fx:id="BT_voltarAluno" layoutX="14.0" layoutY="16.0" text="Voltar" textFill="#a6a6a8">
+                  <JFXButton fx:id="BT_voltarAluno" focusTraversable="false" layoutX="14.0" layoutY="16.0" onAction="#BT_voltarLoginAluno" text="Voltar" textFill="#a6a6a8">
                      <font>
                         <Font name="Ubuntu Medium" size="15.0" />
                      </font>
                   </JFXButton>
-                  <PasswordField fx:id="txt_senhaAluno" layoutX="40.0" layoutY="271.0" prefHeight="25.0" prefWidth="255.0" promptText="Senha">
+                  <PasswordField fx:id="txt_senhaAluno" focusTraversable="false" layoutX="40.0" layoutY="271.0" prefHeight="25.0" prefWidth="255.0" promptText="Senha">
                      <font>
                         <Font name="Ubuntu Medium" size="15.0" />
                      </font>
@@ -124,7 +124,7 @@
             </Pane>
          </children>
       </Pane>
-      <Pane fx:id="panel_cadastroAluno" layoutX="303.0" layoutY="191.0" prefHeight="553.0" prefWidth="797.0" visible="false">
+      <Pane fx:id="panel_cadastroAluno" layoutX="262.0" layoutY="108.0" prefHeight="553.0" prefWidth="797.0" visible="false">
          <children>
             <Pane layoutX="231.0" layoutY="72.0" prefHeight="442.0" prefWidth="335.0" style="-fx-background-color: #F9F9F9; -fx-background-radius: 22;">
                <effect>
@@ -136,12 +136,12 @@
                         <Font name="Ubuntu Medium" size="55.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="txt_usuarioCadastroAluno" layoutX="40.0" layoutY="199.0" prefHeight="25.0" prefWidth="255.0" promptText="Usuario">
+                  <TextField fx:id="txt_usuarioCadastroAluno" focusTraversable="false" layoutX="40.0" layoutY="199.0" prefHeight="25.0" prefWidth="255.0" promptText="Usuario">
                      <font>
                         <Font name="Ubuntu Medium" size="15.0" />
                      </font>
                   </TextField>
-                  <JFXButton fx:id="BT_cadastrarAluno" buttonType="RAISED" layoutX="41.0" layoutY="380.0" prefHeight="25.0" prefWidth="255.0" style="-fx-background-color: #4D8FFF; -fx-background-radius: 8;" text="Cadastrar" textFill="WHITE">
+                  <JFXButton fx:id="BT_cadastrarAluno" buttonType="RAISED" focusTraversable="false" layoutX="41.0" layoutY="380.0" onAction="#BT_cadastrarAluno" prefHeight="25.0" prefWidth="255.0" style="-fx-background-color: #4D8FFF; -fx-background-radius: 8;" text="Cadastrar" textFill="WHITE">
                      <font>
                         <Font name="Ubuntu Medium" size="20.0" />
                      </font>
@@ -151,15 +151,15 @@
                         <Image url="@../imagens/student.png" />
                      </image>
                   </ImageView>
-                  <ComboBox fx:id="combo_serie" layoutX="40.0" layoutY="295.0" prefHeight="25.0" prefWidth="122.0" promptText="Serie" />
-                  <ComboBox fx:id="combo_turma" layoutX="174.0" layoutY="295.0" prefHeight="25.0" prefWidth="122.0" promptText="Turma" />
-                  <ComboBox fx:id="combo_turno" layoutX="40.0" layoutY="332.0" prefHeight="25.0" prefWidth="255.0" promptText="Turno" />
-                  <JFXButton fx:id="BT_voltarCadastro" layoutX="21.0" layoutY="14.0" text="Voltar" textFill="#a6a6a8">
+                  <ComboBox fx:id="combo_serie" focusTraversable="false" layoutX="40.0" layoutY="295.0" prefHeight="25.0" prefWidth="122.0" promptText="Serie" />
+                  <ComboBox fx:id="combo_turma" focusTraversable="false" layoutX="174.0" layoutY="295.0" prefHeight="25.0" prefWidth="122.0" promptText="Turma" />
+                  <ComboBox fx:id="combo_turno" focusTraversable="false" layoutX="40.0" layoutY="332.0" prefHeight="25.0" prefWidth="255.0" promptText="Turno" />
+                  <JFXButton fx:id="BT_voltarCadastro" focusTraversable="false" layoutX="14.0" layoutY="16.0" onAction="#BT_voltarCadastroAluno" text="Voltar" textFill="#a6a6a8">
                      <font>
                         <Font name="Ubuntu Medium" size="15.0" />
                      </font>
                   </JFXButton>
-                  <PasswordField fx:id="txt_senhaCadastroAluno" layoutX="40.0" layoutY="248.0" prefHeight="25.0" prefWidth="255.0" promptText="Senha">
+                  <PasswordField fx:id="txt_senhaCadastroAluno" focusTraversable="false" layoutX="40.0" layoutY="248.0" prefHeight="25.0" prefWidth="255.0" promptText="Senha">
                      <font>
                         <Font name="Ubuntu Medium" size="15.0" />
                      </font>
@@ -168,7 +168,7 @@
             </Pane>
          </children>
       </Pane>
-      <Pane fx:id="panel_cadastroProfessor" layoutX="303.0" layoutY="191.0" prefHeight="553.0" prefWidth="797.0" visible="false">
+      <Pane fx:id="panel_cadastroProfessor" layoutX="262.0" layoutY="108.0" prefHeight="553.0" prefWidth="797.0" visible="false">
          <children>
             <Pane layoutX="231.0" layoutY="72.0" prefHeight="442.0" prefWidth="335.0" style="-fx-background-color: #F9F9F9; -fx-background-radius: 22;">
                <effect>
@@ -180,12 +180,12 @@
                         <Font name="Ubuntu Medium" size="55.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="txt_usuarioCadastroProfessor" layoutX="40.0" layoutY="222.0" prefHeight="25.0" prefWidth="255.0" promptText="Usuario">
+                  <TextField fx:id="txt_usuarioCadastroProfessor" focusTraversable="false" layoutX="40.0" layoutY="222.0" prefHeight="25.0" prefWidth="255.0" promptText="Usuario">
                      <font>
                         <Font name="Ubuntu Medium" size="15.0" />
                      </font>
                   </TextField>
-                  <JFXButton fx:id="BT_cadastrarProfessor" buttonType="RAISED" layoutX="40.0" layoutY="379.0" prefHeight="25.0" prefWidth="255.0" style="-fx-background-color: #4D8FFF; -fx-background-radius: 8;" text="Cadastrar" textFill="WHITE">
+                  <JFXButton fx:id="BT_cadastrarProfessor" buttonType="RAISED" focusTraversable="false" layoutX="40.0" layoutY="379.0" onAction="#BT_cadastrarProfessor" prefHeight="25.0" prefWidth="255.0" style="-fx-background-color: #4D8FFF; -fx-background-radius: 8;" text="Cadastrar" textFill="WHITE">
                      <font>
                         <Font name="Ubuntu Medium" size="20.0" />
                      </font>
@@ -195,13 +195,13 @@
                         <Image url="@../imagens/professor.png" />
                      </image>
                   </ImageView>
-                  <ComboBox fx:id="combo_disciplina" layoutX="40.0" layoutY="320.0" prefHeight="25.0" prefWidth="255.0" promptText="Disciplina" />
-                  <JFXButton fx:id="BT_voltarCadastroProfessor" layoutX="23.0" layoutY="10.0" text="Voltar" textFill="#a6a6a8">
+                  <ComboBox fx:id="combo_disciplina" focusTraversable="false" layoutX="40.0" layoutY="320.0" prefHeight="25.0" prefWidth="255.0" promptText="Disciplina" />
+                  <JFXButton fx:id="BT_voltarCadastroProfessor" focusTraversable="false" layoutX="14.0" layoutY="16.0" onAction="#BT_voltarCadastroProfessor" text="Voltar" textFill="#a6a6a8">
                      <font>
                         <Font name="Ubuntu Medium" size="15.0" />
                      </font>
                   </JFXButton>
-                  <PasswordField fx:id="txt_senhaCadastroProfessor" layoutX="40.0" layoutY="271.0" prefHeight="25.0" prefWidth="255.0" promptText="Senha">
+                  <PasswordField fx:id="txt_senhaCadastroProfessor" focusTraversable="false" layoutX="40.0" layoutY="271.0" prefHeight="25.0" prefWidth="255.0" promptText="Senha">
                      <font>
                         <Font name="Ubuntu Medium" size="15.0" />
                      </font>
