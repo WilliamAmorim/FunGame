@@ -93,6 +93,7 @@ public class Inicio extends Application{
                     ArrayList valorRetornado = new ArrayList();
                     ArrayList values = new ArrayList();                
                     values.add(br.readLine().substring(4));
+                    
                    
                     valorRetornado = novo.executeQuery(query, values, retorno);
                     if(valorRetornado.isEmpty()){
