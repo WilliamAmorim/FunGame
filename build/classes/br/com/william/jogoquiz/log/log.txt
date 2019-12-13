@@ -1,2 +1,2 @@
 1
-log:teste
+log:novo

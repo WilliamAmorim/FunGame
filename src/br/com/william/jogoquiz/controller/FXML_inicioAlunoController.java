@@ -8,6 +8,7 @@ package br.com.william.jogoquiz.controller;
 import br.com.william.jogoquiz.bean.DesempenhoAlunoBean;
 import br.com.william.jogoquiz.sql.Sql;
 import br.com.william.jogoquiz.util.Data;
+import com.jfoenix.controls.JFXListView;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -38,7 +39,11 @@ import javafx.scene.control.TextField;
  * @author willi
  */
 public class FXML_inicioAlunoController implements Initializable {
-
+    
+    
+    
+  
+    //DesempenhoAluno***********************************************************
     @FXML
     private TableView<DesempenhoAlunoBean> tabela_desempenhoAluno;
     
@@ -65,33 +70,12 @@ public class FXML_inicioAlunoController implements Initializable {
     
     @FXML
     private TextField txt_assunto;
+        
     
     private ObservableList<DesempenhoAlunoBean> personData = FXCollections.observableArrayList();
     
     public String nomeAluno;
-    
-    @FXML
-    void BT_sair(ActionEvent event) throws IOException {
-        File file = new File("D:\\Projetos-git\\java\\Quiz\\src\\br\\com\\william\\jogoquiz\\log\\log.txt");        
-        try {
-            FileInputStream arquivo = new FileInputStream("D:\\Projetos-git\\java\\Quiz\\src\\br\\com\\william\\jogoquiz\\log\\log.txt");
-            InputStreamReader in = new InputStreamReader(arquivo);            
-            BufferedReader br = new BufferedReader(in);
-            String a = br.readLine();
-            Sql novo = new Sql();
-            ArrayList values = new ArrayList();
-            values.add(br.readLine().substring(4));
-            novo.executeQuery("UPDATE `aluno` SET `status`='0' WHERE nome_aluno  = ?", values);
-            if (file.delete()) {
-                System.out.println("deletando");                
-            }
-            System.exit(0);
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(FXML_inicioAlunoController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-    }
-    
+            
     @FXML
     void BT_buscarDesempenhoAluno(ActionEvent event) {
         //personData.add(new DesempenhoAlunoBean("virginia","po458","12/21/2001","1500"));
@@ -166,6 +150,31 @@ public class FXML_inicioAlunoController implements Initializable {
         
         return query;
     }
+    //**************************************************************************
+    
+    
+    
+    @FXML
+    void BT_sair(ActionEvent event) throws IOException {
+        File file = new File("D:\\Projetos-git\\java\\Quiz\\src\\br\\com\\william\\jogoquiz\\log\\log.txt");        
+        try {
+            FileInputStream arquivo = new FileInputStream("D:\\Projetos-git\\java\\Quiz\\src\\br\\com\\william\\jogoquiz\\log\\log.txt");
+            InputStreamReader in = new InputStreamReader(arquivo);            
+            BufferedReader br = new BufferedReader(in);
+            String a = br.readLine();
+            Sql novo = new Sql();
+            ArrayList values = new ArrayList();
+            values.add(br.readLine().substring(4));
+            novo.executeQuery("UPDATE `aluno` SET `status`='0' WHERE nome_aluno  = ?", values);
+            if (file.delete()) {
+                System.out.println("deletando");                
+            }
+            System.exit(0);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(FXML_inicioAlunoController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
 
     /**
      * Initializes the controller class.
@@ -173,9 +182,11 @@ public class FXML_inicioAlunoController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+               
         combo_disciplina.getItems().add("Matematica");
         combo_disciplina.getItems().add("Portugues");
         combo_disciplina.getItems().add("Quimica");
+                
         coluna_professor.setCellValueFactory(cellData -> cellData.getValue().getProfessor());
         coluna_pacote.setCellValueFactory(cellData -> cellData.getValue().getPacote());
         coluna_data.setCellValueFactory(cellData -> cellData.getValue().getDate());
@@ -183,6 +194,9 @@ public class FXML_inicioAlunoController implements Initializable {
         
         tabela_desempenhoAluno.setItems(personData);
         
+        
+        
+     
     }    
     
 }

@@ -26,7 +26,7 @@
             <Font name="Ubuntu Medium" size="52.0" />
          </font>
       </JFXButton>
-      <Pane layoutX="88.0" layoutY="135.0" prefHeight="564.0" prefWidth="1165.0" style="-fx-background-color: #E8E8E8; -fx-background-radius: 40;">
+      <Pane layoutX="88.0" layoutY="135.0" prefHeight="564.0" prefWidth="1165.0" style="-fx-background-color: #E8E8E8; -fx-background-radius: 40;" visible="false">
          <children>
             <Label layoutX="41.0" layoutY="27.0" text="Desempenho" textFill="#a6a6a8">
                <font>
