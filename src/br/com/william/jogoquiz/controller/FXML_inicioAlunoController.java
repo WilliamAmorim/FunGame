@@ -8,7 +8,7 @@ package br.com.william.jogoquiz.controller;
 import br.com.william.jogoquiz.bean.DesempenhoAlunoBean;
 import br.com.william.jogoquiz.sql.Sql;
 import br.com.william.jogoquiz.util.Data;
-import com.jfoenix.controls.JFXListView;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -32,6 +32,10 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
+
+
 
 /**
  * FXML Controller class
@@ -44,6 +48,7 @@ public class FXML_inicioAlunoController implements Initializable {
     
   
     //DesempenhoAluno***********************************************************
+  
     @FXML
     private TableView<DesempenhoAlunoBean> tabela_desempenhoAluno;
     
@@ -78,6 +83,9 @@ public class FXML_inicioAlunoController implements Initializable {
             
     @FXML
     void BT_buscarDesempenhoAluno(ActionEvent event) {
+        buscarDesempenhoAluno();
+    }
+    public void buscarDesempenhoAluno(){
         //personData.add(new DesempenhoAlunoBean("virginia","po458","12/21/2001","1500"));
         personData.clear();
         Sql novo = new Sql();
@@ -149,6 +157,25 @@ public class FXML_inicioAlunoController implements Initializable {
         }
         
         return query;
+    }
+    
+      @FXML
+    private Pane pane_desempenho;
+      @FXML
+    void BT_AbrirDesempenho(ActionEvent event) {
+        buscarDesempenhoAluno();
+        pane_desempenho.setVisible(true);        
+    }
+    
+    @FXML
+    void BT_fecharDesempenho(MouseEvent event) {
+        pane_desempenho.setVisible(false);
+        combo_disciplina.getSelectionModel().clearSelection();
+        
+        date_inicio.setValue(null);
+        date_fim.setValue(null);
+        
+        txt_assunto.setText("");
     }
     //**************************************************************************
     

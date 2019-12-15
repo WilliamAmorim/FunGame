@@ -16,7 +16,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="768.0" prefWidth="1320.0" style="-fx-background-color: #363636;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.william.jogoquiz.controller.FXML_inicioAlunoController">
    <children>
-      <JFXButton buttonType="RAISED" focusTraversable="false" layoutX="441.0" layoutY="393.0" prefHeight="98.0" prefWidth="439.0" style="-fx-background-color: #4D8FFF; -fx-background-radius: 22;" text="Desempenho" textFill="WHITE">
+      <JFXButton buttonType="RAISED" focusTraversable="false" layoutX="441.0" layoutY="393.0" onAction="#BT_AbrirDesempenho" prefHeight="98.0" prefWidth="439.0" style="-fx-background-color: #4D8FFF; -fx-background-radius: 22;" text="Desempenho" textFill="WHITE">
          <font>
             <Font name="Ubuntu Medium" size="52.0" />
          </font>
@@ -26,7 +26,7 @@
             <Font name="Ubuntu Medium" size="52.0" />
          </font>
       </JFXButton>
-      <Pane layoutX="88.0" layoutY="135.0" prefHeight="564.0" prefWidth="1165.0" style="-fx-background-color: #E8E8E8; -fx-background-radius: 40;" visible="false">
+      <Pane fx:id="pane_desempenho" layoutX="88.0" layoutY="135.0" prefHeight="564.0" prefWidth="1165.0" style="-fx-background-color: #E8E8E8; -fx-background-radius: 40;" visible="false">
          <children>
             <Label layoutX="41.0" layoutY="27.0" text="Desempenho" textFill="#a6a6a8">
                <font>
@@ -41,7 +41,7 @@
             <TableView fx:id="tabela_desempenhoAluno" layoutX="26.0" layoutY="130.0" prefHeight="399.0" prefWidth="1095.0">
                <columns>
                   <TableColumn fx:id="coluna_professor" prefWidth="75.0" text="Professor" />
-                  <TableColumn fx:id="coluna_pacote" prefWidth="75.0" text="Pacote" />
+                  <TableColumn fx:id="coluna_pacote" prefWidth="75.0" text="Assunto" />
                   <TableColumn fx:id="coluna_data" prefWidth="75.0" text="Data" />
                   <TableColumn fx:id="coluna_pontuacao" prefWidth="75.0" text="Pontuação" />
                </columns>
@@ -66,6 +66,11 @@
                   </ImageView>
                </graphic>
             </Button>
+            <ImageView fitHeight="25.0" fitWidth="20.0" layoutX="1120.0" layoutY="23.0" onMouseClicked="#BT_fecharDesempenho" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../imagens/close.png" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
       <JFXButton buttonType="RAISED" focusTraversable="false" layoutX="1211.0" layoutY="14.0" onAction="#BT_sair" prefHeight="48.0" prefWidth="95.0" style="-fx-background-color: #FF4040; -fx-background-radius: 22;" text="Sair" textFill="WHITE">
