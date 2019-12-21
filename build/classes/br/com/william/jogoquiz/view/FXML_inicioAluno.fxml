@@ -38,7 +38,7 @@
                   <Font name="Ubuntu Medium" size="15.0" />
                </font>
             </JFXButton>
-            <TableView fx:id="tabela_desempenhoAluno" layoutX="26.0" layoutY="130.0" prefHeight="399.0" prefWidth="1095.0">
+            <TableView fx:id="tabela_desempenhoAluno" layoutX="26.0" layoutY="130.0" prefHeight="399.0" prefWidth="1095.0" stylesheets="@estiloTabela.css">
                <columns>
                   <TableColumn fx:id="coluna_professor" prefWidth="75.0" text="Professor" />
                   <TableColumn fx:id="coluna_pacote" prefWidth="75.0" text="Assunto" />

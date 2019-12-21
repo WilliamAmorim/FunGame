@@ -10,6 +10,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
@@ -39,32 +40,32 @@
       <Pane fx:id="panel_editar_criarPacote" layoutX="78.0" layoutY="125.0" onMouseClicked="#tirarSelection" prefHeight="519.0" prefWidth="1165.0" style="-fx-background-color: #E8E8E8; -fx-background-radius: 40;" visible="false">
          <children>
             <ComboBox fx:id="combo_disciplinaPacote" layoutX="307.0" layoutY="100.0" prefHeight="25.0" prefWidth="163.0" promptText="Disciplina" />
-            <TextField fx:id="txt_assuntoPacote" layoutX="41.0" layoutY="100.0" prefHeight="25.0" prefWidth="244.0" promptText="Assunto">
+            <TextField fx:id="txt_assuntoPacote" layoutX="41.0" layoutY="100.0" prefHeight="25.0" prefWidth="244.0" promptText="Assunto" stylesheets="@estiloTextField.css">
                <font>
                   <Font name="Ubuntu Medium" size="15.0" />
                </font>
             </TextField>
-            <TextArea fx:id="txt_enunciado" layoutX="41.0" layoutY="152.0" prefHeight="134.0" prefWidth="605.0" promptText="Enunciado">
+            <TextArea fx:id="txt_enunciado" layoutX="41.0" layoutY="152.0" prefHeight="134.0" prefWidth="605.0" promptText="Enunciado" stylesheets="@estiloTextField.css">
                <font>
                   <Font name="Ubuntu Medium" size="15.0" />
                </font>
             </TextArea>
-            <TextField fx:id="txt_a" layoutX="41.0" layoutY="306.0" prefHeight="27.0" prefWidth="605.0" promptText="Alternatica A">
+            <TextField fx:id="txt_a" layoutX="41.0" layoutY="306.0" prefHeight="27.0" prefWidth="605.0" promptText="Alternatica A" stylesheets="@estiloTextField.css">
                <font>
                   <Font name="Ubuntu Medium" size="15.0" />
                </font>
             </TextField>
-            <TextField fx:id="txt_b" layoutX="41.0" layoutY="343.0" prefHeight="27.0" prefWidth="605.0" promptText="Alternatica B">
+            <TextField fx:id="txt_b" layoutX="41.0" layoutY="343.0" prefHeight="27.0" prefWidth="605.0" promptText="Alternatica B" stylesheets="@estiloTextField.css">
                <font>
                   <Font name="Ubuntu Medium" size="15.0" />
                </font>
             </TextField>
-            <TextField fx:id="txt_c" layoutX="41.0" layoutY="379.0" prefHeight="27.0" prefWidth="605.0" promptText="Alternatica C">
+            <TextField fx:id="txt_c" layoutX="41.0" layoutY="379.0" prefHeight="27.0" prefWidth="605.0" promptText="Alternatica C" stylesheets="@estiloTextField.css">
                <font>
                   <Font name="Ubuntu Medium" size="15.0" />
                </font>
             </TextField>
-            <TextField fx:id="txt_d" layoutX="41.0" layoutY="417.0" prefHeight="27.0" prefWidth="605.0" promptText="Alternatica D">
+            <TextField fx:id="txt_d" layoutX="41.0" layoutY="417.0" prefHeight="27.0" prefWidth="605.0" promptText="Alternatica D" stylesheets="@estiloTextField.css">
                <font>
                   <Font name="Ubuntu Medium" size="15.0" />
                </font>
@@ -87,7 +88,7 @@
                   <Font name="Ubuntu Medium" size="15.0" />
                </font>
             </RadioButton>
-            <JFXButton layoutX="556.0" layoutY="467.0" onAction="#BT_adicionarPergunta" prefHeight="25.0" prefWidth="87.0" style="-fx-background-color: #43CD80;" text="Adicionar" textFill="WHITE">
+            <JFXButton layoutX="556.0" layoutY="469.0" onAction="#BT_adicionarPergunta" prefHeight="25.0" prefWidth="87.0" style="-fx-background-color: #43CD80;" text="Adicionar" textFill="WHITE">
                <font>
                   <Font name="Ubuntu Medium" size="15.0" />
                </font>
@@ -108,7 +109,7 @@
                   <Font name="Ubuntu Medium" size="15.0" />
                </font>
             </JFXButton>
-            <JFXListView fx:id="list_perguntas" layoutX="693.0" layoutY="60.0" onMouseClicked="#pegarPergunta" prefHeight="384.0" prefWidth="410.0" style="-fx-background-radius: 8;">
+            <JFXListView fx:id="list_perguntas" layoutX="693.0" layoutY="77.0" onMouseClicked="#pegarPergunta" prefHeight="384.0" prefWidth="410.0" style="-fx-background-radius: 8;" stylesheets="@estiloTextField.css">
                <padding>
                   <Insets bottom="7.0" left="1.0" right="1.0" top="7.0" />
                </padding>
@@ -118,6 +119,13 @@
                   <Image url="@../imagens/close.png" />
                </image>
             </ImageView>
+            <Separator layoutX="663.0" layoutY="14.0" orientation="VERTICAL" prefHeight="491.0" prefWidth="10.0" />
+            <ComboBox fx:id="combo_respostaPacote" layoutX="432.0" layoutY="469.0" prefHeight="25.0" prefWidth="95.0" promptText="Resposta" />
+            <Label fx:id="label_editar_criarPacote1" layoutX="693.0" layoutY="27.0" text="Perguntas" textFill="#a6a6a8">
+               <font>
+                  <Font name="Ubuntu Medium" size="40.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
       <Pane fx:id="panelDesempenho" layoutX="78.0" layoutY="125.0" prefHeight="564.0" prefWidth="1165.0" style="-fx-background-color: #E8E8E8; -fx-background-radius: 40;" visible="false">
@@ -132,7 +140,7 @@
                   <Font name="Ubuntu Medium" size="15.0" />
                </font>
             </JFXButton>
-            <TableView fx:id="tabela_desempenho" layoutX="26.0" layoutY="130.0" prefHeight="399.0" prefWidth="1095.0">
+            <TableView fx:id="tabela_desempenho" layoutX="26.0" layoutY="130.0" prefHeight="399.0" prefWidth="1095.0" stylesheets="@estiloTabela.css">
               <columns>
                 <TableColumn fx:id="coluna_aluno" prefWidth="75.0" text="Aluno" />
                 <TableColumn fx:id="coluna_professor" prefWidth="75.0" text="Professor" />
@@ -148,12 +156,12 @@
             <ComboBox fx:id="combo_disciplina" layoutX="70.0" layoutY="97.0" prefHeight="25.0" prefWidth="106.0" promptText="Disciplina" />
             <ComboBox fx:id="combo_serie" layoutX="417.0" layoutY="97.0" prefHeight="25.0" prefWidth="95.0" promptText="Serie" />
             <ComboBox fx:id="combo_turma" layoutX="522.0" layoutY="97.0" prefWidth="95.0" promptText="Turma" />
-            <TextField fx:id="txt_nome" layoutX="627.0" layoutY="96.0" promptText="Nome">
+            <TextField fx:id="txt_nome" layoutX="627.0" layoutY="96.0" promptText="Nome" stylesheets="@estiloTextField.css">
                <font>
                   <Font name="Ubuntu Medium" size="15.0" />
                </font>
             </TextField>
-            <TextField fx:id="txt_assunto" layoutX="824.0" layoutY="96.0" promptText="Assunto">
+            <TextField fx:id="txt_assunto" layoutX="824.0" layoutY="96.0" promptText="Assunto" stylesheets="@estiloTextField.css">
                <font>
                   <Font name="Ubuntu Medium" size="15.0" />
                </font>
@@ -229,12 +237,13 @@
                   <Font name="Ubuntu Medium" size="15.0" />
                </font>
             </JFXButton>
-            <TableView fx:id="tabela_pacotes" layoutX="35.0" layoutY="131.0" prefHeight="399.0" prefWidth="1095.0">
+            <TableView fx:id="tabela_pacotes" layoutX="35.0" layoutY="131.0" prefHeight="399.0" prefWidth="1095.0" stylesheets="@estiloTabela.css">
               <columns>
                 <TableColumn fx:id="coluna_disciplinaPacote" prefWidth="120.0" text="Disciplina" />
-                <TableColumn fx:id="coluna_assuntoPacote" prefWidth="725.0" text="Assunto" />
-                  <TableColumn fx:id="coluna_professorPacote" prefWidth="150.0" text="Professor" />
-                  <TableColumn fx:id="coluna_dataPacote" prefWidth="100.0" text="Data" />
+                <TableColumn fx:id="coluna_assuntoPacote" prefWidth="652.0" text="Assunto" />
+                  <TableColumn fx:id="coluna_professorPacote" prefWidth="138.0" text="Professor" />
+                  <TableColumn fx:id="coluna_dataPacote" prefWidth="118.0" text="Data" />
+                  <TableColumn fx:id="coluna_numeroQuestoesPacote" prefWidth="66.0" text="Questões" />
               </columns>
             </TableView>
             <JFXButton layoutX="1011.0" layoutY="94.0" onAction="#BT_buscarPacotes" prefHeight="27.0" prefWidth="120.0" style="-fx-background-color: #4D8FFF;" text="Buscar" textFill="WHITE">
@@ -295,7 +304,7 @@
                      </graphic>
                   </Button>
                   <ComboBox fx:id="combo_disciplinaPacotePerguntas" prefHeight="25.0" prefWidth="106.0" promptText="Disciplina" />
-                  <TextField fx:id="txt_assuntoPacotePerguntas" prefHeight="25.0" prefWidth="201.0" promptText="Assunto">
+                  <TextField fx:id="txt_assuntoPacotePerguntas" prefHeight="25.0" prefWidth="201.0" promptText="Assunto" stylesheets="@estiloTextField.css">
                      <font>
                         <Font name="Ubuntu Medium" size="15.0" />
                      </font>

@@ -26,22 +26,33 @@ public class DesempenhoAlunoBean {
     private StringProperty pacote;
     private StringProperty date;
     private StringProperty pontuacao;
-    public DesempenhoAlunoBean(String professor,String pacote,String date,String pontuacao){
+    private StringProperty pontuacaoMaxima;
+
+    public StringProperty getPontuacaoMaxima() {
+        return pontuacaoMaxima;
+    }
+
+    public void setPontuacaoMaxima(StringProperty pontuacaoMaxima) {
+        this.pontuacaoMaxima = pontuacaoMaxima;
+    }
+  
+    
+    public DesempenhoAlunoBean(String pontuacaoMaxima,String professor,String pacote,String date,String pontuacao){
         this.professor = new SimpleStringProperty(professor);
         this.pacote = new SimpleStringProperty(pacote);
         this.date = new SimpleStringProperty(date);
         this.pontuacao = new SimpleStringProperty(pontuacao);
-        
+        this.pontuacaoMaxima = new  SimpleStringProperty(pontuacaoMaxima);
           
     }
     
-    public DesempenhoAlunoBean(String aluno,String professor,String pacote,String date,String pontuacao){
+    public DesempenhoAlunoBean(String pontuacaoMaxima,String aluno,String professor,String pacote,String date,String pontuacao){
         this.aluno = new SimpleStringProperty(aluno);
         this.professor = new SimpleStringProperty(professor);
         this.pacote = new SimpleStringProperty(pacote);
         this.date = new SimpleStringProperty(date);
         this.pontuacao = new SimpleStringProperty(pontuacao);
-        
+        this.pontuacaoMaxima = new  SimpleStringProperty(pontuacaoMaxima);
           
     }
 

@@ -17,13 +17,22 @@ public class PacotesBean {
     private StringProperty assunto;
     private StringProperty professor;
     private StringProperty data;
+    private StringProperty numeroQuestoes;
+
+    public StringProperty getNumeroQuestoes() {
+        return numeroQuestoes;
+    }
+
+    public void setNumeroQuestoes(StringProperty numeroQuestoes) {
+        this.numeroQuestoes = numeroQuestoes;
+    }
     
-    public PacotesBean(String disciplina,String assunto,String professor,String data){
+    public PacotesBean(String disciplina,String assunto,String professor,String data,String numeroQuestoes){
         this.disciplina = new SimpleStringProperty(disciplina);
         this.assunto = new SimpleStringProperty(assunto);
         this.professor = new SimpleStringProperty(professor);
         this.data = new SimpleStringProperty(data);
-        
+        this.numeroQuestoes = new SimpleStringProperty(numeroQuestoes);
     }
     public StringProperty getDisciplina() {
         return disciplina;

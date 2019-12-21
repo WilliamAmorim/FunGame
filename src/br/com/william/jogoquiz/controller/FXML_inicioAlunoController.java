@@ -30,10 +30,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 
 
 
@@ -86,10 +88,13 @@ public class FXML_inicioAlunoController implements Initializable {
         buscarDesempenhoAluno();
     }
     public void buscarDesempenhoAluno(){
-        //personData.add(new DesempenhoAlunoBean("virginia","po458","12/21/2001","1500"));
+       buscarDesempenho();
+    }
+    public void buscarDesempenho(){
+         //personData.add(new DesempenhoAlunoBean("virginia","po458","12/21/2001","1500"));
         personData.clear();
         Sql novo = new Sql();
-        String[] retorno = {"professor", "assunto", "data", "pontuacao"};
+        String[] retorno = {"professor", "assunto", "data", "pontuacao","pontuacao_maxima"};
         ArrayList values = new ArrayList();
         ArrayList valorRetornado = new ArrayList();
         //values.add("william");
@@ -102,9 +107,10 @@ public class FXML_inicioAlunoController implements Initializable {
             
             String[] tokens = b.split(",");
             
-            System.out.println(tokens[0] + " - " + tokens[1] + " - " + tokens[2] + " - " + tokens[3] + " Data:" + data);
-            personData.add(new DesempenhoAlunoBean(tokens[0], tokens[1], Data.converterData(tokens[2]), tokens[3]));            
+            System.out.println(tokens[0] + " - " + tokens[1] + " - " + tokens[2] + " - " + tokens[3] + " Data:" + data+" pontuação maxima: "+tokens[4]);
+            personData.add(new DesempenhoAlunoBean(tokens[4], tokens[0],tokens[1],Data.converterData(tokens[2]),tokens[3]));            
         }
+        
     }
 
     @FXML
@@ -115,6 +121,7 @@ public class FXML_inicioAlunoController implements Initializable {
         date_fim.setValue(null);
         
         txt_assunto.setText("");
+        buscarDesempenho();
     }
     
     public String criarQuery() {
@@ -137,23 +144,27 @@ public class FXML_inicioAlunoController implements Initializable {
             Logger.getLogger(FXML_inicioAlunoController.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        String query = "SELECT * FROM `desempenho` WHERE aluno = '" + a + "' ";
+        String query = "SELECT `desempenho`.`professor`,`desempenho`.`assunto`, `desempenho`.`data`, `desempenho`.`pontuacao`,`pacote_pergunta`.`pontuacao_maxima` FROM `desempenho`,`pacote_pergunta` WHERE `pacote_pergunta`.`codigo_pacote` = `desempenho`.`codigo_pacote` AND `desempenho`.`aluno` = '" + a + "' ";
         
         if (combo_disciplina.getValue() != null) {
-            query += "AND codigo_pacote  LIKE '%" + combo_disciplina.getValue().toString().substring(0, 3) + "%'";
+            query += "AND `desempenho`.`codigo_pacote`  LIKE '%" + combo_disciplina.getValue().toString().substring(0, 3) + "%'";
         }
         
         if (!"".equals(txt_assunto.getText())) {
-            query += " AND assunto LIKE '%" + txt_assunto.getText() + "%'";            
-        }
+            query += " AND `desempenho`.`assunto` LIKE '%" + txt_assunto.getText() + "%'";            
+        }        
         
-        if (date_inicio.getValue() != null) {
+        if (date_inicio.getValue() != null && date_fim.getValue() != null) {
             data = date_inicio.getValue();
-            query += " AND data BETWEEN '" + data + "'";
-            if (date_fim.getValue() != null) {
-                data = date_fim.getValue();
-                query += " AND '" + data + "'";
-            }
+            query += " AND `desempenho`.`data` BETWEEN '" + data + "'";
+            data = date_fim.getValue();
+            query += " AND '" + data + "'";
+
+        }
+        if (date_inicio.getValue() != null && date_fim.getValue() == null) {
+            data = date_inicio.getValue();
+            query += " AND `desempenho`.`data` = '" + data + "'";
+
         }
         
         return query;
@@ -192,6 +203,7 @@ public class FXML_inicioAlunoController implements Initializable {
             Sql novo = new Sql();
             ArrayList values = new ArrayList();
             values.add(br.readLine().substring(4));
+            arquivo.close();
             novo.executeQuery("UPDATE `aluno` SET `status`='0' WHERE nome_aluno  = ?", values);
             if (file.delete()) {
                 System.out.println("deletando");                
@@ -219,6 +231,35 @@ public class FXML_inicioAlunoController implements Initializable {
         coluna_data.setCellValueFactory(cellData -> cellData.getValue().getDate());
         coluna_pontuacao.setCellValueFactory(cellData -> cellData.getValue().getPontuacao());
         
+        tabela_desempenhoAluno.setRowFactory(tv -> new TableRow<DesempenhoAlunoBean>() {
+        float  m;
+        float p;
+        
+    public void updateItem(DesempenhoAlunoBean item, boolean empty) {
+        super.updateItem(item, empty) ;
+            if(item != null){
+                m = Float.parseFloat(item.getPontuacaoMaxima().getValue());
+                p = Float.parseFloat(item.getPontuacao().getValue());
+            }
+           
+            if(item == null){
+                setStyle("");                
+            }else if(p < (m/2)){
+                setStyle("-fx-background-color:#EE3B3B;");
+                setTextFill(Color.RED);
+                
+                
+            }else if(p > (m/2) && p < ((m/2)+((m/2)/2))){
+                 setStyle("-fx-background-color:#FF7F24;");
+                 setTextFill(Color.YELLOW);
+                  
+            }else if(p > ((m/2)+((m/2)/2))){
+               setStyle("-fx-background-color:#43CD80;");
+                setTextFill(Color.GREEN);
+                
+            }
+    }
+});
         tabela_desempenhoAluno.setItems(personData);
         
         

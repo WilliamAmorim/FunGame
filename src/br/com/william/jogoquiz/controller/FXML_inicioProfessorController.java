@@ -37,12 +37,14 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+
 /**
  * FXML Controller class
  *
@@ -96,11 +98,12 @@ public class FXML_inicioProfessorController implements Initializable {
     void BT_buscarDesempenho(ActionEvent event) {
         buscarDesempenho();
     }
-    public void buscarDesempenho(){
+
+    public void buscarDesempenho() {
         conteudoTabelaDesempenho.clear();
         Sql novo = new Sql();
 
-        String[] retorno = {"aluno", "professor", "assunto", "data", "pontuacao"};
+        String[] retorno = {"aluno", "professor", "assunto", "data", "pontuacao", "pontuacao_maxima"};
         ArrayList values = new ArrayList();
         ArrayList valorRetornado = new ArrayList();
         valorRetornado = novo.executeQuery(criarQuery(), values, retorno);
@@ -110,7 +113,7 @@ public class FXML_inicioProfessorController implements Initializable {
             String b = a.replace("[", "").replace("]", "");
             String[] tokens = b.split(",");
             //String datas = tokens[3];//new SimpleDateFormat("dd/MM/yyyy").format(tokens[2]);           
-            conteudoTabelaDesempenho.add(new DesempenhoAlunoBean(tokens[0], tokens[1], tokens[2], Data.converterData(tokens[3]), tokens[4]));
+            conteudoTabelaDesempenho.add(new DesempenhoAlunoBean(tokens[5], tokens[0], tokens[1], tokens[2], Data.converterData(tokens[3]), tokens[4]));
         }
     }
 
@@ -130,7 +133,7 @@ public class FXML_inicioProfessorController implements Initializable {
 
     public String criarQuery() {
         LocalDate data;
-        String query = "SELECT `desempenho`.`aluno`,`desempenho`.`professor`,`desempenho`.`assunto`,`desempenho`.`data`,`desempenho`.`pontuacao` FROM `desempenho`,`aluno` where `desempenho`.`aluno` = `aluno`.`nome_aluno`";
+        String query = "SELECT `desempenho`.`aluno`,`desempenho`.`professor`,`desempenho`.`assunto`,`desempenho`.`data`,`desempenho`.`pontuacao`,`pacote_pergunta`.`pontuacao_maxima` FROM `desempenho`,`aluno`,`pacote_pergunta` where `pacote_pergunta`.`codigo_pacote` = `desempenho`.`codigo_pacote` AND `desempenho`.`aluno` = `aluno`.`nome_aluno`";
 
         if (combo_disciplina.getValue() != null) {
             query += "AND `desempenho`.`codigo_pacote` LIKE '%" + combo_disciplina.getValue().toString().substring(0, 3) + "%'";
@@ -167,11 +170,12 @@ public class FXML_inicioProfessorController implements Initializable {
     }
     //**************************************************************************
 
-    //Criar/Editar Pacote*******************************************************
-    public String id;
-    public String pacoteEscolhido = "Qui79185";//pacote escolhido pelo usuario para editar
+    //Criar/Editar Pacote*******************************************************    
     @FXML
     private ComboBox combo_disciplinaPacote;
+
+    @FXML
+    private ComboBox combo_respostaPacote;
 
     @FXML
     private TextField txt_assuntoPacote;
@@ -205,21 +209,31 @@ public class FXML_inicioProfessorController implements Initializable {
 
     @FXML
     private ListView list_perguntas;
+
+    public String id;
+    public String pacoteEscolhido = null;//pacote escolhido pelo usuario para editar
     public int cont = 0;
     public int pontuacao = 0;
-    ObservableList<String> items = FXCollections.observableArrayList();
     ArrayList perguntas = new ArrayList();
+    ArrayList perguntasExcluir = new ArrayList();
+
+    ObservableList<String> items = FXCollections.observableArrayList();
 
     @FXML
     void BT_adicionarPergunta(ActionEvent event) {
         if (!txt_enunciado.equals("") && !txt_enunciado.equals("") && !txt_enunciado.equals("") && !txt_enunciado.equals("") && !txt_enunciado.equals("") && dificuldadePacote.getSelectedToggle() != null) {
             ArrayList pergunta = new ArrayList();
             String dificuldade = "";
-            pergunta.add(txt_enunciado.getText());
-            pergunta.add(txt_a.getText());
-            pergunta.add(txt_b.getText());
-            pergunta.add(txt_c.getText());
-            pergunta.add(txt_d.getText());
+            
+            pergunta.add(txt_enunciado.getText().trim());
+            pergunta.add(txt_a.getText().trim());
+            pergunta.add(txt_b.getText().trim());
+            pergunta.add(txt_c.getText().trim());
+            pergunta.add(txt_d.getText().trim());
+            
+            if (combo_respostaPacote.getValue() != null) {
+                pergunta.add(combo_respostaPacote.getValue());
+            }
             if (radio_facil.isSelected()) {
                 pergunta.add(200);
                 radio_facil.setSelected(false);
@@ -233,11 +247,12 @@ public class FXML_inicioProfessorController implements Initializable {
             } else if (radio_dificil.isSelected()) {
                 pergunta.add(500);
                 radio_dificil.setSelected(false);
-
                 dificuldade = "Dificil";
             } else {
                 pergunta.add(200);
             }
+                       
+
             if (list_perguntas.getSelectionModel().getSelectedIndex() > -1) {
                 System.out.println("index:" + list_perguntas.getSelectionModel().getSelectedIndex());
                 if (pacoteEscolhido != null) {
@@ -248,10 +263,13 @@ public class FXML_inicioProfessorController implements Initializable {
 
                 if (pacoteEscolhido != null) {
                     pergunta.add("0");
+                } else {
+
                 }
+                cont++;
                 perguntas.add(pergunta);
                 items.add("Pergunta " + dificuldade);
-                cont++;
+
             }
 
             txt_enunciado.setText("");
@@ -266,21 +284,28 @@ public class FXML_inicioProfessorController implements Initializable {
     @FXML
     void BT_concluirPacote(ActionEvent event) {
         if (!txt_assuntoPacote.getText().equals("") && combo_disciplinaPacote.getValue() != null && cont != 0) {
-            try{
+            try {
                 cadastrarPerguntas();
-            
+
                 Alert dialogoInfo = new Alert(Alert.AlertType.CONFIRMATION);
                 dialogoInfo.setHeaderText("Pacote Cadastrado Com sucesso!");
                 dialogoInfo.setContentText("");
                 dialogoInfo.showAndWait();
                 
-            }catch(Exception ex){                            
+                items.clear();
+                panel_editar_criarPacote.setVisible(false);
+                panel_pacotePergunta.setVisible(true);
+                list_perguntas.setItems(items);
+                
+     
+
+            } catch (Exception ex) {
                 Alert dialogoInfo = new Alert(Alert.AlertType.ERROR);
                 dialogoInfo.setHeaderText("Ocorreu Um erro");
-                dialogoInfo.setContentText(""+ex);
+                dialogoInfo.setContentText("" + ex);
                 dialogoInfo.showAndWait();
             }
-            
+
         }
     }
 
@@ -289,8 +314,15 @@ public class FXML_inicioProfessorController implements Initializable {
         int a = list_perguntas.getSelectionModel().getSelectedIndex();
         list_perguntas.getItems().remove(a);
         cont -= 1;
-        perguntas.remove(a);
 
+        if (pacoteEscolhido != null) {
+
+            perguntasExcluir.add(perguntas.get(a).toString());
+
+            //System.out.println("Escluindo:"+tokens[0].trim()+"-"+tokens[1].trim()+"-"+tokens[2].trim()+"-"+tokens[3].trim()+"-"+tokens[4].trim());
+            // novo.executeQuery("DELETE FROM `pergunta` WHERE codigo_pacote = ? AND enunciado = ? AND a = ? AND b = ? AND c = ? AND d = ?", values);
+        }
+        perguntas.remove(a);
     }
 
     @FXML
@@ -305,8 +337,9 @@ public class FXML_inicioProfessorController implements Initializable {
             txt_a.setText(tokens[1]);
             txt_b.setText(tokens[2]);
             txt_c.setText(tokens[3]);
-            txt_d.setText(tokens[4]);            
-            switch (tokens[5]) {
+            txt_d.setText(tokens[4]);
+            combo_respostaPacote.setValue(tokens[5]);
+            switch (tokens[6]) {
                 case "  200":
                     radio_facil.setSelected(true);
                     break;
@@ -319,8 +352,9 @@ public class FXML_inicioProfessorController implements Initializable {
 
             }
             if (pacoteEscolhido != null) {
-                id = tokens[6];
+                id = tokens[7];
             }
+            // cont++;
         }
     }
 
@@ -346,23 +380,25 @@ public class FXML_inicioProfessorController implements Initializable {
 
             String[] tokens = b.split(",");
             values.add(pacote);
-            values.add(tokens[5]);
-            pontuacao += (int) Float.parseFloat(tokens[5]);
-            values.add(tokens[0]);
-            values.add(tokens[1]);
-            values.add(tokens[2]);
-            values.add(tokens[3]);
-            values.add(tokens[4]);
+            values.add(tokens[5].trim());
+            values.add(tokens[6].trim());
+            pontuacao += (int) Float.parseFloat(tokens[6]);
+            values.add(tokens[0].trim());
+            values.add(tokens[1].trim());
+            values.add(tokens[2].trim());
+            values.add(tokens[3].trim());
+            values.add(tokens[4].trim());
+            System.out.println("Mostrando conteudo Cadastrado: " + tokens[0] + " - " + tokens[1] + " - " + tokens[2] + " - " + tokens[3] + " - " + tokens[4] + " - " + tokens[5] + " - " + tokens[6] + " - ");
             if (pacoteEscolhido != null) {
-                values.set(0, combo_disciplinaPacote.getValue().toString().substring(0, 3) + pacoteEscolhido.substring(3, 8));     
-                if (Float.parseFloat(tokens[6]) == 0) {
-                    novo.executeQuery("INSERT INTO `pergunta`(`codigo_pacote`, `pontos`, `enunciado`, `a`, `b`, `c`, `d`) VALUES (?,?,?,?,?,?,?)", values);
+                values.set(0, combo_disciplinaPacote.getValue().toString().substring(0, 3) + pacoteEscolhido.substring(3, 8));
+                if (Float.parseFloat(tokens[7]) == 0) {
+                    novo.executeQuery("INSERT INTO `pergunta`(`codigo_pacote`, `resposta`, `pontos`, `enunciado`, `a`, `b`, `c`, `d`) VALUES (?,?,?,?,?,?,?,?)", values);
                 } else {
-                    values.add((int) Float.parseFloat(tokens[6]));
-                    novo.executeQuery("UPDATE `pergunta` SET `codigo_pacote`=?,`pontos`=?,`enunciado`=?,`a`=?,`b`=?,`c`=?,`d`=? WHERE id_pergunta = ?", values);
+                    values.add((int) Float.parseFloat(tokens[7]));
+                    novo.executeQuery("UPDATE `pergunta` SET `codigo_pacote`=?, `resposta`=?,`pontos`=?,`enunciado`=?,`a`=?,`b`=?,`c`=?,`d`=? WHERE id_pergunta = ?", values);
                 }
             } else {
-                novo.executeQuery("INSERT INTO `pergunta`(`codigo_pacote`, `pontos`, `enunciado`, `a`, `b`, `c`, `d`) VALUES (?,?,?,?,?,?,?)", values);
+                novo.executeQuery("INSERT INTO `pergunta`(`codigo_pacote`, `resposta`, `pontos`, `enunciado`, `a`, `b`, `c`, `d`) VALUES (?,?,?,?,?,?,?,?)", values);
             }
         }
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -372,17 +408,34 @@ public class FXML_inicioProfessorController implements Initializable {
 
         valores.add(pacote);
         valores.add(combo_disciplinaPacote.getValue());
-        valores.add(txt_assuntoPacote.getText());
-        valores.add(nome_professor());
+        valores.add(txt_assuntoPacote.getText().trim());
+        valores.add(nome_professor().trim());
         valores.add(dateFormat.format(date));
         valores.add(pontuacao);
+        valores.add(cont);
         if (pacoteEscolhido != null) {
             valores.set(0, combo_disciplinaPacote.getValue().toString().substring(0, 3) + pacoteEscolhido.substring(3, 8));
             valores.add(pacoteEscolhido);
-            novo.executeQuery("UPDATE `pacote_pergunta` SET `codigo_pacote`=?,`disciplina`=?,`assunto`=?,`professor`=?,`data`=?,`pontuacao_maxima`=? WHERE codigo_pacote = ?", valores);
+            novo.executeQuery("UPDATE `pacote_pergunta` SET `codigo_pacote`=?,`disciplina`=?,`assunto`=?,`professor`=?,`data`=?,`pontuacao_maxima`=?,`numero_questoes`=? WHERE codigo_pacote = ?", valores);
         } else {
-            novo.executeQuery("INSERT INTO `pacote_pergunta`(`codigo_pacote`, `disciplina`, `assunto`, `professor`, `data`, `pontuacao_maxima`) VALUES (?,?,?,?,?,?)", valores);
+            novo.executeQuery("INSERT INTO `pacote_pergunta`(`codigo_pacote`, `disciplina`, `assunto`, `professor`, `data`, `pontuacao_maxima`,`numero_questoes`) VALUES (?,?,?,?,?,?,?)", valores);
         }
+
+        for (int i = 0; i <= perguntasExcluir.size() - 1; i++) {
+            ArrayList values = new ArrayList();
+            String a = perguntasExcluir.get(i).toString();
+            String b = a.replace("[", "").replace("]", "");
+            String[] tokens = b.split(",");
+            values.add(pacoteEscolhido);
+            values.add(tokens[0].trim());
+            values.add(tokens[1].trim());
+            values.add(tokens[2].trim());
+            values.add(tokens[3].trim());
+            values.add(tokens[4].trim());
+            System.out.println("Escluindo:" + tokens[0].trim() + "-" + tokens[1].trim() + "-" + tokens[2].trim() + "-" + tokens[3].trim() + "-" + tokens[4].trim());
+            novo.executeQuery("DELETE FROM `pergunta` WHERE codigo_pacote = ? AND enunciado = ? AND a = ? AND b = ? AND c = ? AND d = ?", values);
+        }
+        perguntasExcluir.clear();
     }
 
     public String gerarPacote() {
@@ -405,12 +458,12 @@ public class FXML_inicioProfessorController implements Initializable {
         }
     }
 
-    public void pegarPacote(String pacoteEscolhido) {        
+    public void pegarPacote(String pacoteEscolhido) {
         Sql novo = new Sql();
         ArrayList values = new ArrayList();
         ArrayList r = new ArrayList();
         values.add(pacoteEscolhido);
-        String[] retur = {"id_pergunta", "pontos", "enunciado", "a", "b", "c", "d"};
+        String[] retur = {"id_pergunta", "pontos", "resposta", "enunciado", "a", "b", "c", "d"};
         r = novo.executeQuery("SELECT * FROM `pergunta` WHERE codigo_pacote = ?", values, retur);
 
         for (int i = 0; i <= r.size() - 1; i++) {
@@ -418,11 +471,12 @@ public class FXML_inicioProfessorController implements Initializable {
             String a = r.get(i).toString();
             String b = a.replace("[", "").replace("]", "");
             String[] tokens = b.split(",");
-            pergunta.add(tokens[2]);
             pergunta.add(tokens[3]);
             pergunta.add(tokens[4]);
             pergunta.add(tokens[5]);
             pergunta.add(tokens[6]);
+            pergunta.add(tokens[7]);
+            pergunta.add(tokens[2]);
             pergunta.add(tokens[1]);
             pergunta.add(tokens[0]);
             perguntas.add(pergunta);
@@ -440,6 +494,7 @@ public class FXML_inicioProfessorController implements Initializable {
             }
 
         }
+        System.out.println("numero de questoes: " + cont);
         r.clear();
         String[] retorno = {"disciplina", "assunto"};
         r = novo.executeQuery("SELECT  `disciplina`, `assunto` FROM `pacote_pergunta` WHERE codigo_pacote = ?", values, retorno);
@@ -463,10 +518,8 @@ public class FXML_inicioProfessorController implements Initializable {
     }
 
     //**************************************************************************
-    
     //FILTRAR PACOTES***********************************************************
-  
-     @FXML
+    @FXML
     private TableView<PacotesBean> tabela_pacotes;
 
     @FXML
@@ -480,9 +533,12 @@ public class FXML_inicioProfessorController implements Initializable {
 
     @FXML
     private TableColumn<PacotesBean, String> coluna_dataPacote;
-    
+
+    @FXML
+    private TableColumn<PacotesBean, String> coluna_numeroQuestoesPacote;
+
     private ObservableList<PacotesBean> conteudoTabelaPacotes = FXCollections.observableArrayList();
-    
+
     @FXML
     private TextField txt_assuntoPacotePerguntas;
 
@@ -491,44 +547,47 @@ public class FXML_inicioProfessorController implements Initializable {
 
     @FXML
     private DatePicker combo_dataPacoteInicio;
-    
+
     @FXML
     private DatePicker combo_dataPacoteFim;
-    
+
     @FXML
     private ComboBox combo_disciplinaPacotePerguntas;
     ArrayList pacotes = new ArrayList();
+
     @FXML
     void BT_buscarPacotes(ActionEvent event) {
         buscarPacotes();
     }
-    public void buscarPacotes(){
+
+    public void buscarPacotes() {
         conteudoTabelaPacotes.clear();
         Sql novo = new Sql();
         ArrayList v = new ArrayList();
         ArrayList r2 = new ArrayList();
-        String[] r = {"codigo_pacote","disciplina","assunto","professor","data"};
-        System.out.println("Query 123: "+criarQueryPacote());
-        r2 = novo.executeQuery(criarQueryPacote(), v, r);        
+        String[] r = {"codigo_pacote", "disciplina", "assunto", "professor", "data", "numero_questoes"};
+        System.out.println("Query 123: " + criarQueryPacote());
+        r2 = novo.executeQuery(criarQueryPacote(), v, r);
         for (int i = 0; i <= r2.size() - 1; i++) {
             String a = r2.get(i).toString();
             String b = a.replace("[", "").replace("]", "");
             String[] tokens = b.split(",");
             pacotes.add(tokens[0]);
-            conteudoTabelaPacotes.add( new PacotesBean(tokens[1],tokens[2],tokens[3],Data.converterData(tokens[4])));
-        }    
-        
+            conteudoTabelaPacotes.add(new PacotesBean(tokens[1], tokens[2], tokens[3], Data.converterData(tokens[4]), tokens[5]));
+        }
+
     }
-    public String criarQueryPacote(){
+
+    public String criarQueryPacote() {
         LocalDate data;
-        String query = "SELECT `codigo_pacote`,`disciplina`, `assunto`, `professor`, `data` FROM `pacote_pergunta` WHERE 1 ";
-        if(combo_disciplinaPacotePerguntas.getValue() != null){
-              query += "AND `disciplina` = '"+combo_disciplinaPacotePerguntas.getValue()+"'";          
+        String query = "SELECT `codigo_pacote`,`disciplina`, `assunto`, `professor`, `data`,`numero_questoes` FROM `pacote_pergunta` WHERE 1 ";
+        if (combo_disciplinaPacotePerguntas.getValue() != null) {
+            query += "AND `disciplina` = '" + combo_disciplinaPacotePerguntas.getValue() + "'";
         }
-        if(!"".equals(txt_assuntoPacotePerguntas.getText())){
-            query +=  "AND `assunto` LIKE '%"+txt_assuntoPacotePerguntas.getText()+"%'";            
+        if (!"".equals(txt_assuntoPacotePerguntas.getText())) {
+            query += "AND `assunto` LIKE '%" + txt_assuntoPacotePerguntas.getText() + "%'";
         }
-        
+
         if (combo_dataPacoteInicio.getValue() != null && combo_dataPacoteFim.getValue() != null) {
             data = combo_dataPacoteInicio.getValue();
             query += " AND `data` BETWEEN '" + data + "'";
@@ -541,15 +600,14 @@ public class FXML_inicioProfessorController implements Initializable {
             query += " AND `data` = '" + data + "'";
 
         }
-        
-        if(check_Pacote.isSelected()){
-            query += " AND `professor` = '"+nome_professor()+"'";
+
+        if (check_Pacote.isSelected()) {
+            query += " AND `professor` = '" + nome_professor() + "'";
         }
-        
-        return query;        
+
+        return query;
     }
-    
-    
+
     @FXML
     void BT_limparFiltroPerguntass(ActionEvent event) {
         combo_dataPacoteInicio.setValue(null);
@@ -558,19 +616,20 @@ public class FXML_inicioProfessorController implements Initializable {
         combo_disciplinaPacotePerguntas.setValue(null);
         buscarPacotes();
     }
+
     @FXML
     void BT_deletarPacotePerguntas(ActionEvent event) {
         int i = tabela_pacotes.getSelectionModel().getSelectedIndex();
-        String a = (String)conteudoTabelaPacotes.get(i).getProfessor().getValue();        
-        if(a.equals(" "+nome_professor())){                      
+        String a = (String) conteudoTabelaPacotes.get(i).getProfessor().getValue();
+        if (a.equals(" " + nome_professor())) {
             ArrayList pacoteEscolhidos = new ArrayList();
             pacoteEscolhidos.add((String) pacotes.get(i));
             Sql novo = new Sql();
-            
+
             novo.executeQuery("DELETE FROM `pacote_pergunta` WHERE codigo_pacote = ?", pacoteEscolhidos);
-            
+
             novo.executeQuery("DELETE FROM `pergunta` WHERE codigo_pacote = ?", pacoteEscolhidos);
-            
+
             buscarPacotes();
         }
     }
@@ -579,7 +638,6 @@ public class FXML_inicioProfessorController implements Initializable {
     @FXML
     void BT_sair(ActionEvent event) throws IOException {
         File file = new File("D:\\Projetos-git\\java\\Quiz\\src\\br\\com\\william\\jogoquiz\\log\\log.txt");
-
         try {
             FileInputStream arquivo = new FileInputStream("D:\\Projetos-git\\java\\Quiz\\src\\br\\com\\william\\jogoquiz\\log\\log.txt");
             InputStreamReader in = new InputStreamReader(arquivo);
@@ -634,66 +692,72 @@ public class FXML_inicioProfessorController implements Initializable {
     private Pane panel_editar_criarPacote;
     @FXML
     private Pane panel_pacotePergunta;
+
     @FXML
     void BT_abrirPanelCriarPacote(ActionEvent event) {
-        reset();        
-        pacoteEscolhido = null;        
+        reset();
+        pacoteEscolhido = null;
         panel_editar_criarPacote.setVisible(true);
         panel_pacotePergunta.setVisible(false);
-        
-    }    
+
+    }
+
     @FXML
     void BT_abrirPanelEditarPacote(ActionEvent event) {
         int i = tabela_pacotes.getSelectionModel().getSelectedIndex();
-        if(i > -1){
-        String a = (String)conteudoTabelaPacotes.get(i).getProfessor().getValue();
-        System.out.println("tabela conteudo:"+a);
-        if(a.equals(" "+nome_professor())){
-         reset();        
-        System.out.println("pacote Escolhido"+(String) pacotes.get(i));
-        pacoteEscolhido = (String) pacotes.get(i);
-        
-        if (pacoteEscolhido != null) {
-      
-            pegarPacote(pacoteEscolhido);
-            list_perguntas.setItems(items);
-            panel_editar_criarPacote.setVisible(true);
-            panel_pacotePergunta.setVisible(false);  
-        }
-        } 
+        if (i > -1) {
+            String a = (String) conteudoTabelaPacotes.get(i).getProfessor().getValue();
+            System.out.println("tabela conteudo:" + a);
+            if (a.equals(" " + nome_professor())) {
+                reset();
+                System.out.println("pacote Escolhido" + (String) pacotes.get(i));
+                pacoteEscolhido = (String) pacotes.get(i);
+
+                if (pacoteEscolhido != null) {
+
+                    pegarPacote(pacoteEscolhido);
+                    list_perguntas.setItems(items);
+                    panel_editar_criarPacote.setVisible(true);
+                    panel_pacotePergunta.setVisible(false);
+                }
+            }
         }
     }
-    
-      @FXML
+
+    @FXML
     void Fechar_CriarPergunta(MouseEvent event) {
         items.clear();
         panel_editar_criarPacote.setVisible(false);
         panel_pacotePergunta.setVisible(true);
         list_perguntas.setItems(items);
     }
-      @FXML
+    @FXML
     private Pane panelDesempenho;
-      @FXML
+
+    @FXML
     void BT_abrirFiltroPacotes(ActionEvent event) {
         buscarPacotes();
         panel_pacotePergunta.setVisible(true);
-        
+
     }
+
     @FXML
-    void BT_fecharFIltroPacotes(MouseEvent event) {        
+    void BT_fecharFIltroPacotes(MouseEvent event) {
         panel_pacotePergunta.setVisible(false);
         combo_dataPacoteInicio.setValue(null);
         combo_dataPacoteFim.setValue(null);
         txt_assuntoPacotePerguntas.setText("");
         combo_disciplinaPacotePerguntas.setValue(null);
     }
-       @FXML
+
+    @FXML
     void BT_abrirDesempenho(ActionEvent event) {
         buscarDesempenho();
         panelDesempenho.setVisible(true);
     }
+
     @FXML
-    void BT_fecharDesempenho(MouseEvent event) {        
+    void BT_fecharDesempenho(MouseEvent event) {
         panelDesempenho.setVisible(false);
         combo_disciplina.getSelectionModel().clearSelection();
         combo_turma.getSelectionModel().clearSelection();
@@ -704,24 +768,26 @@ public class FXML_inicioProfessorController implements Initializable {
 
         txt_nome.setText("");
         txt_assunto.setText("");
-        
+
     }
-    public void reset(){
+
+    public void reset() {
         pacoteEscolhido = null;
         items.clear();
         //dificuldadePacote.getSelectedToggle().setSelected(true);
-       
+
         combo_disciplinaPacote.setValue(null);
         txt_assuntoPacote.setText("");
         txt_enunciado.setText("");
-            txt_a.setText("");
-            txt_b.setText("");
-            txt_c.setText("");
-            txt_d.setText("");
+        txt_a.setText("");
+        txt_b.setText("");
+        txt_c.setText("");
+        txt_d.setText("");
         pontuacao = 0;
-        cont  = 0;
+        cont = 0;
         perguntas.clear();
     }
+
     //**************************************************************************
     /**
      * Initializes the controller class.
@@ -741,31 +807,58 @@ public class FXML_inicioProfessorController implements Initializable {
         combo_serie.getItems().add("2");
         combo_serie.getItems().add("3");
 
+        combo_respostaPacote.getItems().add("A");
+        combo_respostaPacote.getItems().add("B");
+        combo_respostaPacote.getItems().add("C");
+        combo_respostaPacote.getItems().add("D");
+
         coluna_aluno.setCellValueFactory(cellData -> cellData.getValue().getAluno());
         coluna_professor.setCellValueFactory(cellData -> cellData.getValue().getProfessor());
         coluna_assunto.setCellValueFactory(cellData -> cellData.getValue().getPacote());
         coluna_data.setCellValueFactory(cellData -> cellData.getValue().getDate());
         coluna_pontuacao.setCellValueFactory(cellData -> cellData.getValue().getPontuacao());
-        
+
         coluna_disciplinaPacote.setCellValueFactory(cellData -> cellData.getValue().getDisciplina());
         coluna_assuntoPacote.setCellValueFactory(cellData -> cellData.getValue().getAssunto());
         coluna_professorPacote.setCellValueFactory(cellData -> cellData.getValue().getProfessor());
         coluna_dataPacote.setCellValueFactory(cellData -> cellData.getValue().getData());
+        coluna_numeroQuestoesPacote.setCellValueFactory(cellData -> cellData.getValue().getNumeroQuestoes());
 
-        tabela_desempenho.setItems(conteudoTabelaDesempenho);
         tabela_pacotes.setItems(conteudoTabelaPacotes);
 
         combo_disciplinaPacote.getItems().add("Matematica");
         combo_disciplinaPacote.getItems().add("Portugues");
         combo_disciplinaPacote.getItems().add("Quimica");
-        
+
         combo_disciplinaPacotePerguntas.getItems().add("Matematica");
         combo_disciplinaPacotePerguntas.getItems().add("Portugues");
         combo_disciplinaPacotePerguntas.getItems().add("Quimica");
 
         list_perguntas.setItems(items);
-        
 
+        tabela_desempenho.setRowFactory(tv -> new TableRow<DesempenhoAlunoBean>() {
+            float m;
+            float p;
+
+            public void updateItem(DesempenhoAlunoBean item, boolean empty) {
+                super.updateItem(item, empty);
+                if (item != null) {
+                    m = Float.parseFloat(item.getPontuacaoMaxima().getValue());
+                    p = Float.parseFloat(item.getPontuacao().getValue());
+                }
+
+                if (item == null) {
+                    setStyle("");
+                } else if (p < (m / 2) || p == (m / 2)) {
+                    setStyle("-fx-background-color:#EE3B3B;");
+                } else if (p > (m / 2) && p < ((m / 2) + ((m / 2) / 2))) {
+                    setStyle("-fx-background-color:#FF7F24;");
+                } else if (p > ((m / 2) + ((m / 2) / 2))) {
+                    setStyle("-fx-background-color:#43CD80;");
+                }
+            }
+        });
+        tabela_desempenho.setItems(conteudoTabelaDesempenho);
     }
 
 }
