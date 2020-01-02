@@ -21,7 +21,7 @@
             <Font name="Ubuntu Medium" size="52.0" />
          </font>
       </JFXButton>
-      <JFXButton buttonType="RAISED" focusTraversable="false" layoutX="441.0" layoutY="277.0" prefHeight="98.0" prefWidth="439.0" style="-fx-background-color: #4D8FFF; -fx-background-radius: 22;" text="Jogar" textFill="WHITE">
+      <JFXButton buttonType="RAISED" focusTraversable="false" layoutX="441.0" layoutY="277.0" onAction="#BT_jogar" prefHeight="98.0" prefWidth="439.0" style="-fx-background-color: #4D8FFF; -fx-background-radius: 22;" text="Jogar" textFill="WHITE">
          <font>
             <Font name="Ubuntu Medium" size="52.0" />
          </font>
@@ -78,5 +78,10 @@
             <Font name="Ubuntu Medium" size="20.0" />
          </font>
       </JFXButton>
+      <Label fx:id="label_nome" layoutX="14.0" layoutY="14.0" text="William Amorim" textFill="#f2f2f2">
+         <font>
+            <Font name="Ubuntu Medium" size="35.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

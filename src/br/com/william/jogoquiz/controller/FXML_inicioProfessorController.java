@@ -7,8 +7,12 @@ package br.com.william.jogoquiz.controller;
 
 import br.com.william.jogoquiz.bean.DesempenhoAlunoBean;
 import br.com.william.jogoquiz.bean.PacotesBean;
+import br.com.william.jogoquiz.log.DiretorioLog;
 import br.com.william.jogoquiz.sql.Sql;
+import br.com.william.jogoquiz.util.CodigoPacote;
 import br.com.william.jogoquiz.util.Data;
+import br.com.william.jogoquiz.util.Util;
+import br.com.william.jogoquiz.view.Inicio;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -34,6 +38,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
@@ -377,7 +382,6 @@ public class FXML_inicioProfessorController implements Initializable {
             ArrayList values = new ArrayList();
             String a = perguntas.get(i).toString();
             String b = a.replace("[", "").replace("]", "");
-
             String[] tokens = b.split(",");
             values.add(pacote);
             values.add(tokens[5].trim());
@@ -550,7 +554,10 @@ public class FXML_inicioProfessorController implements Initializable {
 
     @FXML
     private DatePicker combo_dataPacoteFim;
-
+    
+    @FXML
+    private Label label_nome;
+    
     @FXML
     private ComboBox combo_disciplinaPacotePerguntas;
     ArrayList pacotes = new ArrayList();
@@ -635,11 +642,27 @@ public class FXML_inicioProfessorController implements Initializable {
     }
 
     //**************************************************************************
+    
+    //Administrado o jogo*******************************************************
+    @FXML
+    void BT_criarJogo(ActionEvent event) {
+        int i = tabela_pacotes.getSelectionModel().getSelectedIndex();
+        if (i > -1) {            
+            Inicio is = new Inicio();
+            CodigoPacote c = new CodigoPacote();
+            c.setCodigoPacote((String) pacotes.get(i));
+            System.out.println("Codigo Pacote aqui: "+(String) pacotes.get(i));
+            is.abrirScene("adminGame");
+            
+        }
+    }
+    //**************************************************************************
     @FXML
     void BT_sair(ActionEvent event) throws IOException {
-        File file = new File("D:\\Projetos-git\\java\\Quiz\\src\\br\\com\\william\\jogoquiz\\log\\log.txt");
+        DiretorioLog pegar = new DiretorioLog();
+        File file = new File(pegar.getDiretoriolog());
         try {
-            FileInputStream arquivo = new FileInputStream("D:\\Projetos-git\\java\\Quiz\\src\\br\\com\\william\\jogoquiz\\log\\log.txt");
+            FileInputStream arquivo = new FileInputStream(pegar.getDiretoriolog());
             InputStreamReader in = new InputStreamReader(arquivo);
             BufferedReader br = new BufferedReader(in);
             Sql novo = new Sql();
@@ -648,9 +671,20 @@ public class FXML_inicioProfessorController implements Initializable {
             values.add(br.readLine().substring(4));
             arquivo.close();
             novo.executeQuery("UPDATE `professor` SET `status`='0' WHERE nome_professor  = ?", values);
-            if (file.delete()) {
-                System.out.println("deletando");
-            }
+        
+                try{
+                    if (file.delete()) {}
+                    Alert dialogoInfo = new Alert(Alert.AlertType.CONFIRMATION);                
+                    dialogoInfo.setHeaderText("Deletando o arquivo");
+                    dialogoInfo.setContentText("");
+                    dialogoInfo.showAndWait();
+                }catch(Exception ex){
+                    Alert dialogoInfo = new Alert(Alert.AlertType.WARNING);                
+                    dialogoInfo.setHeaderText("Erro ao deletar arquivo");
+                    dialogoInfo.setContentText("");
+                    dialogoInfo.showAndWait();
+                }    
+            
             System.exit(0);
 
         } catch (FileNotFoundException ex) {
@@ -668,20 +702,20 @@ public class FXML_inicioProfessorController implements Initializable {
             try {
                 String a = br.readLine();
             } catch (IOException ex) {
-                Logger.getLogger(FXML_inicioProfessorController.class.getName()).log(Level.SEVERE, null, ex);
+                //Logger.getLogger(FXML_inicioProfessorController.class.getName()).log(Level.SEVERE, null, ex);
             }
             try {
                 return br.readLine().substring(4);
             } catch (IOException ex) {
-                Logger.getLogger(FXML_inicioProfessorController.class.getName()).log(Level.SEVERE, null, ex);
+                //Logger.getLogger(FXML_inicioProfessorController.class.getName()).log(Level.SEVERE, null, ex);
             }
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(FXML_inicioProfessorController.class.getName()).log(Level.SEVERE, null, ex);
+                //Logger.getLogger(FXML_inicioProfessorController.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             try {
                 arquivo.close();
             } catch (IOException ex) {
-                Logger.getLogger(FXML_inicioProfessorController.class.getName()).log(Level.SEVERE, null, ex);
+                //Logger.getLogger(FXML_inicioProfessorController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         return null;
@@ -789,11 +823,16 @@ public class FXML_inicioProfessorController implements Initializable {
     }
 
     //**************************************************************************
+    
+    
+    
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        label_nome.setText(Util.nome_log());
         // TODO
         combo_disciplina.getItems().add("Matematica");
         combo_disciplina.getItems().add("Portugues");

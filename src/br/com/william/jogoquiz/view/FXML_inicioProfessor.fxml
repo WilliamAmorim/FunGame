@@ -190,7 +190,7 @@
                   <Font name="Ubuntu Medium" size="40.0" />
                </font>
             </Label>
-            <Label layoutX="93.0" layoutY="85.0" text="Numero da Sala" textFill="#a6a6a8">
+            <Label layoutX="93.0" layoutY="85.0" text="Codigo do jogo" textFill="#a6a6a8">
                <font>
                   <Font name="Ubuntu Medium" size="15.0" />
                </font>
@@ -212,7 +212,7 @@
                   <DropShadow height="10.0" radius="4.5" width="10.0" />
                </effect>
             </StackPane>
-            <ListView layoutX="298.0" layoutY="216.0" prefHeight="333.0" prefWidth="831.0" style="-fx-background-color: #E8E8E8;" />
+            <ListView layoutX="482.0" layoutY="217.0" prefHeight="333.0" prefWidth="463.0" style="-fx-background-color: #E8E8E8;" />
             <JFXButton buttonType="RAISED" layoutX="66.0" layoutY="124.0" prefHeight="27.0" prefWidth="163.0" style="-fx-background-color: #4D8FFF;" text="Proxima Pergunta" textFill="WHITE">
                <font>
                   <Font name="Ubuntu Medium" size="15.0" />
@@ -232,7 +232,7 @@
                   <Font name="Ubuntu Medium" size="40.0" />
                </font>
             </Label>
-            <JFXButton layoutX="243.0" layoutY="38.0" prefHeight="27.0" prefWidth="120.0" style="-fx-background-color: #43CD80;" text="Criar Jogo" textFill="WHITE">
+            <JFXButton layoutX="243.0" layoutY="38.0" onAction="#BT_criarJogo" prefHeight="27.0" prefWidth="120.0" style="-fx-background-color: #43CD80;" text="Criar Jogo" textFill="WHITE">
                <font>
                   <Font name="Ubuntu Medium" size="15.0" />
                </font>
@@ -325,5 +325,10 @@
             <Font name="Ubuntu Medium" size="20.0" />
          </font>
       </JFXButton>
+      <Label fx:id="label_nome" layoutX="14.0" layoutY="14.0" text="William Amorim" textFill="#f2f2f2">
+         <font>
+            <Font name="Ubuntu Medium" size="35.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

@@ -6,8 +6,11 @@
 package br.com.william.jogoquiz.controller;
 
 import br.com.william.jogoquiz.bean.DesempenhoAlunoBean;
+import br.com.william.jogoquiz.log.DiretorioLog;
 import br.com.william.jogoquiz.sql.Sql;
 import br.com.william.jogoquiz.util.Data;
+import br.com.william.jogoquiz.util.Util;
+import br.com.william.jogoquiz.view.Inicio;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -29,6 +32,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
@@ -74,6 +78,9 @@ public class FXML_inicioAlunoController implements Initializable {
     
     @FXML
     private ComboBox combo_disciplina;
+    
+    @FXML
+    private Label label_nome;
     
     @FXML
     private TextField txt_assunto;
@@ -187,6 +194,8 @@ public class FXML_inicioAlunoController implements Initializable {
         date_fim.setValue(null);
         
         txt_assunto.setText("");
+        
+        System.out.println("Diretorio: "+System.getProperty("user.dir"));
     }
     //**************************************************************************
     
@@ -194,9 +203,10 @@ public class FXML_inicioAlunoController implements Initializable {
     
     @FXML
     void BT_sair(ActionEvent event) throws IOException {
-        File file = new File("D:\\Projetos-git\\java\\Quiz\\src\\br\\com\\william\\jogoquiz\\log\\log.txt");        
+        DiretorioLog pegar = new DiretorioLog();
+        File file = new File(pegar.getDiretoriolog());        
         try {
-            FileInputStream arquivo = new FileInputStream("D:\\Projetos-git\\java\\Quiz\\src\\br\\com\\william\\jogoquiz\\log\\log.txt");
+            FileInputStream arquivo = new FileInputStream(pegar.getDiretoriolog());
             InputStreamReader in = new InputStreamReader(arquivo);            
             BufferedReader br = new BufferedReader(in);
             String a = br.readLine();
@@ -205,6 +215,7 @@ public class FXML_inicioAlunoController implements Initializable {
             values.add(br.readLine().substring(4));
             arquivo.close();
             novo.executeQuery("UPDATE `aluno` SET `status`='0' WHERE nome_aluno  = ?", values);
+            novo.executeQuery("DELETE FROM `log` WHERE nome_aluno  = ?", values);
             if (file.delete()) {
                 System.out.println("deletando");                
             }
@@ -214,6 +225,11 @@ public class FXML_inicioAlunoController implements Initializable {
         }
         
     }
+    @FXML
+    void BT_jogar(ActionEvent event) {
+        Inicio abrir = new Inicio();
+        abrir.abrirScene("pergunta");
+    }
 
     /**
      * Initializes the controller class.
@@ -221,7 +237,8 @@ public class FXML_inicioAlunoController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-               
+        label_nome.setText(Util.nome_log());
+        
         combo_disciplina.getItems().add("Matematica");
         combo_disciplina.getItems().add("Portugues");
         combo_disciplina.getItems().add("Quimica");

@@ -5,6 +5,7 @@
  */
 package br.com.william.jogoquiz.controller;
 
+import br.com.william.jogoquiz.log.DiretorioLog;
 import br.com.william.jogoquiz.sql.Sql;
 import br.com.william.jogoquiz.view.Inicio;
 import com.jfoenix.controls.JFXButton;
@@ -22,6 +23,7 @@ import javafx.scene.layout.Pane;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.net.InetAddress;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.stage.Stage;
@@ -192,6 +194,7 @@ public class FXML_inicioController implements Initializable {
                     //existe usuario      
                     values.clear();
                     novo.executeQuery("UPDATE `professor` SET `status`='1' WHERE nome_professor  = '"+txt_usuarioProfessor.getText()+"'", values);    
+                    System.setProperty("nome",txt_usuarioProfessor.getText());
                     Criarlog("1\nlog:"+txt_usuarioProfessor.getText(),1);                        
                     novaTela.abrirScene("inicioProfessor");
 
@@ -223,6 +226,7 @@ public class FXML_inicioController implements Initializable {
                     valuess.add(txt_senhaCadastroProfessor.getText());
                     valuess.add(combo_disciplina.getValue()+"");
                     novo.executeQuery("INSERT INTO `professor`(`nome_professor`, `senha`, `disciplina`,`status`) VALUES (?,?,?,1)", valuess);                                 
+                    System.setProperty("nome",txt_usuarioCadastroProfessor.getText());
                     Criarlog("1\nlog:"+txt_usuarioCadastroProfessor.getText(),1);                    
                 }else{
                       Alert dialogoInfo = new Alert(Alert.AlertType.WARNING);                
@@ -242,7 +246,7 @@ public class FXML_inicioController implements Initializable {
     }
         
     @FXML
-    void BT_entrarAluno(ActionEvent event) {
+    void BT_entrarAluno(ActionEvent event) {        
         if(panel_inicio.isVisible() == false){
             Sql novo = new Sql();
             String[] retorno = {"nome_aluno","senha"};
@@ -263,6 +267,7 @@ public class FXML_inicioController implements Initializable {
                     //existe usuario
                     values.clear();
                     novo.executeQuery("UPDATE `aluno` SET `status`='1' WHERE nome_aluno  = '"+txt_usuarioAluno.getText()+"'", values);
+                    System.setProperty("nome",txt_usuarioAluno.getText());                                       
                     Criarlog("0\nlog:"+txt_usuarioAluno.getText(),2);
                     novaTela.abrirScene("inicioAluno");                    
                 }
@@ -276,7 +281,7 @@ public class FXML_inicioController implements Initializable {
     }
     
     @FXML
-    void BT_cadastrarAluno(ActionEvent event) {
+    void BT_cadastrarAluno(ActionEvent event) throws IOException {             
         if(panel_loginAluno.isVisible() == false){
             Sql novo = new Sql();
             String[] retorno = {"nome_aluno"};
@@ -295,6 +300,7 @@ public class FXML_inicioController implements Initializable {
                     valuess.add(combo_turma.getValue());
                     valuess.add(combo_turno.getValue());
                     novo.executeQuery("INSERT INTO `aluno`(`nome_aluno`, `senha`, `serie`, `turma`, `turno`, `status`) VALUES (?,?,?,?,?,1)", valuess);                                 
+                    System.setProperty("nome",txt_usuarioCadastroAluno.getText());                   
                     Criarlog("0\nlog:"+txt_usuarioCadastroAluno.getText(),2);
                     novaTela.abrirScene("inicioAluno");
                 }else{
@@ -316,8 +322,7 @@ public class FXML_inicioController implements Initializable {
         txt_usuarioCadastroAluno.setText("");
         txt_senhaCadastroAluno.setText("");
         txt_senhaCadastroProfessor.setText("");
-        txt_usuarioCadastroProfessor.setText("");
-        
+        txt_usuarioCadastroProfessor.setText("");        
         txt_usuarioAluno.setText("");
         txt_senhaAluno.setText("");
         txt_senhaProfessor.setText("");
@@ -330,26 +335,32 @@ public class FXML_inicioController implements Initializable {
     }
     
     public void Criarlog(String nome,int n){
-        File diretorio = new File("D:\\Projetos-git\\java\\Quiz\\src\\br\\com\\william\\jogoquiz\\log\\log.txt");
+        DiretorioLog pegar = new DiretorioLog();
+        File file = new File(pegar.getDiretoriolog());
+        if (file.delete()) {}
+        File diretorio = new File(pegar.getDiretoriolog());
         
-        if (diretorio.exists() == false){  
-             
+        if (diretorio.exists() == false){               
             try {
-                FileWriter arquivo = new FileWriter("D:\\Projetos-git\\java\\Quiz\\src\\br\\com\\william\\jogoquiz\\log\\log.txt", true);
+                FileWriter arquivo = new FileWriter(pegar.getDiretoriolog());
                 System.out.println("inserindo");                
                 arquivo.write(nome);                     
-                switch(n){
+                Sql novo = new Sql();
+                ArrayList values = new ArrayList();
+                values.add(System.getProperty("nome")); 
+                values.add(InetAddress.getLocalHost().getHostAddress());
+                novo.executeQuery("INSERT INTO `log`(`nome_aluno`, `ip_maquina`) VALUES (?,?)", values);
+                switch(n){                    
                     case 1:novaTela.abrirScene("inicioProfessor");
                     case 2:novaTela.abrirScene("inicioAluno");
                 }
                 arquivo.close();  
             } catch (IOException ex) {
-                Logger.getLogger(FXML_inicioController.class.getName()).log(Level.SEVERE, null, ex);
+              
+               System.out.print("Erro no Logo:");
+               System.err.print(ex);
             }
-
-            
-      
-    }
+        }
     }
    
     /**

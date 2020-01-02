@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXListView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="768.0" prefWidth="1320.0" style="-fx-background-color: #363636;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.william.jogoquiz.controller.AdminGameController">
+     <children>
+      <Pane layoutX="88.0" layoutY="135.0" prefHeight="564.0" prefWidth="1165.0" style="-fx-background-color: #E8E8E8; -fx-background-radius: 40;">
+         <children>
+            <Label fx:id="label_ip" layoutX="41.0" layoutY="27.0" text="192.168.1.1">
+               <font>
+                  <Font name="Ubuntu Medium" size="40.0" />
+               </font>
+            </Label>
+            <Label layoutX="93.0" layoutY="85.0" text="Codigo do jogo" textFill="#a6a6a8">
+               <font>
+                  <Font name="Ubuntu Medium" size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="label_alunosConectados" layoutX="602.0" layoutY="171.0" text="Alunos Conectados" textFill="#a6a6a8">
+               <font>
+                  <Font name="Ubuntu Medium" size="25.0" />
+               </font>
+            </Label>
+            <StackPane layoutX="298.0" layoutY="-49.0" prefHeight="200.0" prefWidth="831.0" style="-fx-background-color: white; -fx-background-radius: 22;">
+               <children>
+                  <Label fx:id="Label_enunciado" text="A pergunta vai aqui" textAlignment="CENTER" textFill="#363636" wrapText="true">
+                     <font>
+                        <Font name="Ubuntu Medium" size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+               <effect>
+                  <DropShadow height="10.0" radius="4.5" width="10.0" />
+               </effect>
+            </StackPane>
+            <JFXButton fx:id="BT_proximaPergunta" buttonType="RAISED" layoutX="66.0" layoutY="124.0" onAction="#BT_proximaPergunta" prefHeight="27.0" prefWidth="163.0" style="-fx-background-color: #4D8FFF;" text="Proxima Pergunta" textFill="WHITE">
+               <font>
+                  <Font name="Ubuntu Medium" size="15.0" />
+               </font>
+            </JFXButton>
+            <Label fx:id="label_numeroPerguntas" layoutX="1047.0" layoutY="166.0" text="1/10" textFill="#a6a6a8">
+               <font>
+                  <Font name="Ubuntu Medium" size="35.0" />
+               </font>
+            </Label>
+            <JFXListView fx:id="list_alunosConectados" layoutX="482.0" layoutY="217.0" prefHeight="333.0" prefWidth="463.0" style="-fx-background-radius: 8;" stylesheets="@estiloTextField.css">
+               <padding>
+                  <Insets bottom="7.0" left="1.0" right="1.0" top="7.0" />
+               </padding>
+            </JFXListView>
+            <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="316.0" layoutY="171.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../imagens/clock-circular-outline.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="label_clock" layoutX="356.0" layoutY="171.0" text="00:00" textFill="#a6a6a8">
+               <font>
+                  <Font name="Ubuntu Medium" size="25.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <JFXButton buttonType="RAISED" layoutX="1221.0" layoutY="24.0" onAction="#BT_voltar" prefHeight="48.0" prefWidth="95.0" style="-fx-background-color: #FF4040; -fx-background-radius: 22;" text="Sair" textFill="WHITE">
+         <font>
+            <Font name="Ubuntu Medium" size="20.0" />
+         </font>
+      </JFXButton>
+      <Label fx:id="label_nome" layoutX="14.0" layoutY="14.0" text="William Amorim" textFill="#f2f2f2">
+         <font>
+            <Font name="Ubuntu Medium" size="35.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

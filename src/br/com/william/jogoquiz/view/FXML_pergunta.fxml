@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXSpinner?>
 <?import com.jfoenix.controls.JFXTextArea?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -11,28 +14,53 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="768.0" prefWidth="1320.0" style="-fx-background-color: #363636;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.william.jogoquiz.controller.FXML_perguntaController">
    <children>
-      <Pane layoutX="78.0" layoutY="125.0" prefHeight="519.0" prefWidth="1165.0" style="-fx-background-color: #E8E8E8; -fx-background-radius: 40;">
+      <TextField fx:id="txt_codigoJogo" layoutX="545.0" layoutY="350.0" AnchorPane.leftAnchor="545.0" AnchorPane.rightAnchor="543.0" AnchorPane.topAnchor="350.0">
+         <effect>
+            <DropShadow />
+         </effect>
+         <font>
+            <Font name="Ubuntu Medium" size="18.0" />
+         </font>
+      </TextField>
+      <JFXButton fx:id="txt_entrarJogo" buttonType="RAISED" layoutX="605.0" layoutY="398.0" onAction="#BT_entrarJogo" prefHeight="25.0" prefWidth="110.0" style="-fx-background-color: #4D8FFF;" text="Entrar" textFill="WHITE">
+         <font>
+            <Font name="Ubuntu Medium" size="20.0" />
+         </font>
+      </JFXButton>
+      <Label layoutX="538.0" layoutY="290.0" text="Codigo do jogo" textFill="#f2f2f2">
+         <font>
+            <Font name="Ubuntu Medium" size="35.0" />
+         </font>
+      </Label>
+      <JFXSpinner fx:id="progress_entraJogo" layoutX="636.0" layoutY="467.0" progress="1.0" visible="false" />
+      <Label fx:id="label_conectado" layoutX="608.0" layoutY="524.0" text="Conectado!" textFill="#0e9559" visible="false">
+         <font>
+            <Font name="Ubuntu Medium" size="20.0" />
+         </font>
+      </Label>
+      <Pane fx:id="panel_game" layoutX="78.0" layoutY="125.0" prefHeight="519.0" prefWidth="1165.0" style="-fx-background-color: #E8E8E8; -fx-background-radius: 40;">
          <children>
-            <JFXButton buttonType="RAISED" focusTraversable="false" layoutX="153.0" layoutY="285.0" prefHeight="107.0" prefWidth="420.0" style="-fx-background-color: white; -fx-background-radius: 22;" textAlignment="CENTER" wrapText="true">
+            <JFXButton fx:id="BT_c" buttonType="RAISED" focusTraversable="false" layoutX="153.0" layoutY="285.0" onAction="#BT_c" prefHeight="107.0" prefWidth="420.0" style="-fx-background-color: white; -fx-background-radius: 22;" textAlignment="CENTER" wrapText="true">
                <font>
                   <Font name="Ubuntu Medium" size="15.0" />
                </font>
             </JFXButton>
-            <JFXButton buttonType="RAISED" focusTraversable="false" layoutX="153.0" layoutY="164.0" prefHeight="107.0" prefWidth="420.0" style="-fx-background-color: white; -fx-background-radius: 22;" textAlignment="CENTER" wrapText="true">
+            <JFXButton fx:id="BT_a" buttonType="RAISED" focusTraversable="false" layoutX="153.0" layoutY="164.0" onAction="#BT_a" prefHeight="107.0" prefWidth="420.0" style="-fx-background-color: white; -fx-background-radius: 22;" textAlignment="CENTER" wrapText="true">
                <font>
                   <Font name="Ubuntu Medium" size="15.0" />
                </font>
             </JFXButton>
-            <JFXButton buttonType="RAISED" focusTraversable="false" layoutX="588.0" layoutY="164.0" prefHeight="107.0" prefWidth="420.0" style="-fx-background-color: white; -fx-background-radius: 22;" text="Button" textAlignment="CENTER" wrapText="true">
+            <JFXButton fx:id="BT_b" buttonType="RAISED" focusTraversable="false" layoutX="588.0" layoutY="164.0" onAction="#BT_b" prefHeight="107.0" prefWidth="420.0" style="-fx-background-color: white; -fx-background-radius: 22;" text="Button" textAlignment="CENTER" wrapText="true">
                <font>
                   <Font name="Ubuntu Medium" size="15.0" />
                </font>
             </JFXButton>
-            <JFXButton buttonType="RAISED" focusTraversable="false" layoutX="588.0" layoutY="285.0" prefHeight="107.0" prefWidth="420.0" style="-fx-background-color: white; -fx-background-radius: 22;" textAlignment="CENTER" wrapText="true">
+            <JFXButton fx:id="BT_d" buttonType="RAISED" focusTraversable="false" layoutX="588.0" layoutY="285.0" onAction="#BT_d" prefHeight="107.0" prefWidth="420.0" style="-fx-background-color: white; -fx-background-radius: 22;" textAlignment="CENTER" wrapText="true">
                <font>
                   <Font name="Ubuntu Medium" size="15.0" />
                </font>
@@ -45,7 +73,7 @@
             <ProgressBar disable="true" layoutY="427.0" prefHeight="18.0" prefWidth="1165.0" progress="0.0" />
             <StackPane layoutX="105.0" layoutY="-54.0" prefHeight="200.0" prefWidth="956.0" style="-fx-background-color: white; -fx-background-radius: 22;">
                <children>
-                  <Label text="A pergunta vai aqui" textAlignment="CENTER" textFill="#363636" wrapText="true">
+                  <Label fx:id="label_enunciado" text="A pergunta vai aqui" textAlignment="CENTER" textFill="#363636" wrapText="true">
                      <font>
                         <Font name="Ubuntu Medium" size="20.0" />
                      </font>
@@ -62,119 +90,92 @@
                         <Image url="@../imagens/star.png" />
                      </image>
                   </ImageView>
-                  <Label prefHeight="41.0" prefWidth="109.0" text=" 10000" textFill="#ed8a19">
+                  <Label fx:id="label_pontos" prefHeight="41.0" prefWidth="109.0" text="0" textFill="#ed8a19">
                      <font>
                         <Font name="Ubuntu Medium" size="35.0" />
                      </font>
+                     <HBox.margin>
+                        <Insets left="6.0" />
+                     </HBox.margin>
                   </Label>
                </children>
             </HBox>
-            <Label layoutX="17.0" layoutY="26.0" text="1/10" textFill="#a6a6a8">
+            <Label fx:id="label_nPerguntas" layoutX="17.0" layoutY="26.0" text="1/10" textFill="#a6a6a8">
                <font>
                   <Font name="Ubuntu Medium" size="35.0" />
                </font>
             </Label>
-            <Label ellipsisString="White" layoutX="883.0" layoutY="464.0" text="Matematica Portuges" textFill="#a6a6a8">
+            <Label fx:id="label_tema" ellipsisString="White" layoutX="883.0" layoutY="464.0" text="Matematica Portuges" textFill="#a6a6a8">
                <font>
                   <Font name="Ubuntu Medium" size="25.0" />
                </font>
             </Label>
          </children>
       </Pane>
-      <Label layoutX="14.0" layoutY="14.0" text="William Amorim" textFill="#f2f2f2">
+      <Label fx:id="label_nome" layoutX="14.0" layoutY="14.0" text="William Amorim" textFill="#f2f2f2">
          <font>
             <Font name="Ubuntu Medium" size="35.0" />
          </font>
       </Label>
-      <Pane layoutX="78.0" layoutY="125.0" prefHeight="519.0" prefWidth="1165.0" style="-fx-background-color: #E8E8E8; -fx-background-radius: 40;" visible="false">
+      <JFXButton buttonType="RAISED" layoutX="1211.0" layoutY="14.0" onAction="#BT_voltar" prefHeight="48.0" prefWidth="95.0" style="-fx-background-color: #FF4040; -fx-background-radius: 22;" text="Voltar" textFill="WHITE">
+         <font>
+            <Font name="Ubuntu Medium" size="20.0" />
+         </font>
+      </JFXButton>
+      <Pane fx:id="panel_ranking" layoutX="78.0" layoutY="125.0" prefHeight="519.0" prefWidth="1165.0" style="-fx-background-radius: 40; -fx-background-color: #363636;" visible="false">
          <children>
-            <JFXTextArea editable="false" focusColor="#ffffff00" layoutX="105.0" layoutY="-54.0" prefHeight="200.0" prefWidth="956.0" style="-fx-background-color: white; -fx-background-radius: 22;" text="Quem nasceu primeiro o ovo ou a galinha?" unFocusColor="#4d4d4d00" visible="false">
-               <font>
-                  <Font name="Ubuntu Medium" size="15.0" />
-               </font>
-            </JFXTextArea>
-            <ProgressBar disable="true" layoutY="427.0" prefHeight="18.0" prefWidth="1165.0" progress="0.0" />
-            <HBox alignment="CENTER" layoutX="14.0" layoutY="445.0" prefHeight="68.0" prefWidth="156.0">
-               <children>
-                  <ImageView fitHeight="32.0" fitWidth="31.0" pickOnBounds="true">
-                     <image>
-                        <Image url="@../imagens/star.png" />
-                     </image>
-                  </ImageView>
-                  <Label prefHeight="41.0" prefWidth="109.0" text=" 10000" textFill="#ed8a19">
-                     <font>
-                        <Font name="Ubuntu Medium" size="35.0" />
-                     </font>
-                  </Label>
-               </children>
-            </HBox>
-            <Label ellipsisString="White" layoutX="883.0" layoutY="464.0" text="Matematica Portuges" textFill="#a6a6a8">
-               <font>
-                  <Font name="Ubuntu Medium" size="25.0" />
-               </font>
-            </Label>
-            <Pane layoutX="235.0" layoutY="20.0" prefHeight="122.0" prefWidth="696.0" style="-fx-background-color: white; -fx-background-radius: 80;">
+            <VBox alignment="TOP_CENTER" layoutX="65.0" layoutY="164.0" prefHeight="502.0" prefWidth="324.0" style="-fx-background-color: white; -fx-background-radius: 22;">
                <effect>
-                  <DropShadow height="10.0" radius="4.5" width="10.0" />
+                  <DropShadow />
                </effect>
                <children>
-                  <ImageView fitHeight="107.0" fitWidth="124.0" layoutX="20.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../imagens/first.png" />
-                     </image>
-                  </ImageView>
-                  <Label layoutX="142.0" layoutY="26.0" text="William">
-                     <font>
-                        <Font name="Ubuntu Medium" size="60.0" />
-                     </font>
-                  </Label>
-               </children>
-            </Pane>
-            <Pane layoutX="235.0" layoutY="152.0" prefHeight="122.0" prefWidth="696.0" style="-fx-background-color: white; -fx-background-radius: 80;">
-               <effect>
-                  <DropShadow height="10.0" radius="4.5" width="10.0" />
-               </effect>
-               <children>
-                  <ImageView fitHeight="107.0" fitWidth="124.0" layoutX="22.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="223.0" fitWidth="260.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../imagens/second.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="142.0" layoutY="26.0" text="William">
-                     <font>
-                        <Font name="Ubuntu Medium" size="60.0" />
-                     </font>
-                  </Label>
                </children>
-            </Pane>
-            <Pane layoutX="235.0" layoutY="285.0" prefHeight="122.0" prefWidth="696.0" style="-fx-background-color: white; -fx-background-radius: 80;">
+            </VBox>
+            <VBox alignment="TOP_CENTER" layoutX="733.0" layoutY="273.0" prefHeight="393.0" prefWidth="324.0" style="-fx-background-color: white; -fx-background-radius: 22;">
                <effect>
-                  <DropShadow height="10.0" radius="4.5" width="10.0" />
+                  <DropShadow />
                </effect>
                <children>
-                  <ImageView fitHeight="107.0" fitWidth="124.0" layoutX="22.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="223.0" fitWidth="260.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../imagens/third.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="142.0" layoutY="26.0" text="William">
-                     <font>
-                        <Font name="Ubuntu Medium" size="60.0" />
-                     </font>
-                  </Label>
                </children>
-            </Pane>
+            </VBox>
+            <VBox alignment="TOP_CENTER" layoutX="399.0" layoutY="39.0" prefHeight="626.0" prefWidth="324.0" style="-fx-background-color: white; -fx-background-radius: 22;">
+               <effect>
+                  <DropShadow />
+               </effect>
+               <children>
+                  <ImageView fitHeight="223.0" fitWidth="260.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imagens/first.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </VBox>
+            <Label fx:id="label_2Lugar" alignment="CENTER" layoutX="58.0" layoutY="116.0" prefHeight="41.0" prefWidth="324.0" text="Adalto Alexandre" textFill="#f2f2f2">
+               <font>
+                  <Font name="Ubuntu Medium" size="35.0" />
+               </font>
+            </Label>
+            <Label fx:id="label_1Lugar" alignment="CENTER" layoutX="399.0" layoutY="-6.0" prefHeight="41.0" prefWidth="324.0" text="William Amorim" textFill="#f2f2f2">
+               <font>
+                  <Font name="Ubuntu Medium" size="35.0" />
+               </font>
+            </Label>
+            <Label fx:id="label_3Lugar" alignment="CENTER" layoutX="733.0" layoutY="226.0" prefHeight="41.0" prefWidth="324.0" text="Euler Menezes" textFill="#f2f2f2">
+               <font>
+                  <Font name="Ubuntu Medium" size="35.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
-      <JFXButton buttonType="RAISED" layoutX="615.0" layoutY="78.0" prefHeight="25.0" prefWidth="110.0" style="-fx-background-color: #4D8FFF;" text="Voltar" textFill="WHITE" visible="false">
-         <font>
-            <Font name="Ubuntu Medium" size="20.0" />
-         </font>
-      </JFXButton>
-      <JFXButton buttonType="RAISED" layoutX="1211.0" layoutY="14.0" prefHeight="48.0" prefWidth="95.0" style="-fx-background-color: #FF4040; -fx-background-radius: 22;" text="Sair" textFill="WHITE">
-         <font>
-            <Font name="Ubuntu Medium" size="20.0" />
-         </font>
-      </JFXButton>
    </children>
 </AnchorPane>
