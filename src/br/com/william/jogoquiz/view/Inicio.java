@@ -150,16 +150,14 @@ public class Inicio extends Application{
         }
         return false;
     }
-    public void abrirScene(String scene){
-        
+    public void abrirScene(String scene){        
         switch(scene){            
             case "inicio":stage.setScene(SceneInicio);break;
             case "inicioAluno":stage.setScene(SceneInicioAluno);break;
             case "inicioProfessor":stage.setScene(SceneInicioProfessor);break;
             case "pergunta":stage.setScene(ScenePergunta);break;
             case "adminGame":stage.setScene(SceneAdminGame);break;
-        }
-        
+        }        
     }
 
     /**

@@ -17,6 +17,8 @@ import java.net.Socket;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -79,7 +81,7 @@ public class FXML_perguntaController implements Initializable {
     public void responder(String resposta){
         if(responder){
             verificarResposta(resposta,true);
-            enviarMensagem(servidor,"1,"+meusPontos);
+            enviarMensagem(servidor,"resposta,"+meusPontos);
             label_pontos.setText(meusPontos+"");
         }
         responder = false;
@@ -108,10 +110,10 @@ public class FXML_perguntaController implements Initializable {
     }
 
     @FXML
-    void BT_voltar(ActionEvent event) throws IOException {
+    void BT_voltar(ActionEvent event) throws IOException{
         progress_entraJogo.setVisible(false);
         label_conectado.setVisible(false);
-        servidor.close();
+        
         Inicio abrir = new Inicio();
         abrir.abrirScene("inicioAluno");  
                  
@@ -133,6 +135,7 @@ public class FXML_perguntaController implements Initializable {
         Platform.runLater(()->panel_game.setVisible(false));
         Platform.runLater(()->panel_ranking.setVisible(true));
         System.out.println("Jogo Finalizado");
+        //enviar resultado do aluno
     }
     
     float meusPontos;
@@ -225,7 +228,7 @@ public class FXML_perguntaController implements Initializable {
             servidor = new Socket(txt_codigoJogo.getText(), 5555);
             label_conectado.setVisible(true);
             //System.out.println(Util.turma());
-            enviarMensagem(servidor,"0,"+Util.nome_log()+" "+Util.turma());//Util.nome_log()+" "+Util.turma()
+            enviarMensagem(servidor,"iniciar,"+Util.nome_log()+" "+Util.turma());//Util.nome_log()+" "+Util.turma()
             System.out.println("CONEXÃO ESTABELECIDA!!!");       
             //progress_entraJogo.setProgress(100);
         } catch (IOException ex){

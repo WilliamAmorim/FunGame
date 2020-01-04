@@ -71,20 +71,25 @@ public class Util {
     }
     
     public static int ordemCrescente(ArrayList a,int index){
+        
         ArrayList b = new ArrayList();
         int posicao =  a.size();
         float maior = 0;     
-        System.out.println("Size:"+a.size());
-        for (int i = 0; i <= a.size()-1; i++) {                    
-            if(Float.parseFloat((String) a.get(index)) >= Float.parseFloat((String) a.get(i))){
-                maior = Float.parseFloat((String) a.get(index));
-                posicao--;
-            }else{
-                maior = Float.parseFloat((String) a.get(i));
-                //posicao--;
-            }
-        }                        
-        System.out.println("Maior Valor "+maior+" | Posição: "+(posicao));
+        //try{
+            System.out.println("Size:"+a.size());
+            for (int i = 0; i <= a.size()-1; i++) {                    
+                if(Float.parseFloat((String) a.get(index)) >= Float.parseFloat((String) a.get(i))){
+                    maior = Float.parseFloat((String) a.get(index));
+                    posicao--;
+                }else{
+                    maior = Float.parseFloat((String) a.get(i));
+                    //posicao--;
+                }
+            }                        
+            System.out.println("Maior Valor "+maior+" | Posição: "+(posicao));
+       // }catch(Exception ex){
+       //     return  a.size();
+       // }
         return posicao;
                 
     }
