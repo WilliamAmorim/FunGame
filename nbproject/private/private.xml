@@ -15,14 +15,6 @@
             </bookmark>
         </file>
         <file>
-            <url>src/br/com/william/jogoquiz/controller/AdminGameController.java</url>
-            <bookmark id="9">
-                <name/>
-                <line>223</line>
-                <key/>
-            </bookmark>
-        </file>
-        <file>
             <url>src/br/com/william/jogoquiz/controller/FXML_inicioProfessorController.java</url>
             <bookmark id="6">
                 <name/>
@@ -37,6 +29,14 @@
             <bookmark id="8">
                 <name/>
                 <line>524</line>
+                <key/>
+            </bookmark>
+        </file>
+        <file>
+            <url>src/br/com/william/jogoquiz/controller/AdminGameController.java</url>
+            <bookmark id="9">
+                <name/>
+                <line>223</line>
                 <key/>
             </bookmark>
         </file>
