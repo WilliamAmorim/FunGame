@@ -14,19 +14,19 @@
 
 <AnchorPane id="AnchorPane" prefHeight="768.0" prefWidth="1320.0" style="-fx-background-color: #363636; -fx-background-radius: 22; -fx-border-radius: 22;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.william.jogoquiz.controller.FXML_inicioController">
    <children>
-      <Label layoutX="450.0" layoutY="14.0" text="Projeto X" textFill="WHITE">
+      <Label layoutX="450.0" layoutY="14.0" stylesheets="@fonteStyle.css" text="Projeto X" textFill="WHITE">
          <font>
             <Font name="Ubuntu Medium" size="96.0" />
          </font>
       </Label>
       <Pane fx:id="panel_inicio" layoutX="350.0" layoutY="290.0" prefHeight="299.0" prefWidth="653.0">
          <children>
-            <JFXButton fx:id="BT_aluno" buttonType="RAISED" focusTraversable="false" layoutX="153.0" layoutY="127.0" onAction="#loginAlunos" prefHeight="98.0" prefWidth="348.0" style="-fx-background-color: #4D8FFF; -fx-background-radius: 22;" text="Aluno" textFill="WHITE">
+            <JFXButton fx:id="BT_aluno" buttonType="RAISED" focusTraversable="false" layoutX="153.0" layoutY="127.0" onAction="#loginAlunos" prefHeight="98.0" prefWidth="348.0" style="-fx-background-color: #4D8FFF; -fx-background-radius: 22;" stylesheets="@fonteStyle.css" text="Aluno" textFill="WHITE">
                <font>
                   <Font name="Ubuntu Medium" size="52.0" />
                </font>
             </JFXButton>
-            <JFXButton fx:id="BT_professor" buttonType="RAISED" focusTraversable="false" layoutX="154.0" layoutY="14.0" onAction="#loginProfessors" prefHeight="98.0" prefWidth="348.0" style="-fx-background-color: #4D8FFF; -fx-background-radius: 22;" text="Professor" textFill="WHITE">
+            <JFXButton fx:id="BT_professor" buttonType="RAISED" focusTraversable="false" layoutX="154.0" layoutY="14.0" onAction="#loginProfessors" prefHeight="98.0" prefWidth="348.0" style="-fx-background-color: #4D8FFF; -fx-background-radius: 22;" stylesheets="@fonteStyle.css" text="Professor" textFill="WHITE">
                <font>
                   <Font name="Ubuntu Medium" size="52.0" />
                </font>
@@ -210,17 +210,17 @@
             </Pane>
          </children>
       </Pane>
-      <ImageView fitHeight="38.0" fitWidth="29.0" layoutX="1277.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView layoutX="1263.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../imagens/cancel.png" />
+            <Image url="@../imagens/icons8-fechar-janela-48%20(1).png" />
          </image>
          <effect>
             <DropShadow />
          </effect>
       </ImageView>
-      <ImageView fitHeight="38.0" fitWidth="29.0" layoutX="1235.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView layoutX="1215.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../imagens/minimise.png" />
+            <Image url="@../imagens/icons8-minimizar-janela-48.png" />
          </image>
          <effect>
             <DropShadow />

@@ -5,6 +5,8 @@
  */
 package br.com.william.jogoquiz.log;
 
+import java.io.File;
+
 /**
  *
  * @author willi
@@ -19,6 +21,13 @@ public class DiretorioLog {
 
     public void setDiretoriolog(String diretoriolog) {
         this.diretoriolog = diretoriolog;
+    }
+    public  DiretorioLog(){
+        File diretorio = new File("C:\\Users\\"+System.getProperty("user.name")+"\\AppData\\Local\\logQuiz");
+        
+        if (diretorio.exists() == false){   
+            diretorio.mkdir();
+        }
     }
     
 }
