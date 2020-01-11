@@ -15,10 +15,11 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -132,6 +133,23 @@ public class FXML_perguntaController implements Initializable {
     @FXML
     private Label label_3Lugar;
     
+    private void cadastrarResultado(String professor){
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date();
+        
+        Sql cadastrar = new Sql();
+        
+        ArrayList values = new ArrayList();
+        values.add(Util.nome_log());
+        values.add(professor);
+        values.add(pacoteEscolhido);
+        values.add(dateFormat.format(date));
+        values.add(meusPontos);
+        
+        cadastrar.executeQuery("INSERT INTO `desempenho`(`aluno`, `professor`, `codigo_pacote`, `data`, `pontuacao`, `assunto`) VALUES (?,?,?,?,?,'assunto')", values);
+        
+        
+    }
     public void finalizarGame(){
         Platform.runLater(()->panel_game.setVisible(false));
         Platform.runLater(()->panel_ranking.setVisible(true));
@@ -146,7 +164,7 @@ public class FXML_perguntaController implements Initializable {
     public void proximaPerguntas(){
             if(p == Nperguntas){
                 //Finaliza game              
-                finalizarGame();
+                //finalizarGame();
             }else{
             String a = perguntas.get(p).toString();
             String b = a.replace("[", "").replace("]", "");
@@ -272,23 +290,28 @@ public class FXML_perguntaController implements Initializable {
         }.start();      
     }
     boolean a = true;
+    public String pacoteEscolhido;
     private void tratarMensagem(String msg){
         String[] tokens = msg.split(",");
         if(a){
             pegarPacote(tokens[1]);
+            pacoteEscolhido = tokens[1];
             panel_game.setVisible(true);     
             proximaPerguntas();
             a = false;
         }else{ 
             if(tokens[0].equals("finalizado")){
+                finalizarGame();
                 Platform.runLater(()->label_1Lugar.setText(tokens[1]));
                 Platform.runLater(()->label_2Lugar.setText(tokens[2]));
                 Platform.runLater(()->label_3Lugar.setText(tokens[3]));
+                cadastrarResultado(tokens[4]);
             }
             proximaPerguntas();          
             
         }
     }
+    
     //**************************************************************************
        @FXML
     void BT_fechar(MouseEvent event) {

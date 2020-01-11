@@ -175,7 +175,7 @@ public class AdminGameController implements Initializable {
             System.out.print("|-"+alunosConectadosOrdem.get(j)+"-|");
             
         }
-        enviarMensagens("finalizado," + alunosConectadosOrdem.get(0) + "," + alunosConectadosOrdem.get(1) + "," + alunosConectadosOrdem.get(2));
+        enviarMensagens("finalizado," + alunosConectadosOrdem.get(0) + "," + alunosConectadosOrdem.get(1) + "," + alunosConectadosOrdem.get(2)+","+Util.nome_log());
 
     }
 
