@@ -24,8 +24,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.InetAddress;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 /**
  * FXML Controller class
@@ -227,9 +226,10 @@ public class FXML_inicioController implements Initializable {
                     valuess.add(combo_disciplina.getValue()+"");
                     novo.executeQuery("INSERT INTO `professor`(`nome_professor`, `senha`, `disciplina`,`status`) VALUES (?,?,?,1)", valuess);                                 
                     System.setProperty("nome",txt_usuarioCadastroProfessor.getText());
-                    Criarlog("1\nlog:"+txt_usuarioCadastroProfessor.getText(),1);                    
+                    Criarlog("1\nlog:"+txt_usuarioCadastroProfessor.getText(),1); 
+                    novaTela.abrirScene("inicioProfessor");
                 }else{
-                      Alert dialogoInfo = new Alert(Alert.AlertType.WARNING);                
+                     Alert dialogoInfo = new Alert(Alert.AlertType.WARNING);                
                     dialogoInfo.setHeaderText("Preencha todos os campos");
 //                    dialogoInfo.setContentText("");
                     dialogoInfo.showAndWait();
@@ -361,6 +361,16 @@ public class FXML_inicioController implements Initializable {
                System.err.print(ex);
             }
         }
+    }
+    
+      @FXML
+    void BT_fechar(MouseEvent event) {
+        Inicio.fechar();
+    }
+
+    @FXML
+    void BT_minimizar(MouseEvent event) {
+        Inicio.minimizar();
     }
    
     /**

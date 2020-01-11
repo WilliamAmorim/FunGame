@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
@@ -8,13 +9,14 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="768.0" prefWidth="1320.0" style="-fx-background-color: #363636;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.william.jogoquiz.controller.FXML_inicioAlunoController">
+<AnchorPane id="AnchorPane" prefHeight="768.0" prefWidth="1320.0" style="-fx-background-color: #363636; -fx-background-radius: 22;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.william.jogoquiz.controller.FXML_inicioAlunoController">
    <children>
       <JFXButton buttonType="RAISED" focusTraversable="false" layoutX="441.0" layoutY="393.0" onAction="#BT_AbrirDesempenho" prefHeight="98.0" prefWidth="439.0" style="-fx-background-color: #4D8FFF; -fx-background-radius: 22;" text="Desempenho" textFill="WHITE">
          <font>
@@ -73,15 +75,37 @@
             </ImageView>
          </children>
       </Pane>
-      <JFXButton buttonType="RAISED" focusTraversable="false" layoutX="1211.0" layoutY="14.0" onAction="#BT_sair" prefHeight="48.0" prefWidth="95.0" style="-fx-background-color: #FF4040; -fx-background-radius: 22;" text="Sair" textFill="WHITE">
+      <JFXButton buttonType="RAISED" focusTraversable="false" layoutX="14.0" layoutY="11.0" onAction="#BT_sair" prefHeight="48.0" prefWidth="95.0" style="-fx-background-color: #FF4040; -fx-background-radius: 22;" text="Sair" textFill="WHITE">
          <font>
             <Font name="Ubuntu Medium" size="20.0" />
          </font>
       </JFXButton>
-      <Label fx:id="label_nome" layoutX="14.0" layoutY="14.0" text="William Amorim" textFill="#f2f2f2">
+      <Label fx:id="label_nome" layoutX="122.0" layoutY="15.0" text="William Amorim" textFill="#f2f2f2">
          <font>
             <Font name="Ubuntu Medium" size="35.0" />
          </font>
       </Label>
+      <ImageView layoutX="1263.0" layoutY="7.0" onMouseClicked="#BT_fechar" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../imagens/icons8-fechar-janela-48%20(1).png" />
+         </image>
+         <effect>
+            <DropShadow />
+         </effect>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <ImageView layoutX="1215.0" layoutY="7.0" onMouseClicked="#BT_minimizar" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../imagens/icons8-minimizar-janela-48.png" />
+         </image>
+         <effect>
+            <DropShadow />
+         </effect>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
    </children>
 </AnchorPane>

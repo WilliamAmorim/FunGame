@@ -30,6 +30,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.input.MouseEvent;
 
 /**
  * FXML Controller class
@@ -206,6 +207,15 @@ public class AdminGameController implements Initializable {
             perguntas.add(pergunta);
             Nperguntas++;
         }
+    }
+      @FXML
+    void BT_fechar(MouseEvent event) {
+        Inicio.fechar();
+    }
+
+    @FXML
+    void BT_minimizar(MouseEvent event) {
+        Inicio.minimizar();
     }
 
     /**

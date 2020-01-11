@@ -230,7 +230,16 @@ public class FXML_inicioAlunoController implements Initializable {
         Inicio abrir = new Inicio();
         abrir.abrirScene("pergunta");
     }
+    
+      @FXML
+    void BT_fechar(MouseEvent event) {
+        Inicio.fechar();
+    }
 
+    @FXML
+    void BT_minimizar(MouseEvent event) {
+        Inicio.minimizar();
+    }
     /**
      * Initializes the controller class.
      */

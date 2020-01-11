@@ -26,6 +26,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 
 /**
@@ -289,7 +290,15 @@ public class FXML_perguntaController implements Initializable {
         }
     }
     //**************************************************************************
-    
+       @FXML
+    void BT_fechar(MouseEvent event) {
+        Inicio.fechar();
+    }
+
+    @FXML
+    void BT_minimizar(MouseEvent event) {
+        Inicio.minimizar();
+    }
     /**
      * Initializes the controller class.
      */

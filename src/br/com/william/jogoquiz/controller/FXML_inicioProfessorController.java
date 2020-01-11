@@ -306,7 +306,7 @@ public class FXML_inicioProfessorController implements Initializable {
 
             } catch (Exception ex) {
                 Alert dialogoInfo = new Alert(Alert.AlertType.ERROR);
-                dialogoInfo.setHeaderText("Ocorreu Um erro");
+                dialogoInfo.setHeaderText("Ocorreu Um erro agora");
                 dialogoInfo.setContentText("" + ex);
                 dialogoInfo.showAndWait();
             }
@@ -405,40 +405,47 @@ public class FXML_inicioProfessorController implements Initializable {
                 novo.executeQuery("INSERT INTO `pergunta`(`codigo_pacote`, `resposta`, `pontos`, `enunciado`, `a`, `b`, `c`, `d`) VALUES (?,?,?,?,?,?,?,?)", values);
             }
         }
+        System.out.println("Cadastrando perguntas 01");
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date date = new Date();
 
         ArrayList valores = new ArrayList();
-
+        System.out.println("Cadastrando perguntas 02");
         valores.add(pacote);
         valores.add(combo_disciplinaPacote.getValue());
         valores.add(txt_assuntoPacote.getText().trim());
-        valores.add(nome_professor().trim());
+        valores.add(Util.nome_log());
         valores.add(dateFormat.format(date));
         valores.add(pontuacao);
         valores.add(cont);
+        System.out.println("Cadastrando perguntas 03");
         if (pacoteEscolhido != null) {
             valores.set(0, combo_disciplinaPacote.getValue().toString().substring(0, 3) + pacoteEscolhido.substring(3, 8));
             valores.add(pacoteEscolhido);
             novo.executeQuery("UPDATE `pacote_pergunta` SET `codigo_pacote`=?,`disciplina`=?,`assunto`=?,`professor`=?,`data`=?,`pontuacao_maxima`=?,`numero_questoes`=? WHERE codigo_pacote = ?", valores);
+            System.out.println("Cadastrando perguntas 04");
         } else {
             novo.executeQuery("INSERT INTO `pacote_pergunta`(`codigo_pacote`, `disciplina`, `assunto`, `professor`, `data`, `pontuacao_maxima`,`numero_questoes`) VALUES (?,?,?,?,?,?,?)", valores);
+            System.out.println("Cadastrando perguntas 05");
         }
-
-        for (int i = 0; i <= perguntasExcluir.size() - 1; i++) {
-            ArrayList values = new ArrayList();
-            String a = perguntasExcluir.get(i).toString();
-            String b = a.replace("[", "").replace("]", "");
-            String[] tokens = b.split(",");
-            values.add(pacoteEscolhido);
-            values.add(tokens[0].trim());
-            values.add(tokens[1].trim());
-            values.add(tokens[2].trim());
-            values.add(tokens[3].trim());
-            values.add(tokens[4].trim());
-            System.out.println("Escluindo:" + tokens[0].trim() + "-" + tokens[1].trim() + "-" + tokens[2].trim() + "-" + tokens[3].trim() + "-" + tokens[4].trim());
-            novo.executeQuery("DELETE FROM `pergunta` WHERE codigo_pacote = ? AND enunciado = ? AND a = ? AND b = ? AND c = ? AND d = ?", values);
+        
+        if(!perguntasExcluir.isEmpty()){    
+            for (int i = 0; i <= perguntasExcluir.size() - 1; i++) {
+                ArrayList values = new ArrayList();
+                String a = perguntasExcluir.get(i).toString();
+                String b = a.replace("[", "").replace("]", "");
+                String[] tokens = b.split(",");
+                values.add(pacoteEscolhido);
+                values.add(tokens[0].trim());
+                values.add(tokens[1].trim());
+                values.add(tokens[2].trim());
+                values.add(tokens[3].trim());
+                values.add(tokens[4].trim());
+                System.out.println("Escluindo:" + tokens[0].trim() + "-" + tokens[1].trim() + "-" + tokens[2].trim() + "-" + tokens[3].trim() + "-" + tokens[4].trim());
+                novo.executeQuery("DELETE FROM `pergunta` WHERE codigo_pacote = ? AND enunciado = ? AND a = ? AND b = ? AND c = ? AND d = ?", values);
+            }
         }
+        System.out.println("Cadastrando perguntas 06");
         perguntasExcluir.clear();
     }
 
@@ -609,7 +616,7 @@ public class FXML_inicioProfessorController implements Initializable {
         }
 
         if (check_Pacote.isSelected()) {
-            query += " AND `professor` = '" + nome_professor() + "'";
+            query += " AND `professor` = '" +Util.nome_log() + "'";
         }
 
         return query;
@@ -628,7 +635,7 @@ public class FXML_inicioProfessorController implements Initializable {
     void BT_deletarPacotePerguntas(ActionEvent event) {
         int i = tabela_pacotes.getSelectionModel().getSelectedIndex();
         String a = (String) conteudoTabelaPacotes.get(i).getProfessor().getValue();
-        if (a.equals(" " + nome_professor())) {
+        if (a.equals(" " + Util.nome_log())) {
             ArrayList pacoteEscolhidos = new ArrayList();
             pacoteEscolhidos.add((String) pacotes.get(i));
             Sql novo = new Sql();
@@ -693,34 +700,35 @@ public class FXML_inicioProfessorController implements Initializable {
 
     }
 
-    public String nome_professor() {
-        FileInputStream arquivo = null;
-        try {
-            arquivo = new FileInputStream("D:\\Projetos-git\\java\\Quiz\\src\\br\\com\\william\\jogoquiz\\log\\log.txt");
-            InputStreamReader in = new InputStreamReader(arquivo);
-            BufferedReader br = new BufferedReader(in);
-            try {
-                String a = br.readLine();
-            } catch (IOException ex) {
-                //Logger.getLogger(FXML_inicioProfessorController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            try {
-                return br.readLine().substring(4);
-            } catch (IOException ex) {
-                //Logger.getLogger(FXML_inicioProfessorController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        } catch (FileNotFoundException ex) {
-                //Logger.getLogger(FXML_inicioProfessorController.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            try {
-                arquivo.close();
-            } catch (IOException ex) {
-                //Logger.getLogger(FXML_inicioProfessorController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        return null;
-
-    }
+//    public String nome_professor() {
+//        FileInputStream arquivo = null;
+//        
+//        try {
+//            arquivo = new FileInputStream("D:\\Projetos-git\\java\\Quiz\\src\\br\\com\\william\\jogoquiz\\log\\log.txt");
+//            InputStreamReader in = new InputStreamReader(arquivo);
+//            BufferedReader br = new BufferedReader(in);
+//            try {
+//                String a = br.readLine();
+//            } catch (IOException ex) {
+//                //Logger.getLogger(FXML_inicioProfessorController.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//            try {
+//                return br.readLine().substring(4);
+//            } catch (IOException ex) {
+//                //Logger.getLogger(FXML_inicioProfessorController.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//        } catch (FileNotFoundException ex) {
+//                //Logger.getLogger(FXML_inicioProfessorController.class.getName()).log(Level.SEVERE, null, ex);
+//        } finally {
+//            try {
+//                arquivo.close();
+//            } catch (IOException ex) {
+//                //Logger.getLogger(FXML_inicioProfessorController.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//        }
+//        return null;
+//
+//    }
     //**************************************************************************
     @FXML
     private Pane panel_editar_criarPacote;
@@ -742,7 +750,7 @@ public class FXML_inicioProfessorController implements Initializable {
         if (i > -1) {
             String a = (String) conteudoTabelaPacotes.get(i).getProfessor().getValue();
             System.out.println("tabela conteudo:" + a);
-            if (a.equals(" " + nome_professor())) {
+            if (a.equals(" " + Util.nome_log())) {
                 reset();
                 System.out.println("pacote Escolhido" + (String) pacotes.get(i));
                 pacoteEscolhido = (String) pacotes.get(i);
@@ -824,7 +832,20 @@ public class FXML_inicioProfessorController implements Initializable {
 
     //**************************************************************************
     
+    @FXML
+    void BT_jogar(ActionEvent event) {
+        Inicio abrir = new Inicio();
+        abrir.abrirScene("pergunta");
+    }
     
+      @FXML
+    void BT_fechar(MouseEvent event) {
+        Inicio.fechar();
+    }
+     @FXML
+    void BT_minimizar(MouseEvent event) {
+        Inicio.minimizar();
+    }
     
     /**
      * Initializes the controller class.

@@ -22,7 +22,9 @@ import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  *
@@ -43,7 +45,7 @@ public class Inicio extends Application{
         Inicio.stage = stage;
         Parent fxmlInicio = FXMLLoader.load(getClass().getResource("FXML_inicio.fxml"));
         SceneInicio = new Scene(fxmlInicio);
-  //      SceneInicio.setFill(Color.TRANSPARENT);
+        SceneInicio.setFill(Color.TRANSPARENT);
                
         Parent fxmlInicioAluno = FXMLLoader.load(getClass().getResource("FXML_inicioAluno.fxml"));
         SceneInicioAluno = new Scene(fxmlInicioAluno);
@@ -57,8 +59,8 @@ public class Inicio extends Application{
         Parent fxmlAdminGame = FXMLLoader.load(getClass().getResource("FXML_AdminGame.fxml"));
         SceneAdminGame = new Scene(fxmlAdminGame);
         
-//        stage.initStyle(StageStyle.UNDECORATED);
-//        stage.initStyle(StageStyle.TRANSPARENT);
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.initStyle(StageStyle.TRANSPARENT);
 
         /*
         //ESTE COGIGO E RESPONSAVEL POR IMPEDIR QUE O USUARIO MAXIMIZE A TELA.
@@ -158,6 +160,18 @@ public class Inicio extends Application{
             case "pergunta":stage.setScene(ScenePergunta);break;
             case "adminGame":stage.setScene(SceneAdminGame);break;
         }        
+    }
+    /**
+     * Metodo que fecha a aplicação
+     */
+    public static void fechar(){
+        System.exit(0);
+    }
+    /**
+     * Metodos que minimiza a aplicação
+     */
+    public static void minimizar(){
+        stage.setIconified(true);
     }
 
     /**

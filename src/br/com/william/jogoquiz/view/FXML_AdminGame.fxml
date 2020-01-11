@@ -3,6 +3,7 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXListView?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
@@ -12,7 +13,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="768.0" prefWidth="1320.0" style="-fx-background-color: #363636;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.william.jogoquiz.controller.AdminGameController">
+<AnchorPane id="AnchorPane" prefHeight="768.0" prefWidth="1320.0" style="-fx-background-color: #363636; -fx-background-radius: 22;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.william.jogoquiz.controller.AdminGameController">
      <children>
       <Pane layoutX="88.0" layoutY="135.0" prefHeight="564.0" prefWidth="1165.0" style="-fx-background-color: #E8E8E8; -fx-background-radius: 40;">
          <children>
@@ -70,15 +71,37 @@
             </Label>
          </children>
       </Pane>
-      <JFXButton buttonType="RAISED" layoutX="1221.0" layoutY="24.0" onAction="#BT_voltar" prefHeight="48.0" prefWidth="95.0" style="-fx-background-color: #FF4040; -fx-background-radius: 22;" text="Sair" textFill="WHITE">
+      <JFXButton buttonType="RAISED" layoutX="14.0" layoutY="11.0" onAction="#BT_voltar" prefHeight="48.0" prefWidth="95.0" style="-fx-background-color: #FF4040; -fx-background-radius: 22;" text="Sair" textFill="WHITE">
          <font>
             <Font name="Ubuntu Medium" size="20.0" />
          </font>
       </JFXButton>
-      <Label fx:id="label_nome" layoutX="14.0" layoutY="14.0" text="William Amorim" textFill="#f2f2f2">
+      <Label fx:id="label_nome" layoutX="122.0" layoutY="15.0" text="William Amorim" textFill="#f2f2f2">
          <font>
             <Font name="Ubuntu Medium" size="35.0" />
          </font>
       </Label>
+      <ImageView layoutX="1263.0" layoutY="7.0" onMouseClicked="#BT_fechar" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../imagens/icons8-fechar-janela-48%20(1).png" />
+         </image>
+         <effect>
+            <DropShadow />
+         </effect>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <ImageView layoutX="1215.0" layoutY="7.0" onMouseClicked="#BT_minimizar" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../imagens/icons8-minimizar-janela-48.png" />
+         </image>
+         <effect>
+            <DropShadow />
+         </effect>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
    </children>
 </AnchorPane>

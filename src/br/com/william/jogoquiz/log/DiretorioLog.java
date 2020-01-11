@@ -13,7 +13,7 @@ import java.io.File;
  */
 public class DiretorioLog {
     //System.getProperty("user.dir")+"\\src\\br\\com\\william\\jogoquiz\\log\\log.txt"
-    private String diretoriolog = "C:\\Users\\"+System.getProperty("user.name")+"\\AppData\\Local\\logQuiz2\\log.txt";
+    private String diretoriolog = "C:\\Users\\"+System.getProperty("user.name")+"\\AppData\\Local\\logQuiz\\log.txt";
 
     public String getDiretoriolog() {
         return diretoriolog;
