@@ -115,7 +115,12 @@ public class FXML_perguntaController implements Initializable {
     void BT_voltar(ActionEvent event) throws IOException{
         progress_entraJogo.setVisible(false);
         label_conectado.setVisible(false);
-        
+        panel_game.setVisible(false);
+        panel_ranking.setVisible(false);
+        txt_codigoJogo.setText("");
+        if(servidor.isConnected()){
+            servidor.close();
+        }
         Inicio abrir = new Inicio();
         abrir.abrirScene("inicioAluno");  
                  

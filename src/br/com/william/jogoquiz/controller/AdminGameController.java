@@ -77,7 +77,10 @@ public class AdminGameController implements Initializable {
     @FXML
     void BT_voltar(ActionEvent event) {
         try {
-            esperarConexao.stop();
+             esperar = true;
+            if(!esperarConexao.isInterrupted()){
+                esperarConexao.interrupt();
+            }
             list_alunosConectados.setItems(alunosConectados);
             label_nome.setText(Util.nome_log());
             label_alunosConectados.setText(" ");
@@ -93,8 +96,12 @@ public class AdminGameController implements Initializable {
             }
             clientes.clear();
             System.out.println("Parando servidor");
-            serverSocket.close();
-            System.out.println("Servidor parado");
+            if(!serverSocket.isClosed()){
+                serverSocket.close();
+                System.out.println("Servidor parado");
+            }
+            //serverSocket.close();
+            
             alunosConectados.clear();
             Inicio n = new Inicio();
             n.abrirScene("inicioProfessor");
@@ -118,11 +125,14 @@ public class AdminGameController implements Initializable {
 
                     }
                 }else{
-                    esperarConexao.stop();
+                    esperarConexao.interrupt();
                     esperar = false;
                     BT_proximaPergunta.setText("Proxima Pergunta");
                     label_alunosConectados.setText("Alunos Conectados");
                     enviarMensagens("1," + P.getCodigoPacote());
+                    if(p == Nperguntas){
+                        BT_proximaPergunta.setText("Finalizar Jogo");
+                    }
                 }
             } else {
                 System.out.println("Espere todos os alunos enviarem");
@@ -141,7 +151,7 @@ public class AdminGameController implements Initializable {
 //                
 //            }
 //        } else {
-            cronometro();
+            cronometro(true);
             String a = perguntas.get(p).toString();
             String b = a.replace("[", "").replace("]", "");
             String[] tokens = b.split(",");
@@ -157,12 +167,14 @@ public class AdminGameController implements Initializable {
         //enviarMensagens("finalizado,andre,roger,antonio");        
         int todos = 0;
         int ordem = 0;
+        int aa = 0;
         while (todos != alunosConectados.size()) {
             for (int j = 0; j < alunosConectados.size(); j++) {                
                 if(clientes.get(j).isConnected()){
                     int i = Util.ordemCrescente(pontos, j);
                     if (i == ordem) {
-                        alunosConectadosOrdem.add(alunosConectados.get(j));
+                        aa++;
+                        alunosConectadosOrdem.add(aa+" - "+alunosConectados.get(j));
                     }
                 }
             }
@@ -175,8 +187,17 @@ public class AdminGameController implements Initializable {
             System.out.print("|-"+alunosConectadosOrdem.get(j)+"-|");
             
         }
-        enviarMensagens("finalizado," + alunosConectadosOrdem.get(0) + "," + alunosConectadosOrdem.get(1) + "," + alunosConectadosOrdem.get(2)+","+Util.nome_log());
-
+        cronometro(false);
+        Platform.runLater(() -> label_alunosConectados.setText("Jogo Finalizado"));
+        
+        switch(alunosConectadosOrdem.size()){
+            case 1:enviarMensagens("finalizado," + alunosConectadosOrdem.get(0)+ ","+" " + "," +" "+","+Util.nome_log());break;
+            case 2:enviarMensagens("finalizado," + alunosConectadosOrdem.get(0)+ "," + alunosConectadosOrdem.get(1)+" N" + ","+" "+","+Util.nome_log()); break;
+            default:enviarMensagens("finalizado," + alunosConectadosOrdem.get(0) + "," + alunosConectadosOrdem.get(1)+ "," + alunosConectadosOrdem.get(2)+","+Util.nome_log());break;
+        }
+        System.out.println("JOGO FINALIZADO");
+        //enviarMensagens("finalizado," + alunosConectadosOrdem.get(0)+" N" + "," + alunosConectadosOrdem.get(1)+" N" + "," + alunosConectadosOrdem.get(2)+" N"+","+Util.nome_log());
+        
     }
 
     ArrayList perguntas = new ArrayList();
@@ -223,6 +244,7 @@ public class AdminGameController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
         list_alunosConectados.setItems(alunosConectados);
         label_nome.setText(Util.nome_log());
         label_alunosConectados.setText(" ");
@@ -249,6 +271,7 @@ public class AdminGameController implements Initializable {
             Platform.runLater(() -> label_ip.setText(ipDaMaquina));
             Platform.runLater(() -> label_alunosConectados.setText("Aguardando Alunos..."));
             Platform.runLater(() -> BT_proximaPergunta.setText("Começar Jogo"));
+            verificarConexao.start();
         } catch (IOException ex) {
             System.err.println("----ERRO AO INICIAR O SERVIDOR----" + ex);
         }
@@ -259,6 +282,7 @@ public class AdminGameController implements Initializable {
             try {
                 do {
                     System.out.println("ESPERANDO CONEXÃO");
+                    
                     clientes.add(serverSocket.accept());
                     System.out.println("CLIENTE CONECTOU!!!!!");
                     receberMensagem(clientes.get(cont), cont);
@@ -271,7 +295,20 @@ public class AdminGameController implements Initializable {
             }
         }
     };
-
+    
+    Thread verificarConexao = new Thread(){
+        public void run(){
+            while(true){
+                for (int i = 0; i < clientes.size(); i++) {
+                    if(clientes.get(i).isClosed()){
+                        alunosConectados.set(i,"Desconectado");
+                    }
+                }
+            }
+            
+        }
+    };
+    
     private void enviarMensagem(Socket socket, String msg, int i) {
         ObjectOutputStream output;
         try {
@@ -322,7 +359,7 @@ public class AdminGameController implements Initializable {
         if (tokens[0].equals("iniciar")) {
             Platform.runLater(() -> alunosConectados.add(tokens[1]));
             System.out.println("tokens:" + tokens[1]);
-        } else {
+        } else {            
             Platform.runLater(() -> alunosConectados.set(a, alunosConectados.get(a) + " " + tokens[1]));
             System.out.println("tokens:" + tokens[1]);
             if (tokens[0].equals("resposta")) {
@@ -351,39 +388,43 @@ public class AdminGameController implements Initializable {
     int s = 00, m = 00;
     String zero = "0", zero2 = "0";
 
-    public void cronometro() {
-        s = 0;
-        m = 0;
-        zero = "0";
-        zero2 = "0";
-        if (timer == null) {
-            timer = new Timer();
-            TimerTask tarefa = new TimerTask() {
-                public void run() {
-                    try {
-                        s++;
-                        if (s == 60) {
-                            s = 0;
-                            zero = "0";
-                            m++;
+    public void cronometro(boolean fluxo) {
+        if(fluxo){
+            s = 0;
+            m = 0;
+            zero = "0";
+            zero2 = "0";
+            if (timer == null) {
+                timer = new Timer();
+                TimerTask tarefa = new TimerTask() {
+                    public void run() {
+                        try {
+                            s++;
+                            if (s == 60) {
+                                s = 0;
+                                zero = "0";
+                                m++;
+                            }
+                            if (s > 9) {
+                                zero = "";
+                            }
+                            if (m > 9) {
+                                zero2 = "";
+                            }
+                            Platform.runLater(() -> label_clock.setText(zero2 + m + ":" + zero + s));
+                            //System.out.println("Hora: "+format.format(new Date().getTime()));      
+                        } catch (Exception e) {
+                            e.printStackTrace();
                         }
-                        if (s > 9) {
-                            zero = "";
-                        }
-                        if (m > 9) {
-                            zero2 = "";
-                        }
-                        Platform.runLater(() -> label_clock.setText(zero2 + m + ":" + zero + s));
-                        //System.out.println("Hora: "+format.format(new Date().getTime()));      
-                    } catch (Exception e) {
-                        e.printStackTrace();
                     }
-                }
 
-            };
+                };
 
-            timer.scheduleAtFixedRate(tarefa, 0, 1000);
+                timer.scheduleAtFixedRate(tarefa, 0, 1000);
+            }
+        }else{        
+            timer.cancel();
+            Platform.runLater(() -> label_clock.setText("00:00"));
         }
-    }
-
+    }    
 }

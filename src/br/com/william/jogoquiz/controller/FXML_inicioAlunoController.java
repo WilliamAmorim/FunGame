@@ -133,25 +133,26 @@ public class FXML_inicioAlunoController implements Initializable {
     
     public String criarQuery() {
         LocalDate data;
-        FileInputStream arquivo;
+        //FileInputStream arquivo;
         String a = null;
-        try {
-            arquivo = new FileInputStream("D:\\Projetos-git\\java\\Quiz\\src\\br\\com\\william\\jogoquiz\\log\\log.txt");
-            InputStreamReader in = new InputStreamReader(arquivo);            
-            BufferedReader br = new BufferedReader(in);
-            
-            try {
-                a = br.readLine();
-                a = br.readLine().substring(4);
-            } catch (IOException ex) {
-                Logger.getLogger(FXML_inicioAlunoController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(FXML_inicioAlunoController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        try {;
+//            DiretorioLog pegar = new DiretorioLog();
+//            arquivo = new FileInputStream(pegar.getDiretoriolog());
+//            InputStreamReader in = new InputStreamReader(arquivo);            
+//            BufferedReader br = new BufferedReader(in);
+//            
+//            try {
+//                a = br.readLine();
+//                a = br.readLine().substring(4);
+//            } catch (IOException ex) {
+//                Logger.getLogger(FXML_inicioAlunoController.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//            
+//        } catch (FileNotFoundException ex) {
+//            Logger.getLogger(FXML_inicioAlunoController.class.getName()).log(Level.SEVERE, null, ex);
+//        }
         
-        String query = "SELECT `desempenho`.`professor`,`desempenho`.`assunto`, `desempenho`.`data`, `desempenho`.`pontuacao`,`pacote_pergunta`.`pontuacao_maxima` FROM `desempenho`,`pacote_pergunta` WHERE `pacote_pergunta`.`codigo_pacote` = `desempenho`.`codigo_pacote` AND `desempenho`.`aluno` = '" + a + "' ";
+        String query = "SELECT `desempenho`.`professor`,`desempenho`.`assunto`, `desempenho`.`data`, `desempenho`.`pontuacao`,`pacote_pergunta`.`pontuacao_maxima` FROM `desempenho`,`pacote_pergunta` WHERE `pacote_pergunta`.`codigo_pacote` = `desempenho`.`codigo_pacote` AND `desempenho`.`aluno` = '" +Util.nome_log() + "' ";
         
         if (combo_disciplina.getValue() != null) {
             query += "AND `desempenho`.`codigo_pacote`  LIKE '%" + combo_disciplina.getValue().toString().substring(0, 3) + "%'";
