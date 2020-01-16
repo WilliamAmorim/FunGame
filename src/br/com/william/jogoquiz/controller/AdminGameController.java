@@ -73,11 +73,12 @@ public class AdminGameController implements Initializable {
         }
     }
     CodigoPacote P = new CodigoPacote();
-
+    int porta = 0;
     @FXML
     void BT_voltar(ActionEvent event) {
         try {
-             esperar = true;
+            porta++;
+            esperar = true;
             if(!esperarConexao.isInterrupted()){
                 esperarConexao.interrupt();
             }
@@ -104,7 +105,8 @@ public class AdminGameController implements Initializable {
             
             alunosConectados.clear();
             Inicio n = new Inicio();
-            n.abrirScene("inicioProfessor");
+            n.abrirScene("inicioProfessor");  
+            
         } catch (IOException ex) {
             System.err.println("Erro ao parar servidor Mensagem:"+ex);
         }
@@ -113,7 +115,7 @@ public class AdminGameController implements Initializable {
     @FXML
     void BT_proximaPergunta(ActionEvent event) throws IOException {
         if (BT_proximaPergunta.getText().equals("Iniciar Servidor")) {
-            iniciarServidor(5555);
+            iniciarServidor(5555+porta);
             pegarPacote();
         } else {
             if (cont == atualClientes) {

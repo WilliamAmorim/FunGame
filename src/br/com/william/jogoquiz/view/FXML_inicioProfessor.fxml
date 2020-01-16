@@ -353,5 +353,10 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
+      <ImageView fitHeight="300.0" fitWidth="400.0" layoutX="475.0" layoutY="-10.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../banner/logo.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

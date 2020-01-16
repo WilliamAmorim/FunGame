@@ -59,9 +59,10 @@ public class Inicio extends Application{
         Parent fxmlAdminGame = FXMLLoader.load(getClass().getResource("FXML_AdminGame.fxml"));
         SceneAdminGame = new Scene(fxmlAdminGame);
         
+        
         stage.initStyle(StageStyle.UNDECORATED);
         stage.initStyle(StageStyle.TRANSPARENT);
-
+        stage.initStyle(StageStyle.UNIFIED);
         /*
         //ESTE COGIGO E RESPONSAVEL POR IMPEDIR QUE O USUARIO MAXIMIZE A TELA.
         stage.setResizable(false);
@@ -81,6 +82,7 @@ public class Inicio extends Application{
         
         
     }
+
     public void verificarLog(){     
         DiretorioLog pegar = new DiretorioLog();
         File diretorio = new File(pegar.getDiretoriolog());
@@ -152,20 +154,20 @@ public class Inicio extends Application{
         }
         return false;
     }
-    public void abrirScene(String scene){        
+    public void abrirScene(String scene){         
         switch(scene){            
             case "inicio":stage.setScene(SceneInicio);break;
             case "inicioAluno":stage.setScene(SceneInicioAluno);break;
             case "inicioProfessor":stage.setScene(SceneInicioProfessor);break;
             case "pergunta":stage.setScene(ScenePergunta);break;
             case "adminGame":stage.setScene(SceneAdminGame);break;
-        }        
+        }                
     }
     /**
      * Metodo que fecha a aplicação
      */
     public static void fechar(){
-        System.exit(0);
+        System.exit(0);        
     }
     /**
      * Metodos que minimiza a aplicação
