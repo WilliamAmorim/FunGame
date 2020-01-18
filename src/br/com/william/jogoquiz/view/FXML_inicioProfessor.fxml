@@ -2,6 +2,7 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXListView?>
+<?import com.jfoenix.controls.JFXSpinner?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
@@ -28,12 +29,17 @@
 
 <AnchorPane id="AnchorPane" prefHeight="768.0" prefWidth="1320.0" style="-fx-background-color: #363636; -fx-background-radius: 22;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.william.jogoquiz.controller.FXML_inicioProfessorController">
    <children>
-      <JFXButton buttonType="RAISED" layoutX="441.0" layoutY="416.0" onAction="#BT_abrirDesempenho" prefHeight="98.0" prefWidth="439.0" style="-fx-background-color: #4D8FFF; -fx-background-radius: 22;" text="Desempenho" textFill="WHITE">
+      <ImageView fitHeight="781.0" fitWidth="1375.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../imagens/banner.png" />
+         </image>
+      </ImageView>
+      <JFXButton buttonType="RAISED" layoutX="453.0" layoutY="416.0" onAction="#BT_abrirDesempenho" prefHeight="98.0" prefWidth="439.0" style="-fx-background-color: #5d5dff; -fx-background-radius: 22;" text="Desempenho" textFill="WHITE">
          <font>
             <Font name="Ubuntu Medium" size="52.0" />
          </font>
       </JFXButton>
-      <JFXButton buttonType="RAISED" layoutX="441.0" layoutY="300.0" onAction="#BT_abrirFiltroPacotes" prefHeight="98.0" prefWidth="439.0" style="-fx-background-color: #4D8FFF; -fx-background-radius: 22;" text="Explorar" textFill="WHITE">
+      <JFXButton buttonType="RAISED" layoutX="453.0" layoutY="300.0" onAction="#BT_abrirFiltroPacotes" prefHeight="98.0" prefWidth="439.0" style="-fx-background-color: #5d5dff; -fx-background-radius: 22;" text="Explorar" textFill="WHITE">
          <font>
             <Font name="Ubuntu Medium" size="52.0" />
          </font>
@@ -127,7 +133,11 @@
                   <Font name="Ubuntu Medium" size="40.0" />
                </font>
             </Label>
+            <JFXSpinner layoutX="1093.0" layoutY="466.0" prefHeight="27.0" prefWidth="20.0" />
          </children>
+         <effect>
+            <DropShadow />
+         </effect>
       </Pane>
       <Pane fx:id="panelDesempenho" layoutX="78.0" layoutY="125.0" prefHeight="564.0" prefWidth="1165.0" style="-fx-background-color: #E8E8E8; -fx-background-radius: 40;" visible="false">
          <children>
@@ -141,7 +151,7 @@
                   <Font name="Ubuntu Medium" size="15.0" />
                </font>
             </JFXButton>
-            <TableView fx:id="tabela_desempenho" layoutX="26.0" layoutY="130.0" prefHeight="399.0" prefWidth="1095.0" stylesheets="@estiloTabela.css">
+            <TableView fx:id="tabela_desempenho" layoutX="-1.0" layoutY="130.0" prefHeight="399.0" prefWidth="1167.0" stylesheets="@estiloTabela.css">
               <columns>
                 <TableColumn fx:id="coluna_aluno" prefWidth="75.0" text="Aluno" />
                 <TableColumn fx:id="coluna_professor" prefWidth="75.0" text="Professor" />
@@ -225,6 +235,9 @@
                </font>
             </Label>
          </children>
+         <effect>
+            <DropShadow />
+         </effect>
       </Pane>
       <Pane fx:id="panel_pacotePergunta" layoutX="78.0" layoutY="125.0" prefHeight="564.0" prefWidth="1165.0" style="-fx-background-color: #E8E8E8; -fx-background-radius: 40;" visible="false">
          <children>
@@ -238,13 +251,13 @@
                   <Font name="Ubuntu Medium" size="15.0" />
                </font>
             </JFXButton>
-            <TableView fx:id="tabela_pacotes" layoutX="35.0" layoutY="131.0" prefHeight="399.0" prefWidth="1095.0" stylesheets="@estiloTabela.css">
+            <TableView fx:id="tabela_pacotes" layoutX="-1.0" layoutY="131.0" prefHeight="399.0" prefWidth="1167.0" stylesheets="@estiloTabela.css">
               <columns>
                 <TableColumn fx:id="coluna_disciplinaPacote" prefWidth="120.0" text="Disciplina" />
                 <TableColumn fx:id="coluna_assuntoPacote" prefWidth="652.0" text="Assunto" />
                   <TableColumn fx:id="coluna_professorPacote" prefWidth="138.0" text="Professor" />
-                  <TableColumn fx:id="coluna_dataPacote" prefWidth="118.0" text="Data" />
-                  <TableColumn fx:id="coluna_numeroQuestoesPacote" prefWidth="66.0" text="Questões" />
+                  <TableColumn fx:id="coluna_dataPacote" prefWidth="153.0" text="Data" />
+                  <TableColumn fx:id="coluna_numeroQuestoesPacote" prefWidth="102.0" text="Questões" />
               </columns>
             </TableView>
             <JFXButton layoutX="1011.0" layoutY="94.0" onAction="#BT_buscarPacotes" prefHeight="27.0" prefWidth="120.0" style="-fx-background-color: #4D8FFF;" text="Buscar" textFill="WHITE">
@@ -353,7 +366,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <ImageView fitHeight="300.0" fitWidth="400.0" layoutX="475.0" layoutY="-10.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="300.0" fitWidth="400.0" layoutX="497.0" layoutY="-10.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../../../../../../banner/logo.png" />
          </image>

@@ -20,6 +20,11 @@
 
 <AnchorPane id="AnchorPane" prefHeight="768.0" prefWidth="1320.0" style="-fx-background-color: #363636; -fx-background-radius: 22;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.william.jogoquiz.controller.FXML_perguntaController">
    <children>
+      <ImageView fitHeight="781.0" fitWidth="1375.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../imagens/banner.png" />
+         </image>
+      </ImageView>
       <TextField fx:id="txt_codigoJogo" layoutX="545.0" layoutY="350.0" AnchorPane.leftAnchor="545.0" AnchorPane.rightAnchor="543.0" AnchorPane.topAnchor="350.0">
          <effect>
             <DropShadow />
@@ -28,14 +33,14 @@
             <Font name="Ubuntu Medium" size="18.0" />
          </font>
       </TextField>
-      <JFXButton fx:id="txt_entrarJogo" buttonType="RAISED" layoutX="605.0" layoutY="398.0" onAction="#BT_entrarJogo" prefHeight="25.0" prefWidth="110.0" style="-fx-background-color: #4D8FFF;" text="Entrar" textFill="WHITE">
+      <JFXButton fx:id="txt_entrarJogo" buttonType="RAISED" layoutX="618.0" layoutY="398.0" onAction="#BT_entrarJogo" prefHeight="25.0" prefWidth="110.0" style="-fx-background-color: #4D8FFF;" text="Entrar" textFill="WHITE">
          <font>
             <Font name="Ubuntu Medium" size="20.0" />
          </font>
       </JFXButton>
-      <Label layoutX="538.0" layoutY="290.0" text="Codigo do jogo" textFill="#f2f2f2">
+      <Label alignment="CENTER" layoutX="545.0" layoutY="290.0" prefWidth="255.0" text="Codigo do jogo" textFill="#f2f2f2">
          <font>
-            <Font name="Ubuntu Medium" size="35.0" />
+            <Font name="Ubuntu Medium" size="36.0" />
          </font>
       </Label>
       <JFXSpinner fx:id="progress_entraJogo" layoutX="636.0" layoutY="467.0" progress="1.0" visible="false" />
@@ -112,6 +117,9 @@
                </font>
             </Label>
          </children>
+         <effect>
+            <DropShadow height="41.0" radius="20.0" width="41.0" />
+         </effect>
       </Pane>
       <Label fx:id="label_nome" layoutX="122.0" layoutY="15.0" text="William Amorim" textFill="#f2f2f2">
          <font>
@@ -123,7 +131,7 @@
             <Font name="Ubuntu Medium" size="20.0" />
          </font>
       </JFXButton>
-      <Pane fx:id="panel_ranking" layoutX="78.0" layoutY="125.0" prefHeight="519.0" prefWidth="1165.0" style="-fx-background-radius: 40; -fx-background-color: #363636;" visible="false">
+      <Pane fx:id="panel_ranking" layoutX="110.0" layoutY="125.0" prefHeight="519.0" prefWidth="1165.0" style="-fx-background-radius: 40; -fx-background-color: transparent;" visible="false">
          <children>
             <VBox alignment="TOP_CENTER" layoutX="65.0" layoutY="164.0" prefHeight="502.0" prefWidth="324.0" style="-fx-background-color: white; -fx-background-radius: 22;">
                <effect>
