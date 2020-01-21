@@ -116,7 +116,7 @@
                   <Font name="Ubuntu Medium" size="15.0" />
                </font>
             </JFXButton>
-            <JFXListView fx:id="list_perguntas" layoutX="693.0" layoutY="77.0" onMouseClicked="#pegarPergunta" prefHeight="384.0" prefWidth="410.0" style="-fx-background-radius: 8;" stylesheets="@estiloTextField.css">
+            <JFXListView fx:id="list_perguntas" layoutX="693.0" layoutY="77.0" onMouseClicked="#pegarPergunta" prefHeight="384.0" prefWidth="410.0" style="-fx-background-radius: 5;" stylesheets="@estiloTextField.css">
                <padding>
                   <Insets bottom="7.0" left="1.0" right="1.0" top="7.0" />
                </padding>
@@ -193,6 +193,9 @@
                </image>
             </ImageView>
          </children>
+         <effect>
+            <DropShadow />
+         </effect>
       </Pane>
       <Pane layoutX="78.0" layoutY="125.0" prefHeight="564.0" prefWidth="1165.0" style="-fx-background-color: #E8E8E8; -fx-background-radius: 40;" visible="false">
          <children>
@@ -333,6 +336,9 @@
                </children>
             </HBox>
          </children>
+         <effect>
+            <DropShadow />
+         </effect>
       </Pane>
       <JFXButton buttonType="RAISED" layoutX="14.0" layoutY="11.0" onAction="#BT_sair" prefHeight="48.0" prefWidth="95.0" style="-fx-background-color: #FF4040; -fx-background-radius: 22;" text="Sair" textFill="WHITE">
          <font>
@@ -366,9 +372,9 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <ImageView fitHeight="300.0" fitWidth="400.0" layoutX="497.0" layoutY="-10.0" pickOnBounds="true" preserveRatio="true" visible="false">
+      <ImageView fx:id="imagem_logo" fitHeight="300.0" fitWidth="300.0" layoutX="527.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../banner/logo.png" />
+            <Image url="@../imagens/logo.png" />
          </image>
       </ImageView>
    </children>

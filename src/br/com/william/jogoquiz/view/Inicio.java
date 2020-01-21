@@ -62,7 +62,7 @@ public class Inicio extends Application{
         
         stage.initStyle(StageStyle.UNDECORATED);
         stage.initStyle(StageStyle.TRANSPARENT);
-        stage.initStyle(StageStyle.UNIFIED);
+        //stage.initStyle(StageStyle.UNIFIED);
         /*
         //ESTE COGIGO E RESPONSAVEL POR IMPEDIR QUE O USUARIO MAXIMIZE A TELA.
         stage.setResizable(false);

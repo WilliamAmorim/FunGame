@@ -77,11 +77,13 @@ public class AdminGameController implements Initializable {
     @FXML
     void BT_voltar(ActionEvent event) {
         try {
+            pontos.clear();
             porta++;
-            esperar = true;
-            if(!esperarConexao.isInterrupted()){
-                esperarConexao.interrupt();
-            }
+           // esperar = false;
+//            if(!esperarConexao.isInterrupted()){
+              //  esperarConexao.interrupt();
+//            }
+            
             list_alunosConectados.setItems(alunosConectados);
             label_nome.setText(Util.nome_log());
             label_alunosConectados.setText(" ");
@@ -91,10 +93,11 @@ public class AdminGameController implements Initializable {
 //            Platform.runLater(()->label_alunosConectados.setText(""));
 //            Platform.runLater(()->BT_proximaPergunta.setText("Iniciar Servidor"));    
             if(!clientes.isEmpty()){
-                for (int j = 0; j <= clientes.size(); j++) {
+                for (int j = 0; j < clientes.size(); j++) {
                     clientes.get(j).close();
                 }
             }
+            cont = 0;
             clientes.clear();
             System.out.println("Parando servidor");
             if(!serverSocket.isClosed()){
@@ -115,7 +118,7 @@ public class AdminGameController implements Initializable {
     @FXML
     void BT_proximaPergunta(ActionEvent event) throws IOException {
         if (BT_proximaPergunta.getText().equals("Iniciar Servidor")) {
-            iniciarServidor(5555+porta);
+            iniciarServidor(5555);
             pegarPacote();
         } else {
             if (cont == atualClientes) {
@@ -127,8 +130,8 @@ public class AdminGameController implements Initializable {
 
                     }
                 }else{
-                    esperarConexao.interrupt();
-                    esperar = false;
+                    //esperarConexao.interrupt();
+                    //esperar = false;
                     BT_proximaPergunta.setText("Proxima Pergunta");
                     label_alunosConectados.setText("Alunos Conectados");
                     enviarMensagens("1," + P.getCodigoPacote());
@@ -174,9 +177,9 @@ public class AdminGameController implements Initializable {
             for (int j = 0; j < alunosConectados.size(); j++) {                
                 if(clientes.get(j).isConnected()){
                     int i = Util.ordemCrescente(pontos, j);
-                    if (i == ordem) {
-                        aa++;
-                        alunosConectadosOrdem.add(aa+" - "+alunosConectados.get(j));
+                    if (i == ordem) {                        
+                            aa++;
+                            alunosConectadosOrdem.add(aa+" - "+alunosConectados.get(j));                        
                     }
                 }
             }
@@ -193,9 +196,9 @@ public class AdminGameController implements Initializable {
         Platform.runLater(() -> label_alunosConectados.setText("Jogo Finalizado"));
         
         switch(alunosConectadosOrdem.size()){
-            case 1:enviarMensagens("finalizado," + alunosConectadosOrdem.get(0)+ ","+" " + "," +" "+","+Util.nome_log());break;
-            case 2:enviarMensagens("finalizado," + alunosConectadosOrdem.get(0)+ "," + alunosConectadosOrdem.get(1)+" N" + ","+" "+","+Util.nome_log()); break;
-            default:enviarMensagens("finalizado," + alunosConectadosOrdem.get(0) + "," + alunosConectadosOrdem.get(1)+ "," + alunosConectadosOrdem.get(2)+","+Util.nome_log());break;
+            case 1:enviarMensagens("finalizado," + alunosConectadosOrdem.get(0)+","+" " + "," +" "+","+Util.nome_log());break;
+            case 2:enviarMensagens("finalizado," + alunosConectadosOrdem.get(0)+"," +alunosConectadosOrdem.get(1)+" N" + ","+" "+","+Util.nome_log()); break;
+            default:enviarMensagens("finalizado," + alunosConectadosOrdem.get(0) +","+alunosConectadosOrdem.get(1)+ "," + alunosConectadosOrdem.get(2)+","+Util.nome_log());break;
         }
         System.out.println("JOGO FINALIZADO");
         //enviarMensagens("finalizado," + alunosConectadosOrdem.get(0)+" N" + "," + alunosConectadosOrdem.get(1)+" N" + "," + alunosConectadosOrdem.get(2)+" N"+","+Util.nome_log());
@@ -262,41 +265,78 @@ public class AdminGameController implements Initializable {
     Socket cliente;
     private int cont = 0;
     int atualClientes;
-    boolean esperar = true;
+    static boolean esperar = true;
 
     private void iniciarServidor(int porta) {
         try {            
             serverSocket = new ServerSocket(porta);                        
             System.out.println("SERVIDOR INICIADO!!!");
-            esperarConexao.start();
+            esperarconexao();
+//            if(esperar){                
+//               
+//                //verificarConexao.start();
+//            }else{               
+//                esperar = true;                              
+//            }
+            
             String ipDaMaquina = InetAddress.getLocalHost().getHostAddress();
             Platform.runLater(() -> label_ip.setText(ipDaMaquina));
             Platform.runLater(() -> label_alunosConectados.setText("Aguardando Alunos..."));
             Platform.runLater(() -> BT_proximaPergunta.setText("Começar Jogo"));
-            verificarConexao.start();
+           
         } catch (IOException ex) {
             System.err.println("----ERRO AO INICIAR O SERVIDOR----" + ex);
         }
     }
+    public void esperarconexao(){
+        new Thread() {
+            public void run() {
+                try {                                         
+                    do{
+                        System.out.println("ESPERANDO CONEXÃO");
 
-    Thread esperarConexao = new Thread() {
-        public void run() {
-            try {
-                do {
-                    System.out.println("ESPERANDO CONEXÃO");
+                        clientes.add(serverSocket.accept());
+                        System.out.println("CLIENTE CONECTOU!!!!!");
+                        receberMensagem(clientes.get(cont), cont);
+                        pontos.add("0");
+                        cont++;
+                    }while(esperar);
+                    //return;
+                } catch (Exception ex) {
+                    System.err.println("----ERRO ESPERAR CONEXÃO----"+ex);      
+                    esperar = true;
                     
-                    clientes.add(serverSocket.accept());
-                    System.out.println("CLIENTE CONECTOU!!!!!");
-                    receberMensagem(clientes.get(cont), cont);
-                    pontos.add(0);
-                    cont++;
-                } while (esperar);
-                System.out.println("----PARANDO DE ESPERAR CONEXÕES");
-            } catch (Exception ex) {
-                System.err.println("----ERRO ESPERAR CONEXÃO----");
+
+                }
             }
-        }
-    };
+        }.start();
+    }
+//    Thread esperarConexao = new Thread() {
+//        public void run() {
+//            try {
+//
+//                System.out.println("INICIAR ESPERA");
+//                while(!esperar){
+//                    
+//                }                       
+//                do{
+//                    System.out.println("ESPERANDO CONEXÃO");
+//                    
+//                    clientes.add(serverSocket.accept());
+//                    System.out.println("CLIENTE CONECTOU!!!!!");
+//                    receberMensagem(clientes.get(cont), cont);
+//                    pontos.add(0);
+//                    cont++;
+//                }while(esperar);
+//                //return;
+//            } catch (Exception ex) {
+//                System.err.println("----ERRO ESPERAR CONEXÃO----");      
+//                esperar = false;
+//                esperarConexao.run();
+//                
+//            }
+//        }
+//    };
     
     Thread verificarConexao = new Thread(){
         public void run(){
@@ -344,13 +384,16 @@ public class AdminGameController implements Initializable {
                     System.out.println("RECEBENDO MENSAGEM...");
                     ObjectInputStream input = new ObjectInputStream(socket.getInputStream());
                     String m = input.readUTF();
-                    atualClientes++;
+                   
                     System.out.println("Mesagem: " + m);
                     tratarMensagem(m, a);
+                    
+                    atualClientes++;
+                    System.err.println("atualClientes:"+atualClientes+" cont:"+cont);
                 } catch (IOException ex) {
                     Platform.runLater(() -> alunosConectados.set(a, alunosConectados.get(a) + " Desconectado"));
-                    --cont;
-                    System.err.println("----ERRO AO RECEBER MENSAGEM---- " + a);
+                    cont = cont-1;                    
+                    System.err.println("cont:"+cont+" atualClientes:"+atualClientes+"----ERRO AO RECEBER MENSAGEM---- " + a);
                 }
             }
         }.start();

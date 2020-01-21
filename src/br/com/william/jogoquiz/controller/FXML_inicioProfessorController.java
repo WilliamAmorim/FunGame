@@ -47,6 +47,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 
@@ -56,7 +57,8 @@ import javafx.scene.layout.Pane;
  * @author willi
  */
 public class FXML_inicioProfessorController implements Initializable {
-
+    @FXML
+    private ImageView imagem_logo;
     //Desempenho Aluno**********************************************************
     @FXML
     private TableView<DesempenhoAlunoBean> tabela_desempenho;
@@ -780,7 +782,7 @@ public class FXML_inicioProfessorController implements Initializable {
     void BT_abrirFiltroPacotes(ActionEvent event) {
         buscarPacotes();
         panel_pacotePergunta.setVisible(true);
-
+        imagem_logo.setVisible(false);
     }
 
     @FXML
@@ -790,12 +792,14 @@ public class FXML_inicioProfessorController implements Initializable {
         combo_dataPacoteFim.setValue(null);
         txt_assuntoPacotePerguntas.setText("");
         combo_disciplinaPacotePerguntas.setValue(null);
+        imagem_logo.setVisible(true);
     }
 
     @FXML
     void BT_abrirDesempenho(ActionEvent event) {
         buscarDesempenho();
         panelDesempenho.setVisible(true);
+        imagem_logo.setVisible(false);
     }
 
     @FXML
@@ -810,6 +814,7 @@ public class FXML_inicioProfessorController implements Initializable {
 
         txt_nome.setText("");
         txt_assunto.setText("");
+        imagem_logo.setVisible(true);
 
     }
 

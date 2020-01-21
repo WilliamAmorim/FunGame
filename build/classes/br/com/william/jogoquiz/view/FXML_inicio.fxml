@@ -238,9 +238,9 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <ImageView fitHeight="300.0" fitWidth="400.0" layoutX="500.0" layoutY="-10.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imagem_logo" fitHeight="300.0" fitWidth="300.0" layoutX="527.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../banner/logo.png" />
+            <Image url="@../imagens/logo.png" />
          </image>
       </ImageView>
    </children>

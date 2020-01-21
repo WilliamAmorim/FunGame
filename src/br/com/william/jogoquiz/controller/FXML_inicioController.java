@@ -24,6 +24,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.InetAddress;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 /**
@@ -33,7 +34,8 @@ import javafx.stage.Stage;
  */
 public class FXML_inicioController implements Initializable {  
     Inicio novaTela = new Inicio();
-    
+    @FXML
+    private ImageView imagem_logo;
     @FXML
     private Pane panel_inicio;
 
@@ -124,13 +126,16 @@ public class FXML_inicioController implements Initializable {
     @FXML
     void loginAlunos(ActionEvent event) {
         panel_inicio.setVisible(false);
-        panel_loginAluno.setVisible(true);    
+        panel_loginAluno.setVisible(true);  
+        imagem_logo.setVisible(false);
+        limparCampos();
     }
 
     @FXML
     void loginProfessors(ActionEvent event) {
         panel_inicio.setVisible(false);
         panel_loginProfessor.setVisible(true);
+        imagem_logo.setVisible(false);
         limparCampos();
     }
     @FXML
@@ -150,24 +155,28 @@ public class FXML_inicioController implements Initializable {
         panel_cadastroAluno.setVisible(false);
         panel_loginAluno.setVisible(true);
         limparCampos();
+       
     }
     @FXML
     void BT_voltarCadastroProfessor(ActionEvent event) {
         panel_loginProfessor.setVisible(true);
         panel_cadastroProfessor.setVisible(false);
         limparCampos();
+       
     }
     @FXML
     void BT_voltarLoginAluno(ActionEvent event) {
         panel_loginAluno.setVisible(false);
         panel_inicio.setVisible(true);   
         limparCampos();
+        imagem_logo.setVisible(true);
     }
     @FXML
     void BT_voltarLoginProfessor(ActionEvent event) {
         panel_loginProfessor.setVisible(false);
         panel_inicio.setVisible(true);   
         limparCampos();
+        imagem_logo.setVisible(true);
     }
     
     @FXML

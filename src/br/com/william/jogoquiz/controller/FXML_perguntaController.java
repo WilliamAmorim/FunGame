@@ -252,7 +252,7 @@ public class FXML_perguntaController implements Initializable {
             servidor = new Socket(txt_codigoJogo.getText(), 5555);
             label_conectado.setVisible(true);
             //System.out.println(Util.turma());
-            enviarMensagem(servidor,"iniciar,"+Util.nome_log()+" "+Util.turma());//Util.nome_log()+" "+Util.turma()
+            enviarMensagem(servidor,"iniciar,"+Util.nome_log()+"-"+Util.turma()+":");//Util.nome_log()+" "+Util.turma()
             System.out.println("CONEXÃO ESTABELECIDA!!!");       
             //progress_entraJogo.setProgress(100);
         } catch (IOException ex){

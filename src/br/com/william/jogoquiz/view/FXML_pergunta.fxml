@@ -133,19 +133,24 @@
       </JFXButton>
       <Pane fx:id="panel_ranking" layoutX="110.0" layoutY="125.0" prefHeight="519.0" prefWidth="1165.0" style="-fx-background-radius: 40; -fx-background-color: transparent;" visible="false">
          <children>
-            <VBox alignment="TOP_CENTER" layoutX="65.0" layoutY="164.0" prefHeight="502.0" prefWidth="324.0" style="-fx-background-color: white; -fx-background-radius: 22;">
+            <VBox alignment="TOP_CENTER" layoutX="65.0" layoutY="164.0" prefHeight="502.0" prefWidth="324.0" style="-fx-background-color: white; -fx-background-radius: 10;">
                <effect>
                   <DropShadow />
                </effect>
                <children>
-                  <ImageView fitHeight="223.0" fitWidth="260.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="223.0" fitWidth="275.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../imagens/second.png" />
                      </image>
                   </ImageView>
+                  <Label alignment="CENTER" prefWidth="324.0" text="0" textFill="#fd9727">
+                     <font>
+                        <Font name="Ubuntu Medium" size="54.0" />
+                     </font>
+                  </Label>
                </children>
             </VBox>
-            <VBox alignment="TOP_CENTER" layoutX="733.0" layoutY="273.0" prefHeight="393.0" prefWidth="324.0" style="-fx-background-color: white; -fx-background-radius: 22;">
+            <VBox alignment="TOP_CENTER" layoutX="733.0" layoutY="273.0" prefHeight="393.0" prefWidth="324.0" style="-fx-background-color: white; -fx-background-radius: 10;">
                <effect>
                   <DropShadow />
                </effect>
@@ -155,9 +160,14 @@
                         <Image url="@../imagens/third.png" />
                      </image>
                   </ImageView>
+                  <Label alignment="CENTER" prefWidth="324.0" text="0" textFill="#b9bbc1">
+                     <font>
+                        <Font name="Ubuntu Medium" size="54.0" />
+                     </font>
+                  </Label>
                </children>
             </VBox>
-            <VBox alignment="TOP_CENTER" layoutX="399.0" layoutY="39.0" prefHeight="626.0" prefWidth="324.0" style="-fx-background-color: white; -fx-background-radius: 22;">
+            <VBox alignment="TOP_CENTER" layoutX="399.0" layoutY="39.0" prefHeight="626.0" prefWidth="324.0" style="-fx-background-color: white; -fx-background-radius: 10;">
                <effect>
                   <DropShadow />
                </effect>
@@ -167,22 +177,36 @@
                         <Image url="@../imagens/first.png" />
                      </image>
                   </ImageView>
+                  <Label alignment="CENTER" prefWidth="324.0" text="0" textFill="#fed130">
+                     <font>
+                        <Font name="Ubuntu Medium" size="54.0" />
+                     </font>
+                  </Label>
                </children>
             </VBox>
-            <Label fx:id="label_2Lugar" alignment="CENTER" layoutX="58.0" layoutY="116.0" prefHeight="41.0" prefWidth="324.0" text="Adalto Alexandre" textFill="#f2f2f2">
+            <Label fx:id="label_2Lugar" alignment="CENTER" layoutX="65.0" layoutY="100.0" prefHeight="41.0" prefWidth="324.0" style="-fx-background-color: white; -fx-background-radius: 10;" text="Adalto Alexandre" textFill="#fd9727">
                <font>
                   <Font name="Ubuntu Medium" size="35.0" />
                </font>
+               <padding>
+                  <Insets bottom="8.0" top="8.0" />
+               </padding>
             </Label>
-            <Label fx:id="label_1Lugar" alignment="CENTER" layoutX="399.0" layoutY="-6.0" prefHeight="41.0" prefWidth="324.0" text="William Amorim" textFill="#f2f2f2">
+            <Label fx:id="label_1Lugar" alignment="CENTER" layoutX="399.0" layoutY="-25.0" prefHeight="41.0" prefWidth="324.0" style="-fx-background-color: white; -fx-background-radius: 10;" text="William Amorim" textFill="#fed130">
                <font>
                   <Font name="Ubuntu Medium" size="35.0" />
                </font>
+               <padding>
+                  <Insets bottom="8.0" top="8.0" />
+               </padding>
             </Label>
-            <Label fx:id="label_3Lugar" alignment="CENTER" layoutX="733.0" layoutY="226.0" prefHeight="41.0" prefWidth="324.0" text="Euler Menezes" textFill="#f2f2f2">
+            <Label fx:id="label_3Lugar" alignment="CENTER" layoutX="733.0" layoutY="210.0" prefHeight="41.0" prefWidth="324.0" style="-fx-background-color: white; -fx-background-radius: 10;" text="Euler Menezes" textFill="#b9bbc1">
                <font>
                   <Font name="Ubuntu Medium" size="35.0" />
                </font>
+               <padding>
+                  <Insets bottom="8.0" top="8.0" />
+               </padding>
             </Label>
          </children>
       </Pane>
