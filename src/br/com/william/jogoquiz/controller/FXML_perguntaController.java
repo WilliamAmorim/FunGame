@@ -113,6 +113,14 @@ public class FXML_perguntaController implements Initializable {
 
     @FXML
     void BT_voltar(ActionEvent event) throws IOException{
+        pacoteEscolhido = null;
+        a = true;
+        Nperguntas = 0;
+        perguntas.clear();
+        pontos = 0;
+        resposta = null;
+        p = 0;
+        meusPontos = 0;
         progress_entraJogo.setVisible(false);
         label_conectado.setVisible(false);
         panel_game.setVisible(false);

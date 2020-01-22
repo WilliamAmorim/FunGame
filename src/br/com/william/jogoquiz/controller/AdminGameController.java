@@ -83,7 +83,7 @@ public class AdminGameController implements Initializable {
 //            if(!esperarConexao.isInterrupted()){
               //  esperarConexao.interrupt();
 //            }
-            
+            p = 0;
             list_alunosConectados.setItems(alunosConectados);
             label_nome.setText(Util.nome_log());
             label_alunosConectados.setText(" ");
@@ -105,10 +105,12 @@ public class AdminGameController implements Initializable {
                 System.out.println("Servidor parado");
             }
             //serverSocket.close();
-            
+            Nperguntas = 0;
+            perguntas.clear();
             alunosConectados.clear();
             Inicio n = new Inicio();
             n.abrirScene("inicioProfessor");  
+            
             
         } catch (IOException ex) {
             System.err.println("Erro ao parar servidor Mensagem:"+ex);
@@ -248,8 +250,7 @@ public class AdminGameController implements Initializable {
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        
+    public void initialize(URL url, ResourceBundle rb) {        
         list_alunosConectados.setItems(alunosConectados);
         label_nome.setText(Util.nome_log());
         label_alunosConectados.setText(" ");

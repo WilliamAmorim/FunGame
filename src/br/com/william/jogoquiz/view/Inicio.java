@@ -8,6 +8,8 @@ package br.com.william.jogoquiz.view;
 import br.com.william.jogoquiz.controller.FXML_inicioController;
 import br.com.william.jogoquiz.log.DiretorioLog;
 import br.com.william.jogoquiz.sql.Sql;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -70,17 +72,24 @@ public class Inicio extends Application{
         //***********************************************************************
         */
         verificarLog();
-        //stage.setMaximized(true);
+        if(telaDimension()){
+            stage.setMaximized(true);
+        }        
         switch(inicialize){
             case 0:stage.setScene(SceneInicio); stage.show();;break;
             case 1:stage.setScene(SceneInicioAluno); stage.show();;break;
             case 2:stage.setScene(SceneInicioProfessor); stage.show();;break;            
         }
-            
-        
-        
-        
-        
+
+    }
+    
+    public boolean telaDimension(){
+        Toolkit tk = Toolkit.getDefaultToolkit();
+        Dimension d = tk.getScreenSize();        
+        if(d.height <= 768 && d.width <= 1320){
+            return true;
+        }
+        return false;
     }
 
     public void verificarLog(){     

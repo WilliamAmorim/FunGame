@@ -106,7 +106,7 @@
                   </Label>
                </children>
             </HBox>
-            <Label fx:id="label_nPerguntas" layoutX="17.0" layoutY="26.0" text="1/10" textFill="#a6a6a8">
+            <Label fx:id="label_nPerguntas" layoutX="17.0" layoutY="26.0" text="0/0" textFill="#a6a6a8">
                <font>
                   <Font name="Ubuntu Medium" size="35.0" />
                </font>

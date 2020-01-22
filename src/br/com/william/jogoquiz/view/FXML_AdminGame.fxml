@@ -49,7 +49,7 @@
                   <Font name="Ubuntu Medium" size="15.0" />
                </font>
             </JFXButton>
-            <Label fx:id="label_numeroPerguntas" layoutX="1047.0" layoutY="166.0" text="1/10" textFill="#a6a6a8">
+            <Label fx:id="label_numeroPerguntas" layoutX="1047.0" layoutY="166.0" text="0/0" textFill="#a6a6a8">
                <font>
                   <Font name="Ubuntu Medium" size="35.0" />
                </font>
