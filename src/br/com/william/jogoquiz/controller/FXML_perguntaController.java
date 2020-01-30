@@ -103,7 +103,7 @@ public class FXML_perguntaController implements Initializable {
 
     @FXML
     private Label label_conectado;
-     @FXML
+    @FXML
     private Label label_conectado1;
 
     @FXML

@@ -49,6 +49,11 @@
             <Font name="Ubuntu Medium" size="20.0" />
          </font>
       </Label>
+      <Label fx:id="label_conectado1" alignment="CENTER" layoutX="547.0" layoutY="486.0" prefHeight="32.0" prefWidth="255.0" text="Aguarde o jogo começar" textFill="#0e9559" visible="false">
+         <font>
+            <Font name="Ubuntu Medium" size="20.0" />
+         </font>
+      </Label>
       <Pane fx:id="panel_game" layoutX="78.0" layoutY="125.0" prefHeight="519.0" prefWidth="1165.0" style="-fx-background-color: #E8E8E8; -fx-background-radius: 40;" visible="false">
          <children>
             <JFXButton id="button-15px" fx:id="BT_c" buttonType="RAISED" focusTraversable="false" layoutX="153.0" layoutY="285.0" onAction="#BT_c" prefHeight="107.0" prefWidth="420.0" style="-fx-background-color: white; -fx-background-radius: 22;" textAlignment="CENTER" wrapText="true">
@@ -232,10 +237,5 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <Label fx:id="label_conectado1" alignment="CENTER" layoutX="547.0" layoutY="486.0" prefHeight="32.0" prefWidth="255.0" text="Aguarde o jogo começar" textFill="#0e9559" visible="false">
-         <font>
-            <Font name="Ubuntu Medium" size="20.0" />
-         </font>
-      </Label>
    </children>
 </AnchorPane>

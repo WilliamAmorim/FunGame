@@ -144,7 +144,7 @@ public class FXML_inicioProfessorController implements Initializable {
     public String criarQuery() {
         LocalDate data;
         String query = "SELECT `desempenho`.`aluno`,`desempenho`.`professor`,`desempenho`.`assunto`,`desempenho`.`data`,`desempenho`.`pontuacao`,`pacote_pergunta`.`pontuacao_maxima` FROM `desempenho`,`aluno`,`pacote_pergunta` where `pacote_pergunta`.`codigo_pacote` = `desempenho`.`codigo_pacote` AND `desempenho`.`aluno` = `aluno`.`nome_aluno`";
-
+        query +=  " AND `desempenho`.`professor` = '"+Util.nome_log()+"'";
         if (combo_disciplina.getValue() != null) {
             query += "AND `desempenho`.`codigo_pacote` LIKE '%" + combo_disciplina.getValue().toString().substring(0, 3) + "%'";
         }

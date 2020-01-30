@@ -94,7 +94,7 @@
                   <Font name="Ubuntu Medium" size="15.0" />
                </font>
             </RadioButton>
-            <JFXButton id="button-15px" focusTraversable="false" layoutX="556.0" layoutY="469.0" onAction="#BT_adicionarPergunta" prefHeight="25.0" prefWidth="87.0" style="-fx-background-color: #43CD80;" text="Adicionar" textFill="WHITE">
+            <JFXButton id="button-15px" buttonType="RAISED" focusTraversable="false" layoutX="556.0" layoutY="469.0" onAction="#BT_adicionarPergunta" prefHeight="25.0" prefWidth="87.0" style="-fx-background-color: #43CD80;" text="Adicionar" textFill="WHITE">
                <font>
                   <Font name="Ubuntu Medium" size="15.0" />
                </font>
@@ -105,12 +105,12 @@
                </font>
             </Label>
             <ListView editable="true" layoutX="693.0" layoutY="60.0" prefHeight="384.0" prefWidth="410.0" style="-fx-background-radius: 22; -fx-padding: 8;" visible="false" />
-            <JFXButton id="button-15px" focusTraversable="false" layoutX="997.0" layoutY="467.0" onAction="#BT_concluirPacote" prefHeight="25.0" prefWidth="87.0" style="-fx-background-color: #4D8FFF;" text="Concluir" textFill="WHITE">
+            <JFXButton id="button-15px" buttonType="RAISED" focusTraversable="false" layoutX="997.0" layoutY="467.0" onAction="#BT_concluirPacote" prefHeight="25.0" prefWidth="87.0" style="-fx-background-color: #4D8FFF;" text="Concluir" textFill="WHITE">
                <font>
                   <Font name="Ubuntu Medium" size="15.0" />
                </font>
             </JFXButton>
-            <JFXButton id="button-15px" focusTraversable="false" layoutX="898.0" layoutY="467.0" onAction="#BT_excluirPergunta" prefHeight="25.0" prefWidth="87.0" style="-fx-background-color: #FF4040;" text="Excluir" textFill="WHITE">
+            <JFXButton id="button-15px" buttonType="RAISED" focusTraversable="false" layoutX="898.0" layoutY="467.0" onAction="#BT_excluirPergunta" prefHeight="25.0" prefWidth="87.0" style="-fx-background-color: #FF4040;" text="Excluir" textFill="WHITE">
                <font>
                   <Font name="Ubuntu Medium" size="15.0" />
                </font>
@@ -145,7 +145,7 @@
                   <Font name="Ubuntu Medium" size="40.0" />
                </font>
             </Label>
-            <JFXButton id="button-15px" focusTraversable="false" layoutX="1020.0" layoutY="96.0" onAction="#BT_buscarDesempenho" prefHeight="27.0" prefWidth="95.0" style="-fx-background-color: #4D8FFF;" text="Buscar" textFill="WHITE">
+            <JFXButton id="button-15px" buttonType="RAISED" focusTraversable="false" layoutX="1020.0" layoutY="96.0" onAction="#BT_buscarDesempenho" prefHeight="27.0" prefWidth="95.0" style="-fx-background-color: #4D8FFF;" text="Buscar" textFill="WHITE">
                <font>
                   <Font name="Ubuntu Medium" size="15.0" />
                </font>
@@ -203,7 +203,7 @@
                   <Font name="Ubuntu Medium" size="40.0" />
                </font>
             </Label>
-            <JFXButton id="button-15px" focusTraversable="false" layoutX="243.0" layoutY="38.0" onAction="#BT_criarJogo" prefHeight="27.0" prefWidth="120.0" style="-fx-background-color: #43CD80;" text="Criar Jogo" textFill="WHITE">
+            <JFXButton id="button-15px" buttonType="RAISED" focusTraversable="false" layoutX="243.0" layoutY="38.0" onAction="#BT_criarJogo" prefHeight="27.0" prefWidth="120.0" style="-fx-background-color: #43CD80;" text="Criar Jogo" textFill="WHITE">
                <font>
                   <Font name="Ubuntu Medium" size="15.0" />
                </font>
@@ -217,7 +217,7 @@
                   <TableColumn fx:id="coluna_numeroQuestoesPacote" prefWidth="102.0" text="Questões" />
               </columns>
             </TableView>
-            <JFXButton id="button-15px" focusTraversable="false" layoutX="1011.0" layoutY="94.0" onAction="#BT_buscarPacotes" prefHeight="27.0" prefWidth="120.0" style="-fx-background-color: #4D8FFF;" text="Buscar" textFill="WHITE">
+            <JFXButton id="button-15px" buttonType="RAISED" focusTraversable="false" layoutX="1011.0" layoutY="94.0" onAction="#BT_buscarPacotes" prefHeight="27.0" prefWidth="120.0" style="-fx-background-color: #4D8FFF;" text="Buscar" textFill="WHITE">
                <font>
                   <Font name="Ubuntu Medium" size="15.0" />
                </font>
