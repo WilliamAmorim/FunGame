@@ -13,26 +13,26 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="768.0" prefWidth="1320.0" style="-fx-background-color: #363636; -fx-background-radius: 22; -fx-border-radius: 22;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.william.jogoquiz.controller.FXML_inicioController">
+<AnchorPane id="AnchorPane" prefHeight="768.0" prefWidth="1320.0" style="-fx-background-color: #363636; -fx-background-radius: 22; -fx-border-radius: 22;" stylesheets="@fonteStyle.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.william.jogoquiz.controller.FXML_inicioController">
    <children>
       <ImageView fitHeight="781.0" fitWidth="1375.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../imagens/banner.png" />
          </image>
       </ImageView>
-      <Label layoutX="450.0" layoutY="14.0" stylesheets="@fonteStyle.css" text="FunGame" textFill="WHITE" visible="false">
+      <Label layoutX="450.0" layoutY="14.0" text="FunGame" textFill="WHITE" visible="false">
          <font>
             <Font name="Ubuntu Medium" size="96.0" />
          </font>
       </Label>
       <Pane fx:id="panel_inicio" layoutX="350.0" layoutY="290.0" prefHeight="299.0" prefWidth="653.0">
          <children>
-            <JFXButton fx:id="BT_aluno" buttonType="RAISED" focusTraversable="false" layoutX="153.0" layoutY="127.0" onAction="#loginAlunos" prefHeight="98.0" prefWidth="348.0" style="-fx-background-color: #5d5dff; -fx-background-radius: 22;" stylesheets="@fonteStyle.css" text="Aluno" textFill="WHITE">
+            <JFXButton id="button-52px" fx:id="BT_aluno" buttonType="RAISED" focusTraversable="false" layoutX="153.0" layoutY="127.0" onAction="#loginAlunos" prefHeight="98.0" prefWidth="348.0" style="-fx-background-color: #5d5dff; -fx-background-radius: 22;" text="Aluno" textFill="WHITE">
                <font>
                   <Font name="Ubuntu Medium" size="52.0" />
                </font>
             </JFXButton>
-            <JFXButton fx:id="BT_professor" buttonType="RAISED" focusTraversable="false" layoutX="154.0" layoutY="14.0" onAction="#loginProfessors" prefHeight="98.0" prefWidth="348.0" style="-fx-background-color: #5d5dff; -fx-background-radius: 22;" stylesheets="@estiloTextField.css" text="Professor" textFill="WHITE">
+            <JFXButton id="button-52px" fx:id="BT_professor" buttonType="RAISED" focusTraversable="false" layoutX="154.0" layoutY="14.0" onAction="#loginProfessors" prefHeight="98.0" prefWidth="348.0" style="-fx-background-color: #5d5dff; -fx-background-radius: 22;" text="Professor" textFill="WHITE">
                <font>
                   <Font name="Ubuntu Medium" size="52.0" />
                </font>
@@ -56,7 +56,7 @@
                         <Font name="Ubuntu Medium" size="15.0" />
                      </font>
                   </TextField>
-                  <JFXButton fx:id="BT_entrarProfessor" buttonType="RAISED" focusTraversable="false" layoutX="40.0" layoutY="346.0" onAction="#BT_entrarProfessor" prefHeight="25.0" prefWidth="255.0" style="-fx-background-color: #4D8FFF; -fx-background-radius: 8;" text="Entrar" textFill="WHITE">
+                  <JFXButton id="button-20px" fx:id="BT_entrarProfessor" buttonType="RAISED" focusTraversable="false" layoutX="40.0" layoutY="346.0" onAction="#BT_entrarProfessor" prefHeight="25.0" prefWidth="255.0" style="-fx-background-color: #4D8FFF; -fx-background-radius: 8;" text="Entrar" textFill="WHITE">
                      <font>
                         <Font name="Ubuntu Medium" size="20.0" />
                      </font>
@@ -66,12 +66,12 @@
                         <Image url="@../imagens/professor.png" />
                      </image>
                   </ImageView>
-                  <JFXButton fx:id="BT_voltarProfessor" focusTraversable="false" layoutX="14.0" layoutY="16.0" onAction="#BT_voltarLoginProfessor" text="Voltar" textFill="#a6a6a8">
+                  <JFXButton id="button-15px" fx:id="BT_voltarProfessor" focusTraversable="false" layoutX="14.0" layoutY="16.0" onAction="#BT_voltarLoginProfessor" text="Voltar" textFill="#a6a6a8">
                      <font>
                         <Font name="Ubuntu Medium" size="15.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton fx:id="BT_cadastreProfessor" focusTraversable="false" layoutX="99.0" layoutY="398.0" onAction="#BT_entrarCadastrarProfessor" text="Cadastre-se" textFill="#a6a6a8">
+                  <JFXButton id="button-20px" fx:id="BT_cadastreProfessor" focusTraversable="false" layoutX="99.0" layoutY="398.0" onAction="#BT_entrarCadastrarProfessor" text="Cadastre-se" textFill="#a6a6a8">
                      <font>
                         <Font name="Ubuntu Medium" size="20.0" />
                      </font>
@@ -101,7 +101,7 @@
                         <Font name="Ubuntu Medium" size="15.0" />
                      </font>
                   </TextField>
-                  <JFXButton fx:id="BT_loginAluno" buttonType="RAISED" focusTraversable="false" layoutX="40.0" layoutY="346.0" onAction="#BT_entrarAluno" prefHeight="25.0" prefWidth="255.0" style="-fx-background-color: #4D8FFF; -fx-background-radius: 8;" text="Entrar" textFill="WHITE">
+                  <JFXButton id="button-20px" fx:id="BT_loginAluno" buttonType="RAISED" focusTraversable="false" layoutX="40.0" layoutY="346.0" onAction="#BT_entrarAluno" prefHeight="25.0" prefWidth="255.0" style="-fx-background-color: #4D8FFF; -fx-background-radius: 8;" text="Entrar" textFill="WHITE">
                      <font>
                         <Font name="Ubuntu Medium" size="20.0" />
                      </font>
@@ -111,12 +111,12 @@
                         <Image url="@../imagens/student.png" />
                      </image>
                   </ImageView>
-                  <JFXButton fx:id="BT_cadastreAluno" focusTraversable="false" layoutX="99.0" layoutY="397.0" onAction="#BT_entrarCadastrarAluno" text="Cadastre-se" textFill="#a6a6a8">
+                  <JFXButton id="button-20px" fx:id="BT_cadastreAluno" focusTraversable="false" layoutX="99.0" layoutY="397.0" onAction="#BT_entrarCadastrarAluno" text="Cadastre-se" textFill="#a6a6a8">
                      <font>
                         <Font name="Ubuntu Medium" size="20.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton fx:id="BT_voltarAluno" focusTraversable="false" layoutX="14.0" layoutY="16.0" onAction="#BT_voltarLoginAluno" text="Voltar" textFill="#a6a6a8">
+                  <JFXButton id="button-15px" fx:id="BT_voltarAluno" focusTraversable="false" layoutX="14.0" layoutY="16.0" onAction="#BT_voltarLoginAluno" text="Voltar" textFill="#a6a6a8">
                      <font>
                         <Font name="Ubuntu Medium" size="15.0" />
                      </font>
@@ -147,7 +147,7 @@
                         <Font name="Ubuntu Medium" size="15.0" />
                      </font>
                   </TextField>
-                  <JFXButton fx:id="BT_cadastrarAluno" buttonType="RAISED" focusTraversable="false" layoutX="41.0" layoutY="380.0" onAction="#BT_cadastrarAluno" prefHeight="25.0" prefWidth="255.0" style="-fx-background-color: #4D8FFF; -fx-background-radius: 8;" text="Cadastrar" textFill="WHITE">
+                  <JFXButton id="button-15px" fx:id="BT_cadastrarAluno" buttonType="RAISED" focusTraversable="false" layoutX="41.0" layoutY="380.0" onAction="#BT_cadastrarAluno" prefHeight="25.0" prefWidth="255.0" style="-fx-background-color: #4D8FFF; -fx-background-radius: 8;" text="Cadastrar" textFill="WHITE">
                      <font>
                         <Font name="Ubuntu Medium" size="20.0" />
                      </font>
@@ -160,7 +160,7 @@
                   <ComboBox fx:id="combo_serie" focusTraversable="false" layoutX="40.0" layoutY="295.0" prefHeight="25.0" prefWidth="122.0" promptText="Serie" />
                   <ComboBox fx:id="combo_turma" focusTraversable="false" layoutX="174.0" layoutY="295.0" prefHeight="25.0" prefWidth="122.0" promptText="Turma" />
                   <ComboBox fx:id="combo_turno" focusTraversable="false" layoutX="40.0" layoutY="332.0" prefHeight="25.0" prefWidth="255.0" promptText="Turno" />
-                  <JFXButton fx:id="BT_voltarCadastro" focusTraversable="false" layoutX="14.0" layoutY="16.0" onAction="#BT_voltarCadastroAluno" text="Voltar" textFill="#a6a6a8">
+                  <JFXButton id="button-15px" fx:id="BT_voltarCadastro" focusTraversable="false" layoutX="14.0" layoutY="16.0" onAction="#BT_voltarCadastroAluno" text="Voltar" textFill="#a6a6a8">
                      <font>
                         <Font name="Ubuntu Medium" size="15.0" />
                      </font>
@@ -191,7 +191,7 @@
                         <Font name="Ubuntu Medium" size="15.0" />
                      </font>
                   </TextField>
-                  <JFXButton fx:id="BT_cadastrarProfessor" buttonType="RAISED" focusTraversable="false" layoutX="40.0" layoutY="379.0" onAction="#BT_cadastrarProfessor" prefHeight="25.0" prefWidth="255.0" style="-fx-background-color: #4D8FFF; -fx-background-radius: 8;" text="Cadastrar" textFill="WHITE">
+                  <JFXButton id="button-20px" fx:id="BT_cadastrarProfessor" buttonType="RAISED" focusTraversable="false" layoutX="40.0" layoutY="379.0" onAction="#BT_cadastrarProfessor" prefHeight="25.0" prefWidth="255.0" style="-fx-background-color: #4D8FFF; -fx-background-radius: 8;" text="Cadastrar" textFill="WHITE">
                      <font>
                         <Font name="Ubuntu Medium" size="20.0" />
                      </font>
@@ -202,7 +202,7 @@
                      </image>
                   </ImageView>
                   <ComboBox fx:id="combo_disciplina" focusTraversable="false" layoutX="40.0" layoutY="320.0" prefHeight="25.0" prefWidth="255.0" promptText="Disciplina" />
-                  <JFXButton fx:id="BT_voltarCadastroProfessor" focusTraversable="false" layoutX="14.0" layoutY="16.0" onAction="#BT_voltarCadastroProfessor" text="Voltar" textFill="#a6a6a8">
+                  <JFXButton id="button-15px" fx:id="BT_voltarCadastroProfessor" focusTraversable="false" layoutX="14.0" layoutY="16.0" onAction="#BT_voltarCadastroProfessor" text="Voltar" textFill="#a6a6a8">
                      <font>
                         <Font name="Ubuntu Medium" size="15.0" />
                      </font>

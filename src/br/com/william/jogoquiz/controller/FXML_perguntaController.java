@@ -103,16 +103,22 @@ public class FXML_perguntaController implements Initializable {
 
     @FXML
     private Label label_conectado;
+     @FXML
+    private Label label_conectado1;
 
     @FXML
     void BT_entrarJogo(ActionEvent event) {
-        if(!label_conectado.isVisible()){            
-            conectar();
-        }    
+        new Thread(){
+            public void run(){
+                if(!label_conectado.isVisible()){            
+                    conectar();
+                }    
+            }
+        }.start();
     }
 
     @FXML
-    void BT_voltar(ActionEvent event) throws IOException{
+    void BT_voltar(ActionEvent event){
         pacoteEscolhido = null;
         a = true;
         Nperguntas = 0;
@@ -123,17 +129,25 @@ public class FXML_perguntaController implements Initializable {
         meusPontos = 0;
         progress_entraJogo.setVisible(false);
         label_conectado.setVisible(false);
+        label_conectado1.setVisible(false);
         panel_game.setVisible(false);
         panel_ranking.setVisible(false);
         txt_codigoJogo.setText("");
-        if(servidor.isConnected()){
-            servidor.close();
-        }
+        
+        //if(servidor.toString()){
+        fecharConexao();
+        //}
         Inicio abrir = new Inicio();
         abrir.abrirScene("inicioAluno");  
                  
     }
-    
+    public void fecharConexao(){
+        try{
+            servidor.close();
+        }catch(Exception ex){
+            
+        }
+    }
      @FXML
     private Pane panel_ranking;
 
@@ -254,22 +268,27 @@ public class FXML_perguntaController implements Initializable {
     
     private void conectar(){
         try {            
-            progress_entraJogo.setVisible(true);
-            progress_entraJogo.setProgress(-1);
+            progress_entraJogo.setVisible(true);            
             
             servidor = new Socket(txt_codigoJogo.getText(), 5555);
-            label_conectado.setVisible(true);
+            
             //System.out.println(Util.turma());
             enviarMensagem(servidor,"iniciar,"+Util.nome_log()+"-"+Util.turma()+":");//Util.nome_log()+" "+Util.turma()
-            System.out.println("CONEXÃO ESTABELECIDA!!!");       
+            System.out.println("CONEXÃO ESTABELECIDA!!!");  
+            progress_entraJogo.setVisible(false); 
+            label_conectado.setVisible(true);
+            label_conectado1.setVisible(true);
             //progress_entraJogo.setProgress(100);
         } catch (IOException ex){
-            progress_entraJogo.setVisible(false);           
+            progress_entraJogo.setVisible(false);  
+            label_conectado.setVisible(false);
+            label_conectado1.setVisible(false);
             System.err.println("----ERRO AO TENTAR SE CONECTAR----"); 
-            Alert dialogoInfo = new Alert(Alert.AlertType.ERROR);                
-                dialogoInfo.setHeaderText("Não foi possivel se conectar");
-                dialogoInfo.setContentText("Verifique o codigo do jogo");
-                dialogoInfo.showAndWait();
+//            Alert dialogoInfo = new Alert(Alert.AlertType.ERROR);                
+//                dialogoInfo.setHeaderText("Não foi possivel se conectar");
+//                dialogoInfo.setContentText("Verifique o codigo do jogo");
+//                dialogoInfo.showAndWait();
+            
         }
         
     }

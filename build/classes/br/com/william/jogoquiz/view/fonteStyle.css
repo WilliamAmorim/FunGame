@@ -9,10 +9,18 @@ and open the template in the editor.
 */
 
 @font-face {
-    font-family: 'Ubuntu';
+/*    //font-family: 'Ubuntu';*/
     src: url('Ubuntu-Medium.ttf');
 }
-.root{
-    -fx-font-family: "Ubuntu";
+.button,.text,.label{
+    -fx-font-family: "Ubuntu Medium";
 }
-
+#button-15px{
+    -fx-font-size: 15px;
+}
+#button-52px{
+    -fx-font-size: 52px;
+}
+#button-20px{
+    -fx-font-size: 20px;
+}

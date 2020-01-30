@@ -163,6 +163,7 @@ public class Inicio extends Application{
         }
         return false;
     }
+    
     public void abrirScene(String scene){         
         switch(scene){            
             case "inicio":stage.setScene(SceneInicio);break;

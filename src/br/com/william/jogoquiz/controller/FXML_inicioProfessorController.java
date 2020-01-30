@@ -13,6 +13,7 @@ import br.com.william.jogoquiz.util.CodigoPacote;
 import br.com.william.jogoquiz.util.Data;
 import br.com.william.jogoquiz.util.Util;
 import br.com.william.jogoquiz.view.Inicio;
+import com.jfoenix.controls.JFXSpinner;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -59,6 +60,8 @@ import javafx.scene.layout.Pane;
 public class FXML_inicioProfessorController implements Initializable {
     @FXML
     private ImageView imagem_logo;
+    @FXML
+    private JFXSpinner progress_criarPacote;
     //Desempenho Aluno**********************************************************
     @FXML
     private TableView<DesempenhoAlunoBean> tabela_desempenho;
@@ -290,14 +293,24 @@ public class FXML_inicioProfessorController implements Initializable {
 
     @FXML
     void BT_concluirPacote(ActionEvent event) {
+        new Thread(){
+            public void run(){
+                progress_criarPacote.setVisible(true);
+                concluirPacote();
+                progress_criarPacote.setVisible(false);
+            }
+        }.start();
+    }
+    
+    public void concluirPacote(){
         if (!txt_assuntoPacote.getText().equals("") && combo_disciplinaPacote.getValue() != null && cont != 0) {
             try {
                 cadastrarPerguntas();
 
-                Alert dialogoInfo = new Alert(Alert.AlertType.CONFIRMATION);
-                dialogoInfo.setHeaderText("Pacote Cadastrado Com sucesso!");
-                dialogoInfo.setContentText("");
-                dialogoInfo.showAndWait();
+//                Alert dialogoInfo = new Alert(Alert.AlertType.CONFIRMATION);
+//                dialogoInfo.setHeaderText("Pacote Cadastrado Com sucesso!");
+//                dialogoInfo.setContentText("");
+//                dialogoInfo.showAndWait();
                 
                 items.clear();
                 panel_editar_criarPacote.setVisible(false);
@@ -307,15 +320,15 @@ public class FXML_inicioProfessorController implements Initializable {
      
 
             } catch (Exception ex) {
-                Alert dialogoInfo = new Alert(Alert.AlertType.ERROR);
-                dialogoInfo.setHeaderText("Ocorreu Um erro agora");
-                dialogoInfo.setContentText("" + ex);
-                dialogoInfo.showAndWait();
+                progress_criarPacote.setVisible(false);
+//                Alert dialogoInfo = new Alert(Alert.AlertType.ERROR);
+//                dialogoInfo.setHeaderText("Ocorreu Um erro agora");
+//                dialogoInfo.setContentText("" + ex);
+//                dialogoInfo.showAndWait();
             }
 
         }
     }
-
     @FXML
     void BT_excluirPergunta(ActionEvent event) {
         int a = list_perguntas.getSelectionModel().getSelectedIndex();
@@ -857,7 +870,7 @@ public class FXML_inicioProfessorController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+        progress_criarPacote.setVisible(false);
         label_nome.setText(Util.nome_log());
         // TODO
         combo_disciplina.getItems().add("Matematica");

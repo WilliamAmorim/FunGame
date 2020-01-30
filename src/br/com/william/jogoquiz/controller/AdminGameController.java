@@ -92,18 +92,11 @@ public class AdminGameController implements Initializable {
 //            Platform.runLater(()->label_ip.setText(""));
 //            Platform.runLater(()->label_alunosConectados.setText(""));
 //            Platform.runLater(()->BT_proximaPergunta.setText("Iniciar Servidor"));    
-            if(!clientes.isEmpty()){
-                for (int j = 0; j < clientes.size(); j++) {
-                    clientes.get(j).close();
-                }
-            }
+            
             cont = 0;
             clientes.clear();
             System.out.println("Parando servidor");
-            if(!serverSocket.isClosed()){
-                serverSocket.close();
-                System.out.println("Servidor parado");
-            }
+            fecharConexao();
             //serverSocket.close();
             Nperguntas = 0;
             perguntas.clear();
@@ -112,8 +105,22 @@ public class AdminGameController implements Initializable {
             n.abrirScene("inicioProfessor");  
             
             
-        } catch (IOException ex) {
+        } catch (Exception ex) {
             System.err.println("Erro ao parar servidor Mensagem:"+ex);
+        }
+    }
+    public void fecharConexao(){
+        try{
+            if(!clientes.isEmpty()){
+                for (int j = 0; j < clientes.size(); j++) {
+                    clientes.get(j).close();
+                }
+            }
+             
+            serverSocket.close();
+            
+        }catch(Exception ex){
+            
         }
     }
 

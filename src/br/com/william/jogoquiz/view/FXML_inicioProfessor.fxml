@@ -24,22 +24,21 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="768.0" prefWidth="1320.0" style="-fx-background-color: #363636; -fx-background-radius: 22;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.william.jogoquiz.controller.FXML_inicioProfessorController">
+<AnchorPane id="AnchorPane" prefHeight="768.0" prefWidth="1320.0" style="-fx-background-color: #363636; -fx-background-radius: 22; -fx-border-radius: 22;" stylesheets="@fonteStyle.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.william.jogoquiz.controller.FXML_inicioProfessorController">
    <children>
       <ImageView fitHeight="781.0" fitWidth="1375.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../imagens/banner.png" />
          </image>
       </ImageView>
-      <JFXButton buttonType="RAISED" layoutX="453.0" layoutY="416.0" onAction="#BT_abrirDesempenho" prefHeight="98.0" prefWidth="439.0" style="-fx-background-color: #5d5dff; -fx-background-radius: 22;" text="Desempenho" textFill="WHITE">
+      <JFXButton id="button-52px" buttonType="RAISED" focusTraversable="false" layoutX="453.0" layoutY="416.0" onAction="#BT_abrirDesempenho" prefHeight="98.0" prefWidth="439.0" style="-fx-background-color: #5d5dff; -fx-background-radius: 22;" text="Desempenho" textFill="WHITE">
          <font>
             <Font name="Ubuntu Medium" size="52.0" />
          </font>
       </JFXButton>
-      <JFXButton buttonType="RAISED" layoutX="453.0" layoutY="300.0" onAction="#BT_abrirFiltroPacotes" prefHeight="98.0" prefWidth="439.0" style="-fx-background-color: #5d5dff; -fx-background-radius: 22;" text="Explorar" textFill="WHITE">
+      <JFXButton id="button-52px" buttonType="RAISED" focusTraversable="false" layoutX="453.0" layoutY="300.0" onAction="#BT_abrirFiltroPacotes" prefHeight="98.0" prefWidth="439.0" style="-fx-background-color: #5d5dff; -fx-background-radius: 22;" text="Explorar" textFill="WHITE">
          <font>
             <Font name="Ubuntu Medium" size="52.0" />
          </font>
@@ -95,7 +94,7 @@
                   <Font name="Ubuntu Medium" size="15.0" />
                </font>
             </RadioButton>
-            <JFXButton layoutX="556.0" layoutY="469.0" onAction="#BT_adicionarPergunta" prefHeight="25.0" prefWidth="87.0" style="-fx-background-color: #43CD80;" text="Adicionar" textFill="WHITE">
+            <JFXButton id="button-15px" focusTraversable="false" layoutX="556.0" layoutY="469.0" onAction="#BT_adicionarPergunta" prefHeight="25.0" prefWidth="87.0" style="-fx-background-color: #43CD80;" text="Adicionar" textFill="WHITE">
                <font>
                   <Font name="Ubuntu Medium" size="15.0" />
                </font>
@@ -106,12 +105,12 @@
                </font>
             </Label>
             <ListView editable="true" layoutX="693.0" layoutY="60.0" prefHeight="384.0" prefWidth="410.0" style="-fx-background-radius: 22; -fx-padding: 8;" visible="false" />
-            <JFXButton layoutX="997.0" layoutY="467.0" onAction="#BT_concluirPacote" prefHeight="25.0" prefWidth="87.0" style="-fx-background-color: #4D8FFF;" text="Concluir" textFill="WHITE">
+            <JFXButton id="button-15px" focusTraversable="false" layoutX="997.0" layoutY="467.0" onAction="#BT_concluirPacote" prefHeight="25.0" prefWidth="87.0" style="-fx-background-color: #4D8FFF;" text="Concluir" textFill="WHITE">
                <font>
                   <Font name="Ubuntu Medium" size="15.0" />
                </font>
             </JFXButton>
-            <JFXButton layoutX="898.0" layoutY="467.0" onAction="#BT_excluirPergunta" prefHeight="25.0" prefWidth="87.0" style="-fx-background-color: #FF4040;" text="Excluir" textFill="WHITE">
+            <JFXButton id="button-15px" focusTraversable="false" layoutX="898.0" layoutY="467.0" onAction="#BT_excluirPergunta" prefHeight="25.0" prefWidth="87.0" style="-fx-background-color: #FF4040;" text="Excluir" textFill="WHITE">
                <font>
                   <Font name="Ubuntu Medium" size="15.0" />
                </font>
@@ -133,7 +132,7 @@
                   <Font name="Ubuntu Medium" size="40.0" />
                </font>
             </Label>
-            <JFXSpinner layoutX="1093.0" layoutY="466.0" prefHeight="27.0" prefWidth="20.0" />
+            <JFXSpinner fx:id="progress_criarPacote" layoutX="1093.0" layoutY="466.0" prefHeight="27.0" prefWidth="20.0" />
          </children>
          <effect>
             <DropShadow />
@@ -146,7 +145,7 @@
                   <Font name="Ubuntu Medium" size="40.0" />
                </font>
             </Label>
-            <JFXButton layoutX="1020.0" layoutY="96.0" onAction="#BT_buscarDesempenho" prefHeight="27.0" prefWidth="95.0" style="-fx-background-color: #4D8FFF;" text="Buscar" textFill="WHITE">
+            <JFXButton id="button-15px" focusTraversable="false" layoutX="1020.0" layoutY="96.0" onAction="#BT_buscarDesempenho" prefHeight="27.0" prefWidth="95.0" style="-fx-background-color: #4D8FFF;" text="Buscar" textFill="WHITE">
                <font>
                   <Font name="Ubuntu Medium" size="15.0" />
                </font>
@@ -197,51 +196,6 @@
             <DropShadow />
          </effect>
       </Pane>
-      <Pane layoutX="78.0" layoutY="125.0" prefHeight="564.0" prefWidth="1165.0" style="-fx-background-color: #E8E8E8; -fx-background-radius: 40;" visible="false">
-         <children>
-            <Label layoutX="41.0" layoutY="27.0" text="192.168.1.1">
-               <font>
-                  <Font name="Ubuntu Medium" size="40.0" />
-               </font>
-            </Label>
-            <Label layoutX="93.0" layoutY="85.0" text="Codigo do jogo" textFill="#a6a6a8">
-               <font>
-                  <Font name="Ubuntu Medium" size="15.0" />
-               </font>
-            </Label>
-            <Label layoutX="602.0" layoutY="171.0" text="Alunos Conectados" textFill="#a6a6a8">
-               <font>
-                  <Font name="Ubuntu Medium" size="25.0" />
-               </font>
-            </Label>
-            <StackPane layoutX="298.0" layoutY="-49.0" prefHeight="200.0" prefWidth="831.0" style="-fx-background-color: white; -fx-background-radius: 22;">
-               <children>
-                  <Label text="A pergunta vai aqui" textAlignment="CENTER" textFill="#363636" wrapText="true">
-                     <font>
-                        <Font name="Ubuntu Medium" size="20.0" />
-                     </font>
-                  </Label>
-               </children>
-               <effect>
-                  <DropShadow height="10.0" radius="4.5" width="10.0" />
-               </effect>
-            </StackPane>
-            <ListView layoutX="482.0" layoutY="217.0" prefHeight="333.0" prefWidth="463.0" style="-fx-background-color: #E8E8E8;" />
-            <JFXButton buttonType="RAISED" layoutX="66.0" layoutY="124.0" prefHeight="27.0" prefWidth="163.0" style="-fx-background-color: #4D8FFF;" text="Proxima Pergunta" textFill="WHITE">
-               <font>
-                  <Font name="Ubuntu Medium" size="15.0" />
-               </font>
-            </JFXButton>
-            <Label layoutX="1047.0" layoutY="166.0" text="1/10" textFill="#a6a6a8">
-               <font>
-                  <Font name="Ubuntu Medium" size="35.0" />
-               </font>
-            </Label>
-         </children>
-         <effect>
-            <DropShadow />
-         </effect>
-      </Pane>
       <Pane fx:id="panel_pacotePergunta" layoutX="78.0" layoutY="125.0" prefHeight="564.0" prefWidth="1165.0" style="-fx-background-color: #E8E8E8; -fx-background-radius: 40;" visible="false">
          <children>
             <Label layoutX="41.0" layoutY="27.0" text="Perguntas" textFill="#a6a6a8">
@@ -249,7 +203,7 @@
                   <Font name="Ubuntu Medium" size="40.0" />
                </font>
             </Label>
-            <JFXButton layoutX="243.0" layoutY="38.0" onAction="#BT_criarJogo" prefHeight="27.0" prefWidth="120.0" style="-fx-background-color: #43CD80;" text="Criar Jogo" textFill="WHITE">
+            <JFXButton id="button-15px" focusTraversable="false" layoutX="243.0" layoutY="38.0" onAction="#BT_criarJogo" prefHeight="27.0" prefWidth="120.0" style="-fx-background-color: #43CD80;" text="Criar Jogo" textFill="WHITE">
                <font>
                   <Font name="Ubuntu Medium" size="15.0" />
                </font>
@@ -263,7 +217,7 @@
                   <TableColumn fx:id="coluna_numeroQuestoesPacote" prefWidth="102.0" text="Questões" />
               </columns>
             </TableView>
-            <JFXButton layoutX="1011.0" layoutY="94.0" onAction="#BT_buscarPacotes" prefHeight="27.0" prefWidth="120.0" style="-fx-background-color: #4D8FFF;" text="Buscar" textFill="WHITE">
+            <JFXButton id="button-15px" focusTraversable="false" layoutX="1011.0" layoutY="94.0" onAction="#BT_buscarPacotes" prefHeight="27.0" prefWidth="120.0" style="-fx-background-color: #4D8FFF;" text="Buscar" textFill="WHITE">
                <font>
                   <Font name="Ubuntu Medium" size="15.0" />
                </font>
@@ -340,7 +294,7 @@
             <DropShadow />
          </effect>
       </Pane>
-      <JFXButton buttonType="RAISED" layoutX="14.0" layoutY="11.0" onAction="#BT_sair" prefHeight="48.0" prefWidth="95.0" style="-fx-background-color: #FF4040; -fx-background-radius: 22;" text="Sair" textFill="WHITE">
+      <JFXButton id="button-20px" buttonType="RAISED" focusTraversable="false" layoutX="14.0" layoutY="11.0" onAction="#BT_sair" prefHeight="48.0" prefWidth="95.0" style="-fx-background-color: #FF4040; -fx-background-radius: 22;" text="Sair" textFill="WHITE">
          <font>
             <Font name="Ubuntu Medium" size="20.0" />
          </font>

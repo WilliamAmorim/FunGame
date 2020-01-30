@@ -16,19 +16,19 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="768.0" prefWidth="1320.0" style="-fx-background-color: #363636; -fx-background-radius: 22;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.william.jogoquiz.controller.FXML_inicioAlunoController">
+<AnchorPane id="AnchorPane" prefHeight="768.0" prefWidth="1320.0" style="-fx-background-color: #363636; -fx-background-radius: 22; -fx-border-radius: 22;" stylesheets="@fonteStyle.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.william.jogoquiz.controller.FXML_inicioAlunoController">
    <children>
       <ImageView fitHeight="781.0" fitWidth="1375.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../imagens/banner.png" />
          </image>
       </ImageView>
-      <JFXButton buttonType="RAISED" focusTraversable="false" layoutX="451.0" layoutY="416.0" onAction="#BT_AbrirDesempenho" prefHeight="98.0" prefWidth="439.0" style="-fx-background-color: #5d5dff; -fx-background-radius: 22;" text="Desempenho" textFill="WHITE">
+      <JFXButton id="button-52px" buttonType="RAISED" focusTraversable="false" layoutX="451.0" layoutY="416.0" onAction="#BT_AbrirDesempenho" prefHeight="98.0" prefWidth="439.0" style="-fx-background-color: #5d5dff; -fx-background-radius: 22;" text="Desempenho" textFill="WHITE">
          <font>
             <Font name="Ubuntu Medium" size="52.0" />
          </font>
       </JFXButton>
-      <JFXButton buttonType="RAISED" focusTraversable="false" layoutX="451.0" layoutY="300.0" onAction="#BT_jogar" prefHeight="98.0" prefWidth="439.0" style="-fx-background-color: #5d5dff; -fx-background-radius: 22;" text="Jogar" textFill="WHITE">
+      <JFXButton id="button-52px" buttonType="RAISED" focusTraversable="false" layoutX="451.0" layoutY="300.0" onAction="#BT_jogar" prefHeight="98.0" prefWidth="439.0" style="-fx-background-color: #5d5dff; -fx-background-radius: 22;" text="Jogar" textFill="WHITE">
          <font>
             <Font name="Ubuntu Medium" size="52.0" />
          </font>
@@ -40,12 +40,12 @@
                   <Font name="Ubuntu Medium" size="40.0" />
                </font>
             </Label>
-            <JFXButton layoutX="1020.0" layoutY="96.0" onAction="#BT_buscarDesempenhoAluno" prefHeight="27.0" prefWidth="95.0" style="-fx-background-color: #4D8FFF;" text="Buscar" textFill="WHITE">
+            <JFXButton id="button-15px" focusTraversable="false" layoutX="1020.0" layoutY="96.0" onAction="#BT_buscarDesempenhoAluno" prefHeight="27.0" prefWidth="95.0" style="-fx-background-color: #4D8FFF;" text="Buscar" textFill="WHITE">
                <font>
                   <Font name="Ubuntu Medium" size="15.0" />
                </font>
             </JFXButton>
-            <TableView fx:id="tabela_desempenhoAluno" layoutX="26.0" layoutY="130.0" prefHeight="399.0" prefWidth="1095.0" stylesheets="@estiloTabela.css">
+            <TableView fx:id="tabela_desempenhoAluno" layoutX="-1.0" layoutY="130.0" prefHeight="399.0" prefWidth="1167.0" stylesheets="@estiloTabela.css">
                <columns>
                   <TableColumn fx:id="coluna_professor" prefWidth="75.0" text="Professor" />
                   <TableColumn fx:id="coluna_pacote" prefWidth="75.0" text="Assunto" />
@@ -80,7 +80,7 @@
             </ImageView>
          </children>
       </Pane>
-      <JFXButton buttonType="RAISED" focusTraversable="false" layoutX="14.0" layoutY="11.0" onAction="#BT_sair" prefHeight="48.0" prefWidth="95.0" style="-fx-background-color: #FF4040; -fx-background-radius: 22;" text="Sair" textFill="WHITE">
+      <JFXButton id="button-20px" buttonType="RAISED" focusTraversable="false" layoutX="14.0" layoutY="11.0" onAction="#BT_sair" prefHeight="48.0" prefWidth="95.0" style="-fx-background-color: #FF4040; -fx-background-radius: 22;" text="Sair" textFill="WHITE">
          <font>
             <Font name="Ubuntu Medium" size="20.0" />
          </font>
@@ -112,9 +112,9 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <ImageView fitHeight="300.0" fitWidth="400.0" layoutX="497.0" layoutY="-10.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="300.0" fitWidth="300.0" layoutX="527.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../banner/logo.png" />
+            <Image url="@../imagens/logo.png" />
          </image>
       </ImageView>
    </children>

@@ -18,17 +18,17 @@
             <url>src/br/com/william/jogoquiz/controller/FXML_inicioProfessorController.java</url>
             <bookmark id="6">
                 <name/>
-                <line>59</line>
+                <line>60</line>
                 <key/>
             </bookmark>
             <bookmark id="7">
                 <name/>
-                <line>177</line>
+                <line>180</line>
                 <key/>
             </bookmark>
             <bookmark id="8">
                 <name/>
-                <line>531</line>
+                <line>544</line>
                 <key/>
             </bookmark>
         </file>
@@ -36,19 +36,14 @@
             <url>src/br/com/william/jogoquiz/controller/AdminGameController.java</url>
             <bookmark id="9">
                 <name/>
-                <line>236</line>
+                <line>245</line>
                 <key/>
             </bookmark>
         </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Projetos-git/java/Quiz/src/br/com/william/jogoquiz/controller/FXML_perguntaController.java</file>
-            <file>file:/D:/Projetos-git/java/Quiz/src/br/com/william/jogoquiz/log/DiretorioLog.java</file>
-            <file>file:/D:/Projetos-git/java/Quiz/src/br/com/william/jogoquiz/controller/AdminGameController.java</file>
-            <file>file:/D:/Projetos-git/java/Quiz/src/br/com/william/jogoquiz/view/Inicio.java</file>
             <file>file:/D:/Projetos-git/java/Quiz/src/br/com/william/jogoquiz/view/fonteStyle.css</file>
-            <file>file:/D:/Projetos-git/java/Quiz/src/br/com/william/jogoquiz/view/estiloTextField.css</file>
         </group>
     </open-files>
 </project-private>
