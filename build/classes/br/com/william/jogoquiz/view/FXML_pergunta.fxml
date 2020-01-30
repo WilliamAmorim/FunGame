@@ -25,7 +25,7 @@
             <Image url="@../imagens/banner.png" />
          </image>
       </ImageView>
-      <TextField fx:id="txt_codigoJogo" layoutX="545.0" layoutY="350.0" AnchorPane.leftAnchor="545.0" AnchorPane.rightAnchor="543.0" AnchorPane.topAnchor="350.0">
+      <TextField fx:id="txt_codigoJogo" alignment="CENTER" layoutX="545.0" layoutY="350.0" AnchorPane.leftAnchor="545.0" AnchorPane.rightAnchor="543.0" AnchorPane.topAnchor="350.0">
          <effect>
             <DropShadow />
          </effect>
@@ -143,7 +143,7 @@
                         <Image url="@../imagens/second.png" />
                      </image>
                   </ImageView>
-                  <Label alignment="CENTER" prefWidth="324.0" text="0" textFill="#fd9727">
+                  <Label fx:id="label_p2" alignment="CENTER" prefWidth="324.0" text="0" textFill="#fd9727">
                      <font>
                         <Font name="Ubuntu Medium" size="54.0" />
                      </font>
@@ -160,7 +160,7 @@
                         <Image url="@../imagens/third.png" />
                      </image>
                   </ImageView>
-                  <Label alignment="CENTER" prefWidth="324.0" text="0" textFill="#b9bbc1">
+                  <Label fx:id="label_p3" alignment="CENTER" prefWidth="324.0" text="0" textFill="#b9bbc1">
                      <font>
                         <Font name="Ubuntu Medium" size="54.0" />
                      </font>
@@ -177,7 +177,7 @@
                         <Image url="@../imagens/first.png" />
                      </image>
                   </ImageView>
-                  <Label alignment="CENTER" prefWidth="324.0" text="0" textFill="#fed130">
+                  <Label fx:id="label_p1" alignment="CENTER" prefWidth="324.0" text="0" textFill="#fed130">
                      <font>
                         <Font name="Ubuntu Medium" size="54.0" />
                      </font>

@@ -93,17 +93,40 @@ public class Util {
         return posicao;
                 
     }
+    
+    public static String dividirString(String nome){
+        
+        String[] tokens = nome.split(":");
+        return tokens[0]+":";
+        
+    }
+    
+    public static String[] dividirResultado(String resultado){
+        if(!resultado.equals("N")){
+            String[] tokens = resultado.split("-");
+            String[] tokens2 = tokens[2].split(":");
+            String[] t = {tokens[1],tokens2[1]};
+            return t;
+        }else{
+            String[] t2 = {"","0"};
+            return t2;
+        }
+        
+    }
     public static void main(String[] args){
-        ArrayList Array = new ArrayList();        
-        Array.add("8");
-        Array.add("5");
-        Array.add("4");
-        Array.add("11");
-        Array.add("15");
-        Array.add("15");
-        Array.add("17");
-        System.out.println("Valor Retornado: "+ordemCrescente(Array,2));
+//        ArrayList Array = new ArrayList();        
+//        Array.add("8");
+//        Array.add("5");
+//        Array.add("4");
+//        Array.add("11");
+//        Array.add("15");
+//        Array.add("15");
+//        Array.add("17");
+//        System.out.println("Valor Retornado: "+ordemCrescente(Array,2));
         //System.out.println(turma());
+        String[] a = dividirResultado("");
+        //System.err.println(a[0].);
+        System.err.println(a[1].trim());
     }
   
 }

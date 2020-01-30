@@ -160,6 +160,14 @@ public class FXML_perguntaController implements Initializable {
     @FXML
     private Label label_3Lugar;
     
+    @FXML
+    private Label label_p1;
+
+    @FXML
+    private Label label_p2;
+
+    @FXML
+    private Label label_p3;
     private void cadastrarResultado(String professor){
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date date = new Date();
@@ -334,9 +342,16 @@ public class FXML_perguntaController implements Initializable {
         }else{ 
             if(tokens[0].equals("finalizado")){
                 finalizarGame();
-                Platform.runLater(()->label_1Lugar.setText(tokens[1]));
-                Platform.runLater(()->label_2Lugar.setText(tokens[2]));
-                Platform.runLater(()->label_3Lugar.setText(tokens[3]));
+                String[] r1 = Util.dividirResultado(tokens[1]);
+                String[] r2 = Util.dividirResultado(tokens[2]);
+                String[] r3 = Util.dividirResultado(tokens[3]);
+                Platform.runLater(()->label_1Lugar.setText(r1[0]));
+                Platform.runLater(()->label_2Lugar.setText(r2[0]));
+                Platform.runLater(()->label_3Lugar.setText(r3[0]));
+                
+                Platform.runLater(()->label_p1.setText(r1[1]));
+                Platform.runLater(()->label_p2.setText(r2[1]));
+                Platform.runLater(()->label_p3.setText(r3[1]));
                 cadastrarResultado(tokens[4]);
             }
             proximaPerguntas();          

@@ -205,8 +205,8 @@ public class AdminGameController implements Initializable {
         Platform.runLater(() -> label_alunosConectados.setText("Jogo Finalizado"));
         
         switch(alunosConectadosOrdem.size()){
-            case 1:enviarMensagens("finalizado," + alunosConectadosOrdem.get(0)+","+" " + "," +" "+","+Util.nome_log());break;
-            case 2:enviarMensagens("finalizado," + alunosConectadosOrdem.get(0)+"," +alunosConectadosOrdem.get(1)+" N" + ","+" "+","+Util.nome_log()); break;
+            case 1:enviarMensagens("finalizado," + alunosConectadosOrdem.get(0)+","+"N" + "," +"N"+","+Util.nome_log());break;
+            case 2:enviarMensagens("finalizado," + alunosConectadosOrdem.get(0)+"," +alunosConectadosOrdem.get(1)+", N"+","+Util.nome_log()); break;
             default:enviarMensagens("finalizado," + alunosConectadosOrdem.get(0) +","+alunosConectadosOrdem.get(1)+ "," + alunosConectadosOrdem.get(2)+","+Util.nome_log());break;
         }
         System.out.println("JOGO FINALIZADO");
@@ -413,7 +413,7 @@ public class AdminGameController implements Initializable {
             Platform.runLater(() -> alunosConectados.add(tokens[1]));
             System.out.println("tokens:" + tokens[1]);
         } else {            
-            Platform.runLater(() -> alunosConectados.set(a, alunosConectados.get(a) + " " + tokens[1]));
+            Platform.runLater(() -> alunosConectados.set(a, Util.dividirString(alunosConectados.get(a)) + " " + tokens[1]));
             System.out.println("tokens:" + tokens[1]);
             if (tokens[0].equals("resposta")) {
                 pontos.set(a, tokens[1]);
