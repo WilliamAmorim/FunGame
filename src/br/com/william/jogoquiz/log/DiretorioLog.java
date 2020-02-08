@@ -13,7 +13,7 @@ import java.io.File;
  */
 public class DiretorioLog {
     //System.getProperty("user.dir")+"\\src\\br\\com\\william\\jogoquiz\\log\\log.txt"
-    private String diretoriolog = "C:\\Users\\"+System.getProperty("user.name")+"\\AppData\\Local\\logQuiz3\\log.txt";
+    private String diretoriolog = "C:\\Users\\"+System.getProperty("user.name")+"\\AppData\\Local\\logQuiz\\log.txt";
 
     public String getDiretoriolog() {
         return diretoriolog;
@@ -23,7 +23,7 @@ public class DiretorioLog {
         this.diretoriolog = diretoriolog;
     }
     public  DiretorioLog(){
-        File diretorio = new File("C:\\Users\\"+System.getProperty("user.name")+"\\AppData\\Local\\logQuiz3");
+        File diretorio = new File("C:\\Users\\"+System.getProperty("user.name")+"\\AppData\\Local\\logQuiz");
         
         if (diretorio.exists() == false){   
             diretorio.mkdir();

@@ -112,7 +112,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <ImageView fitHeight="300.0" fitWidth="300.0" layoutX="527.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="image_logo" fitHeight="300.0" fitWidth="300.0" layoutX="527.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../imagens/logo.png" />
          </image>

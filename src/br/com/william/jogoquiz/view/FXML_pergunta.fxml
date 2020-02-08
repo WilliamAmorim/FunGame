@@ -20,7 +20,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="768.0" prefWidth="1320.0" style="-fx-background-color: #363636; -fx-background-radius: 22;" stylesheets="@fonteStyle.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.william.jogoquiz.controller.FXML_perguntaController">
    <children>
-      <ImageView fitHeight="781.0" fitWidth="1375.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imagem_background" fitHeight="781.0" fitWidth="1375.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../imagens/banner.png" />
          </image>
@@ -116,7 +116,7 @@
                   <Font name="Ubuntu Medium" size="35.0" />
                </font>
             </Label>
-            <Label fx:id="label_tema" ellipsisString="White" layoutX="883.0" layoutY="464.0" text="Matematica Portuges" textFill="#a6a6a8">
+            <Label fx:id="label_tema" alignment="CENTER_RIGHT" ellipsisString="White" layoutX="753.0" layoutY="464.0" prefHeight="30.0" prefWidth="390.0" text="Assunto" textFill="#a6a6a8">
                <font>
                   <Font name="Ubuntu Medium" size="25.0" />
                </font>

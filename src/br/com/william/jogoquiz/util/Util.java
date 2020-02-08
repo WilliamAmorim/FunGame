@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 import java.util.ArrayList;
+import javafx.scene.control.ComboBox;
 
 
 
@@ -112,6 +113,27 @@ public class Util {
             return t2;
         }
         
+    }
+    public static void listarDisciplinas(ComboBox d){
+        String[] disciplinas = {
+            "Português",
+            "Matemática",
+            "Biologia",
+            "Física",
+            "Química",
+            "Filosofia", 
+            "Geografia", 
+            "História", 
+            "Sociologia", 
+            "Educação Física", 
+            "Artes", 
+            "Língua Estrangeira",
+            "Literatura"         
+        };
+        
+        for (int i = 0; i < disciplinas.length; i++) {
+            d.getItems().add(disciplinas[i]);
+        }
     }
     public static void main(String[] args){
 //        ArrayList Array = new ArrayList();        

@@ -293,20 +293,19 @@ public class FXML_inicioProfessorController implements Initializable {
 
     @FXML
     void BT_concluirPacote(ActionEvent event) {
-        new Thread(){
-            public void run(){
-                progress_criarPacote.setVisible(true);
+      //  new Thread(){
+      //      public void run(){
+            //    progress_criarPacote.setVisible(true);
                 concluirPacote();
-                progress_criarPacote.setVisible(false);
-            }
-        }.start();
+           //     progress_criarPacote.setVisible(false);
+        //    }
+     //   }.start();
     }
     
     public void concluirPacote(){
         if (!txt_assuntoPacote.getText().equals("") && combo_disciplinaPacote.getValue() != null && cont != 0) {
-            try {
+            try {                
                 cadastrarPerguntas();
-
 //                Alert dialogoInfo = new Alert(Alert.AlertType.CONFIRMATION);
 //                dialogoInfo.setHeaderText("Pacote Cadastrado Com sucesso!");
 //                dialogoInfo.setContentText("");
@@ -320,11 +319,8 @@ public class FXML_inicioProfessorController implements Initializable {
      
 
             } catch (Exception ex) {
-                progress_criarPacote.setVisible(false);
-//                Alert dialogoInfo = new Alert(Alert.AlertType.ERROR);
-//                dialogoInfo.setHeaderText("Ocorreu Um erro agora");
-//                dialogoInfo.setContentText("" + ex);
-//                dialogoInfo.showAndWait();
+               // progress_criarPacote.setVisible(false);
+              System.err.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n"+ex+"\n@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
             }
 
         }
@@ -409,6 +405,7 @@ public class FXML_inicioProfessorController implements Initializable {
             values.add(tokens[4].trim());
             System.out.println("Mostrando conteudo Cadastrado: " + tokens[0] + " - " + tokens[1] + " - " + tokens[2] + " - " + tokens[3] + " - " + tokens[4] + " - " + tokens[5] + " - " + tokens[6] + " - ");
             if (pacoteEscolhido != null) {
+                System.err.println("p01");
                 values.set(0, combo_disciplinaPacote.getValue().toString().substring(0, 3) + pacoteEscolhido.substring(3, 8));
                 if (Float.parseFloat(tokens[7]) == 0) {
                     novo.executeQuery("INSERT INTO `pergunta`(`codigo_pacote`, `resposta`, `pontos`, `enunciado`, `a`, `b`, `c`, `d`) VALUES (?,?,?,?,?,?,?,?)", values);
@@ -416,9 +413,13 @@ public class FXML_inicioProfessorController implements Initializable {
                     values.add((int) Float.parseFloat(tokens[7]));
                     novo.executeQuery("UPDATE `pergunta` SET `codigo_pacote`=?, `resposta`=?,`pontos`=?,`enunciado`=?,`a`=?,`b`=?,`c`=?,`d`=? WHERE id_pergunta = ?", values);
                 }
+                System.err.println("p02");
             } else {
+                System.err.println("p03");
                 novo.executeQuery("INSERT INTO `pergunta`(`codigo_pacote`, `resposta`, `pontos`, `enunciado`, `a`, `b`, `c`, `d`) VALUES (?,?,?,?,?,?,?,?)", values);
+                
             }
+            
         }
         System.out.println("Cadastrando perguntas 01");
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -793,6 +794,7 @@ public class FXML_inicioProfessorController implements Initializable {
 
     @FXML
     void BT_abrirFiltroPacotes(ActionEvent event) {
+        label_nome.setText(Util.nome_log());
         buscarPacotes();
         panel_pacotePergunta.setVisible(true);
         imagem_logo.setVisible(false);
@@ -810,6 +812,7 @@ public class FXML_inicioProfessorController implements Initializable {
 
     @FXML
     void BT_abrirDesempenho(ActionEvent event) {
+        label_nome.setText(Util.nome_log());
         buscarDesempenho();
         panelDesempenho.setVisible(true);
         imagem_logo.setVisible(false);
@@ -873,10 +876,10 @@ public class FXML_inicioProfessorController implements Initializable {
         progress_criarPacote.setVisible(false);
         label_nome.setText(Util.nome_log());
         // TODO
-        combo_disciplina.getItems().add("Matematica");
-        combo_disciplina.getItems().add("Portugues");
-        combo_disciplina.getItems().add("Quimica");
-
+//        combo_disciplina.getItems().add("Português");
+//        combo_disciplina.getItems().add("Portugues");
+//        combo_disciplina.getItems().add("Quimica");
+        Util.listarDisciplinas(combo_disciplina);
         combo_turma.getItems().add("A");
         combo_turma.getItems().add("B");
         combo_turma.getItems().add("C");
@@ -904,14 +907,14 @@ public class FXML_inicioProfessorController implements Initializable {
 
         tabela_pacotes.setItems(conteudoTabelaPacotes);
 
-        combo_disciplinaPacote.getItems().add("Matematica");
-        combo_disciplinaPacote.getItems().add("Portugues");
-        combo_disciplinaPacote.getItems().add("Quimica");
-
-        combo_disciplinaPacotePerguntas.getItems().add("Matematica");
-        combo_disciplinaPacotePerguntas.getItems().add("Portugues");
-        combo_disciplinaPacotePerguntas.getItems().add("Quimica");
-
+//        combo_disciplinaPacote.getItems().add("Matematica");
+//        combo_disciplinaPacote.getItems().add("Portugues");
+//        combo_disciplinaPacote.getItems().add("Quimica");
+        Util.listarDisciplinas(combo_disciplinaPacote);
+//        combo_disciplinaPacotePerguntas.getItems().add("Matematica");
+//        combo_disciplinaPacotePerguntas.getItems().add("Portugues");
+//        combo_disciplinaPacotePerguntas.getItems().add("Quimica");
+        Util.listarDisciplinas(combo_disciplinaPacotePerguntas);
         list_perguntas.setItems(items);
 
         tabela_desempenho.setRowFactory(tv -> new TableRow<DesempenhoAlunoBean>() {

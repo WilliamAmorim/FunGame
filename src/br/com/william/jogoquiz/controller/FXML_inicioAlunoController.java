@@ -37,6 +37,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -51,7 +52,8 @@ import javafx.scene.paint.Color;
 public class FXML_inicioAlunoController implements Initializable {
     
     
-    
+    @FXML
+    private ImageView image_logo;
   
     //DesempenhoAluno***********************************************************
   
@@ -182,12 +184,15 @@ public class FXML_inicioAlunoController implements Initializable {
     private Pane pane_desempenho;
       @FXML
     void BT_AbrirDesempenho(ActionEvent event) {
+        image_logo.setVisible(false);
+        label_nome.setText(Util.nome_log());
         buscarDesempenhoAluno();
         pane_desempenho.setVisible(true);        
     }
     
     @FXML
     void BT_fecharDesempenho(MouseEvent event) {
+        image_logo.setVisible(true);
         pane_desempenho.setVisible(false);
         combo_disciplina.getSelectionModel().clearSelection();
         
@@ -228,6 +233,7 @@ public class FXML_inicioAlunoController implements Initializable {
     }
     @FXML
     void BT_jogar(ActionEvent event) {
+        label_nome.setText(Util.nome_log());
         Inicio abrir = new Inicio();
         abrir.abrirScene("pergunta");
     }
@@ -249,10 +255,10 @@ public class FXML_inicioAlunoController implements Initializable {
         // TODO
         label_nome.setText(Util.nome_log());
         
-        combo_disciplina.getItems().add("Matematica");
-        combo_disciplina.getItems().add("Portugues");
-        combo_disciplina.getItems().add("Quimica");
-                
+//        combo_disciplina.getItems().add("Matematica");
+//        combo_disciplina.getItems().add("Portugues");
+//        combo_disciplina.getItems().add("Quimica");
+        Util.listarDisciplinas(combo_disciplina);        
         coluna_professor.setCellValueFactory(cellData -> cellData.getValue().getProfessor());
         coluna_pacote.setCellValueFactory(cellData -> cellData.getValue().getPacote());
         coluna_data.setCellValueFactory(cellData -> cellData.getValue().getDate());

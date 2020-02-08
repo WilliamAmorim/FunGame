@@ -10,6 +10,7 @@ import br.com.william.jogoquiz.util.Util;
 import br.com.william.jogoquiz.view.Inicio;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXSpinner;
+import java.io.File;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -24,9 +25,10 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 
@@ -35,7 +37,10 @@ import javafx.scene.layout.Pane;
  *
  * @author willi
  */
-public class FXML_perguntaController implements Initializable {   
+public class FXML_perguntaController implements Initializable {
+    @FXML
+    private ImageView imagem_background;
+    
     @FXML
     private Pane panel_game;
 
@@ -56,6 +61,9 @@ public class FXML_perguntaController implements Initializable {
 
     @FXML
     private Label label_pontos;        
+
+    @FXML
+    private Label label_tema;        
     
     @FXML
     private Label label_nPerguntas;
@@ -108,6 +116,7 @@ public class FXML_perguntaController implements Initializable {
 
     @FXML
     void BT_entrarJogo(ActionEvent event) {
+        label_nome.setText(Util.nome_log());
         new Thread(){
             public void run(){
                 if(!label_conectado.isVisible()){            
@@ -119,6 +128,7 @@ public class FXML_perguntaController implements Initializable {
 
     @FXML
     void BT_voltar(ActionEvent event){
+        label_nome.setText(Util.nome_log());
         pacoteEscolhido = null;
         a = true;
         Nperguntas = 0;
@@ -180,8 +190,8 @@ public class FXML_perguntaController implements Initializable {
         values.add(pacoteEscolhido);
         values.add(dateFormat.format(date));
         values.add(meusPontos);
-        
-        cadastrar.executeQuery("INSERT INTO `desempenho`(`aluno`, `professor`, `codigo_pacote`, `data`, `pontuacao`, `assunto`) VALUES (?,?,?,?,?,'assunto')", values);
+        values.add(label_tema.getText());
+        cadastrar.executeQuery("INSERT INTO `desempenho`(`aluno`, `professor`, `codigo_pacote`, `data`, `pontuacao`, `assunto`) VALUES (?,?,?,?,?,?)", values);
         
         
     }
@@ -220,9 +230,9 @@ public class FXML_perguntaController implements Initializable {
     }
        
     ArrayList perguntas = new ArrayList();
-    public int Nperguntas = 0;
+    private int Nperguntas = 0;
+    private String disciplina;
     public void pegarPacote(String pacoteEscolhido) {
-
         Sql novo = new Sql();
         ArrayList values = new ArrayList();
         ArrayList r = new ArrayList();
@@ -244,6 +254,16 @@ public class FXML_perguntaController implements Initializable {
             pergunta.add(tokens[0]);
             perguntas.add(pergunta);
             Nperguntas++;
+        }
+        r.clear();
+        String[] returno = {"disciplina","assunto"};
+        r = novo.executeQuery("SELECT `disciplina`, `assunto` FROM `pacote_pergunta` WHERE codigo_pacote = ?", values, returno);
+        for (int i = 0; i <= r.size() - 1; i++) {            
+            String a = r.get(i).toString();
+            String b = a.replace("[", "").replace("]", "");
+            String[] tokens = b.split(",");
+            disciplina = tokens[0].trim();
+            label_tema.setText(tokens[1].trim());            
         }
     }
     
@@ -375,6 +395,11 @@ public class FXML_perguntaController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         label_nome.setText(Util.nome_log());
+//                Image image = new Image("src/br/com/william/jogoquiz/imagens/banner.png");
+            //File file = new File("src/br/com/william/jogoquiz/imagens/banner.png");
+            //imagem_background.setImage(new Image(file.toURI().toString()));
+            //imagem_background.setFitWidth(2000);
+        
         // TODO
     }    
     

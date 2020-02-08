@@ -7,6 +7,7 @@ package br.com.william.jogoquiz.controller;
 
 import br.com.william.jogoquiz.log.DiretorioLog;
 import br.com.william.jogoquiz.sql.Sql;
+import br.com.william.jogoquiz.util.Util;
 import br.com.william.jogoquiz.view.Inicio;
 import com.jfoenix.controls.JFXButton;
 import java.net.URL;
@@ -392,10 +393,10 @@ public class FXML_inicioController implements Initializable {
         //combo_disciplina.getItems().addAll("Option A", "Option B", "Option C");                
         
         //combo_disciplina.getSelectionModel().select("Option B");
-        combo_disciplina.getItems().add("Matematica");
-        combo_disciplina.getItems().add("Portugues");
-        combo_disciplina.getItems().add("Quimica");
-        
+//        combo_disciplina.getItems().add("Matematica");
+//        combo_disciplina.getItems().add("Portugues");
+//        combo_disciplina.getItems().add("Quimica");
+        Util.listarDisciplinas(combo_disciplina);
         combo_turma.getItems().add("A");
         combo_turma.getItems().add("B");
         combo_turma.getItems().add("C");
