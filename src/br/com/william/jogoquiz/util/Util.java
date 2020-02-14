@@ -135,6 +135,16 @@ public class Util {
             d.getItems().add(disciplinas[i]);
         }
     }
+    
+    public static boolean verificarDesconectado(String variavel){
+        String[] resultado = variavel.split("DESCONECTADO");         
+        if(resultado.length > 1){            
+            return true;
+        }else{
+            return false;
+        }
+        
+    }
     public static void main(String[] args){
 //        ArrayList Array = new ArrayList();        
 //        Array.add("8");
@@ -146,9 +156,11 @@ public class Util {
 //        Array.add("17");
 //        System.out.println("Valor Retornado: "+ordemCrescente(Array,2));
         //System.out.println(turma());
-        String[] a = dividirResultado("");
+        //String[] a = dividirResultado("");
         //System.err.println(a[0].);
-        System.err.println(a[1].trim());
+        //System.err.println(a[1].trim());
+        
+        System.err.println(verificarDesconectado("aa DESCONECTADO fds"));
     }
   
 }

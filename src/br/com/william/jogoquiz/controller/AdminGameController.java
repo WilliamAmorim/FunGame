@@ -130,7 +130,7 @@ public class AdminGameController implements Initializable {
             iniciarServidor(5555);
             pegarPacote();
         } else {
-            if (cont == atualClientes) {
+            if (cont == verificarConectados(clientes)) {
                 //parar de receber conexoes   
                 if (p == Nperguntas) {
                     try{
@@ -351,7 +351,7 @@ public class AdminGameController implements Initializable {
             while(true){
                 for (int i = 0; i < clientes.size(); i++) {
                     if(clientes.get(i).isClosed()){
-                        alunosConectados.set(i,"Desconectado");
+                        alunosConectados.set(i,"[DESCONECTADO]");
                     }
                 }
             }
@@ -369,8 +369,10 @@ public class AdminGameController implements Initializable {
             Platform.runLater(() -> alunosConectados.set(i, alunosConectados.get(i)));
             receberMensagem(clientes.get(i), i);
         } catch (IOException ex) {
-            Platform.runLater(() -> alunosConectados.set(i, alunosConectados.get(i) + " Desconectado"));
-            --cont;
+            if(Util.verificarDesconectado(alunosConectados.get(i))){
+                Platform.runLater(() -> alunosConectados.set(i, alunosConectados.get(i) + "[DESCONECTADO]"));
+                //--cont;
+            }
             System.err.println("----ERRO AO ENVIAR MENSAGEM----");
         }
 
@@ -399,8 +401,10 @@ public class AdminGameController implements Initializable {
                     atualClientes++;
                     System.err.println("atualClientes:"+atualClientes+" cont:"+cont);
                 } catch (IOException ex) {
-                    Platform.runLater(() -> alunosConectados.set(a, alunosConectados.get(a) + " Desconectado"));
-                    cont = cont-1;                    
+                    if(Util.verificarDesconectado(alunosConectados.get(i))){
+                        Platform.runLater(() -> alunosConectados.set(a, alunosConectados.get(a) + "[DESCONECTADO]"));
+                    }
+                    //cont = cont-1;                    
                     System.err.println("cont:"+cont+" atualClientes:"+atualClientes+"----ERRO AO RECEBER MENSAGEM---- " + a);
                 }
             }
@@ -479,5 +483,16 @@ public class AdminGameController implements Initializable {
             timer.cancel();
             Platform.runLater(() -> label_clock.setText("00:00"));
         }
-    }    
+    }  
+    
+    private int verificarConectados(ArrayList<Socket> clientes){
+        int clientesConectados = 0;
+        for (int j = 0; j < clientes.size(); j++) {
+            if(clientes.get(j).isConnected() == true){
+                clientesConectados++;
+            }
+        
+        }
+        return clientesConectados++;
+    }
 }

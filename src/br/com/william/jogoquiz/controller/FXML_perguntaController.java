@@ -10,7 +10,6 @@ import br.com.william.jogoquiz.util.Util;
 import br.com.william.jogoquiz.view.Inicio;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXSpinner;
-import java.io.File;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -27,7 +26,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -365,13 +363,25 @@ public class FXML_perguntaController implements Initializable {
                 String[] r1 = Util.dividirResultado(tokens[1]);
                 String[] r2 = Util.dividirResultado(tokens[2]);
                 String[] r3 = Util.dividirResultado(tokens[3]);
-                Platform.runLater(()->label_1Lugar.setText(r1[0]));
-                Platform.runLater(()->label_2Lugar.setText(r2[0]));
-                Platform.runLater(()->label_3Lugar.setText(r3[0]));
                 
-                Platform.runLater(()->label_p1.setText(r1[1]));
-                Platform.runLater(()->label_p2.setText(r2[1]));
-                Platform.runLater(()->label_p3.setText(r3[1]));
+                if(Util.verificarDesconectado(r1[0])){
+                    Platform.runLater(()->label_1Lugar.setText(r1[0]));                
+                }
+                if(Util.verificarDesconectado(r1[0])){
+                    Platform.runLater(()->label_2Lugar.setText(r2[0]));
+                }
+                if(Util.verificarDesconectado(r1[0])){
+                    Platform.runLater(()->label_3Lugar.setText(r3[0]));
+                }
+                if(Util.verificarDesconectado(r1[1])){
+                    Platform.runLater(()->label_p1.setText(r1[1]));
+                }
+                if(Util.verificarDesconectado(r1[1])){
+                    Platform.runLater(()->label_p2.setText(r2[1]));
+                }
+                if(Util.verificarDesconectado(r1[1])){
+                    Platform.runLater(()->label_p3.setText(r3[1]));
+                }
                 cadastrarResultado(tokens[4]);
             }
             proximaPerguntas();          
