@@ -344,6 +344,7 @@ public class FXML_inicioProfessorController implements Initializable {
     @FXML
     void pegarPergunta(MouseEvent event) {
         int index = list_perguntas.getSelectionModel().getSelectedIndex();
+        System.out.println("index pergunta:"+index);
         if (list_perguntas.getSelectionModel().getSelectedIndex() != -1) {
             String a = perguntas.get(index).toString();
             String b = a.replace("[", "").replace("]", "");
@@ -416,10 +417,8 @@ public class FXML_inicioProfessorController implements Initializable {
                 System.err.println("p02");
             } else {
                 System.err.println("p03");
-                novo.executeQuery("INSERT INTO `pergunta`(`codigo_pacote`, `resposta`, `pontos`, `enunciado`, `a`, `b`, `c`, `d`) VALUES (?,?,?,?,?,?,?,?)", values);
-                
-            }
-            
+                novo.executeQuery("INSERT INTO `pergunta`(`codigo_pacote`, `resposta`, `pontos`, `enunciado`, `a`, `b`, `c`, `d`) VALUES (?,?,?,?,?,?,?,?)", values);                
+            }            
         }
         System.out.println("Cadastrando perguntas 01");
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -590,8 +589,9 @@ public class FXML_inicioProfessorController implements Initializable {
         buscarPacotes();
     }
 
-    public void buscarPacotes() {
+    public void buscarPacotes() {        
         conteudoTabelaPacotes.clear();
+        pacotes.clear();
         Sql novo = new Sql();
         ArrayList v = new ArrayList();
         ArrayList r2 = new ArrayList();
@@ -761,14 +761,14 @@ public class FXML_inicioProfessorController implements Initializable {
     }
 
     @FXML
-    void BT_abrirPanelEditarPacote(ActionEvent event) {
+    void BT_abrirPanelEditarPacote(ActionEvent event) {     
         int i = tabela_pacotes.getSelectionModel().getSelectedIndex();
-        if (i > -1) {
-            String a = (String) conteudoTabelaPacotes.get(i).getProfessor().getValue();
-            System.out.println("tabela conteudo:" + a);
-            if (a.equals(" " + Util.nome_log())) {
+        if (i != -1) {
+            String a = (String) conteudoTabelaPacotes.get(i).getProfessor().getValue().trim();
+            System.out.println("tabela conteudo:" + a.trim());
+            if (a.equals(Util.nome_log().trim())) {
                 reset();
-                System.out.println("pacote Escolhido" + (String) pacotes.get(i));
+                System.out.println("pacote Escolhido:" + (String) pacotes.get(i));
                 pacoteEscolhido = (String) pacotes.get(i);
 
                 if (pacoteEscolhido != null) {
